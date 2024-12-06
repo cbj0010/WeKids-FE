@@ -1,6 +1,7 @@
 import Header from "@/src/ui/layout/Header";
 import { SignOut } from "@/src/ui/components/auth/SignOut";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import ChangePasswordButton from "@/src/ui/components/mypage/ChangePasswordButton";
 
 export default function Page() {
   const userData = {
@@ -14,7 +15,7 @@ export default function Page() {
         <Header />
       </div>
 
-      <div className="flex flex-col items-center mt-4">
+      <div className="flex flex-col items-center mt-10">
         {userData && (
           <div className="flex flex-col items-center mb-8">
             <div className="text-B-16 mt-2">{userData.name}</div>
@@ -23,16 +24,12 @@ export default function Page() {
         )}
       </div>
 
-      <div className="flex-grow"></div>
-
-      <div className="flex flex-col items-center mt-4">
-        <div className="w-[343px] h-[77px] flex-shrink-0 rounded-[25px] bg-white shadow-md flex items-center justify-center">
-          <div className="ml-4 text-B-16">송금 비밀번호 변경하기</div>
-        </div>
+      <div className="flex flex-col items-center mt-12">
+        <ChangePasswordButton />
       </div>
 
       <div className="flex-grow"></div>
-      <div className="flex flex-col justify-center items-center pb-10">
+      <div className="flex flex-col justify-center items-center pb-12">
         <SignOut>
           <CustomButton size="mediumLarge" rounded={true}>
             로그아웃
