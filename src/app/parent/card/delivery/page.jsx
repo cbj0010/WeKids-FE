@@ -7,9 +7,8 @@ import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { colorTypeMap } from "@/src/constants/common";
 
 export default function Page() {
   const [postcode, setPostcode] = useState("");
@@ -25,11 +24,6 @@ export default function Page() {
       </div>,
     );
   };
-
-  useEffect(() => {
-    console.log(childcharacter);
-    console.log(childcolor);
-  }, []);
 
   const clickHandler = (e) => {
     if (phone === "" || name === "" || address === "") {

@@ -2,6 +2,7 @@
 import { useSignUpStore } from "@/src/stores/accountStore";
 import { useUserTypeStore } from "@/src/stores/userStore";
 import { signIn } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function SignIn({ children }) {
   const { userType } = useUserTypeStore();
@@ -34,7 +35,12 @@ export default function SignIn({ children }) {
     data["birthday"] = "2017-03-15";
   }
 
-  useSignUpStore.persist.clearStorage();
+  useEffect(() => {
+    // 클라이언트에서만 clearStorage 실행
+    if (typeof window !== "undefined") {
+      useSignUpStore.persist.clearStorage();
+    }
+  }, []);
 
   return (
     <form

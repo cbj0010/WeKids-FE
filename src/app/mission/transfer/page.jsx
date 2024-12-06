@@ -1,11 +1,10 @@
 "use client";
+import { useMissionIDStore } from "@/src/stores/missionFilterStore";
+import { useAccountStore } from "@/src/stores/userStore";
 import TransferCheck from "@/src/ui/components/mission/parent/TransferCheck";
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
-import { useMissionIDStore } from "@/src/stores/missionFilterStore";
-import { showMissionDetail } from "@/src/apis/mission";
-import { useAccountStore } from "@/src/stores/userStore";
-import { useEffect, useState } from "react";
 import TransferDone from "@/src/ui/components/transfer/TransferDone";
+import { useState } from "react";
 
 export default function TransferDonePage() {
   const [type, setType] = useState("CONFIRM");
@@ -14,10 +13,6 @@ export default function TransferDonePage() {
   const [childName, setChildName] = useState("");
   const { accountInfo } = useAccountStore();
   const [amount, setAmount] = useState(0);
-
-  useEffect(() => {
-    console.log(accountInfo);
-  }, []);
 
   return (
     <>

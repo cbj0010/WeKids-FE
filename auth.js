@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { decrypt } from "@/src/libs/session";
 import { cookies } from "next/headers";
+import { BASE_URL } from "./src/constants/url";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
@@ -56,7 +57,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           };
         }
 
-        const response = await fetch("http://localhost:8080/api/v1/signup", {
+        const response = await fetch(BASE_URL + "/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
