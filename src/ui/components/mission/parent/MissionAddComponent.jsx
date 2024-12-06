@@ -3,6 +3,10 @@ import { getParentsAccounts } from "@/src/apis/parents";
 import { useCreateMission } from "@/src/query/missionQuery";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
+
+import { showToast } from "@/src/constants/toast";
+import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import MissionConfirmModal from "../MissionConfirmModal";
@@ -21,6 +25,8 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const { mutate, isLoading: isUpdating } = useCreateMission();
+  const queryClient = useQueryClient();
+  const route = useRouter();
 
   useEffect(() => {
     console.log(child);
@@ -112,10 +118,13 @@ export default function MissionAddComponent({ setIsModalOpen }) {
       // 모든 호출이 완료된 후 처리
       Promise.all(apiCalls)
         .then(() => {
+          queryClient.invalidateQueries(["missionList"]);
           console.log("모든 API 호출이 완료되었습니다!");
+          route.refresh();
         })
         .catch((error) => {
           console.error("하나 이상의 API 호출이 실패했습니다:", error);
+          showToast.error("미션 등록에 실패했습니다.");
         });
       setIsModalOpen(false);
     } else {
