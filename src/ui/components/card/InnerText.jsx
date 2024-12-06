@@ -25,7 +25,7 @@ export default function InnerText({ isChild = true, name1, name2 }) {
         </div>
       </div>
       <div className="p-3">
-        <Link href={urlPath.PARENT_CARD_ALARM}>
+        <Link href={isChild ? urlPath.CHILD_CARD_COMPLETE : urlPath.PARENT_CARD_ALARM}>
           <CustomButton
             rounded={true}
             size={"mediumLarge"}

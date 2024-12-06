@@ -17,6 +17,7 @@ const decrypt = (encryptedData) => {
 // Zustand Store
 export const useSensitiveDataStore = create((set, get) => ({
   childId: null,
+  childName: "",
   residentRegistrationNumber: "",
   accountPassword: "1234",
   cardPassword: "",
@@ -38,6 +39,9 @@ export const useSensitiveDataStore = create((set, get) => ({
   setCardPassword: (password) => set({ cardPassword: password }),
   getCardPassword: () => get().cardPassword,
 
+  setChildName: (childName) => set({ childName: childName }),
+  getChildName: () => get().childname,
+
   // 암호화된 데이터 저장
   setEncryptedChildId: (id) => set({ childId: encrypt(id) }),
   setEncryptedResidentRegistrationNumber: (number) =>
@@ -46,6 +50,8 @@ export const useSensitiveDataStore = create((set, get) => ({
     set({ accountPassword: encrypt(password) }),
   setEncryptedCardPassword: (password) =>
     set({ cardPassword: encrypt(password) }),
+  setEncryptedChildName: (name) =>
+    set({ childName: encrypt(name) }),
 
   // 암호화된 데이터 복호화
   getDecryptedChildId: () => decrypt(get().childId),
@@ -53,6 +59,7 @@ export const useSensitiveDataStore = create((set, get) => ({
     decrypt(get().residentRegistrationNumber),
   getDecryptedAccountPassword: () => decrypt(get().accountPassword),
   getDecryptedCardPassword: () => decrypt(get().cardPassword),
+  getDecryptedChildName: () => decrypt(get().childName),
 
   // 데이터 초기화
   clearData: () =>
@@ -61,6 +68,7 @@ export const useSensitiveDataStore = create((set, get) => ({
       residentRegistrationNumber: "",
       accountPassword: "",
       cardPassword: "",
+      childName: "",
     }),
 }));
 

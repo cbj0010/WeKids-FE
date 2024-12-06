@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function CardReview() {
   const { accountInfo } = useAccountStore();
-  const { childId } = useSensitiveDataStore();
-  const [childname, setChildname] = useState("");
+  const { childName, setChildName, childId } = useSensitiveDataStore();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -22,7 +21,7 @@ export default function CardReview() {
         if (data) {
           console.log(data);
           const child = data.children.find((c) => c.childId === childId);
-          setChildname(child.name);
+          setChildName(child.name);
         }
       } catch (err) {
         setError(err.message); // 에러 처리
@@ -38,7 +37,7 @@ export default function CardReview() {
     <CardRequestReview>
       <InnerText
         name1={accountInfo ? accountInfo.name : ""}
-        name2={childname ? childname : ""}
+        name2={childName ? childName : ""}
         isChild={false}
       />
     </CardRequestReview>
