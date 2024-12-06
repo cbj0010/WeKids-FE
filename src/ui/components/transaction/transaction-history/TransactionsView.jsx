@@ -1,19 +1,20 @@
 "use client";
+import { urlPath } from "@/src/constants/common";
+import { formatToLocalDate } from "@/src/constants/transaction";
 import { useTransactionList } from "@/src/query/transactionQuery";
-import { Flex } from "@radix-ui/themes";
 import {
   RangeEnum,
   TypeEnum,
   useTransFilterStore,
 } from "@/src/stores/transactionStore";
+import { useSelectUserStore } from "@/src/stores/userStore";
 import Loader from "@/src/ui/components/atoms/Loader";
+import { formatShortDate } from "@/src/util/dateUtils";
+import { Flex } from "@radix-ui/themes";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import { formatToLocalDate } from "@/src/constants/transaction";
-import { useAccountStore, useSelectUserStore } from "@/src/stores/userStore";
-import { urlPath } from "@/src/constants/common";
-import { formatShortDate } from "@/src/util/dateUtils";
 
 export const TransactionsView = () => {
   const size = 5; // 페이지당 데이터 수
@@ -58,7 +59,7 @@ export const TransactionsView = () => {
       const firstDayLastMonth = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
-        1,
+        1
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
@@ -115,7 +116,22 @@ export const TransactionsView = () => {
   const transactions = data?.pages.flatMap((page) => page.transactions) || [];
 
   if (transactions.length === 0) {
-    return <div>거래 내역이 없습니다.</div>; // 데이터가 없을 경우 처리
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <div className="relative w-[200px] h-[200px] ml-4">
+          <Image
+            src="/icons/favicon.svg"
+            alt="favicon"
+            fill
+            className="opacity-30"
+          />
+        </div>
+        <p className="text-center whitespace-pre-line text-L-12 text-black/70">
+          아직 한번도 거래를 하지 않았어요!{"\n"}거래를 시작하면 내역이
+          표시됩니다!
+        </p>
+      </div>
+    );
   }
 
   // 필터링
