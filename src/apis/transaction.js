@@ -113,7 +113,6 @@ export const fetchTransactionById = async (transactionId) => {
 };
 
 export const updateTransactionMemo = async ({ transactionId, memo }) => {
-  console.log("input");
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {

@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { deleteMission, showMissionDetail } from "@/src/apis/mission";
 import { useMissionIDStore } from "@/src/stores/missionFilterStore";
 import { urlPath } from "@/src/constants/common";
+import missionCategories from "@/src/constants/mission";
 
 const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [amount, setAmount] = useState(0); // 초기값을 0으로 설정
@@ -22,7 +23,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const [text, setText] = useState("");
   const [denied, setDenied] = useState(false);
-
+  const [iconSrc, setIconSrc] = useState("/images/trashImg.svg");
   const router = useRouter();
   const { setMissionId } = useMissionIDStore();
   const deadlineDate = deadline ? new Date(deadline) : null;
@@ -38,7 +39,6 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
     const fetchMissionDetail = async () => {
       try {
         const missionDetail = await showMissionDetail({ missionId });
-        console.log(missionDetail);
         setCategory(missionDetail.category);
         setAmount(missionDetail.amount); // 기본값을 0으로 설정
         setTitle(missionDetail.title);
@@ -48,6 +48,10 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         setImage(missionDetail.image);
         setState(missionDetail.state || null);
         missionDetail.memo ? setMemo(missionDetail.memo) : "";
+        const categoryData = missionCategories.find(
+          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK"),
+        );
+        setIconSrc(categoryData ? categoryData.icon : "/images/trashImg.svg");
       } catch (error) {
         console.error("Failed to fetch mission details:", error);
       }
@@ -58,15 +62,15 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
 
   const AddAndCloseModal = (type) => {
     if (type == "accept") {
-      if (state === "SUBMIT") {
+      if (state != "SUBMIT") {
         setText(
           `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
         );
-      } else {
+        setConfirmModalOpen(true);
+      } else if (state == "SUBMIT") {
         router.push(urlPath.MISSION_TRANSFER);
       }
       setDenied(false); // 승인 상태
-      setConfirmModalOpen(true);
     } else if (type == "denied") {
       setText(`반려 버튼을 누르셨습니다. <br /> 정말 반려하시겠습니까?`);
       setDenied(true); // 반려 상태
@@ -104,12 +108,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         </div>
         <div className="text-sub02 text-R-15 flex flex-row">
           {title}
-          <Image
-            src="images/trashImg.svg"
-            width={19}
-            height={19}
-            alt="delete icon"
-          />
+          <Image src={iconSrc} width={19} height={19} alt="delete icon" />
         </div>
       </div>
       <div className="flex flex-col w-full gap-2 mb-3 pt-1 px-7 pb-1 overflow-auto">
@@ -146,38 +145,43 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black/60">
           {memo}
         </div>
-        <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
-          <div className="flex flex-col w-full">
-            <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              onClick={() => AddAndCloseModal("accept")}
-              className="text-R-15 bg-main02 w-full"
-            >
-              승인
-            </CustomButton>
-            {isConfirmModalOpen && (
-              <MissionConfirmModal
-                setParentOpen={setIsModalOpen}
-                setOpen={setConfirmModalOpen}
-                text={text}
-                missionId={missionId}
-                denied={denied}
-                onConfirm={handleModalConfirm}
-              />
-            )}
+
+        {state == "CANCEL" || state == "ACCEPT" ? (
+          <></>
+        ) : (
+          <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
+            <div className="flex flex-col w-full">
+              <CustomButton
+                size="mediumLarge"
+                rounded={true}
+                onClick={() => AddAndCloseModal("accept")}
+                className="text-R-15 bg-main02 w-full"
+              >
+                승인
+              </CustomButton>
+              {isConfirmModalOpen && (
+                <MissionConfirmModal
+                  setParentOpen={setIsModalOpen}
+                  setOpen={setConfirmModalOpen}
+                  text={text}
+                  missionId={missionId}
+                  denied={denied}
+                  onConfirm={handleModalConfirm}
+                />
+              )}
+            </div>
+            <div className="flex flex-col w-full">
+              <CustomButton
+                size="mediumLarge"
+                rounded={true}
+                onClick={() => AddAndCloseModal("denied")}
+                className="flex text-R-15 bg-red01 hover:bg-redHover w-full"
+              >
+                반려
+              </CustomButton>
+            </div>
           </div>
-          <div className="flex flex-col w-full">
-            <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              onClick={() => AddAndCloseModal("denied")}
-              className="flex text-R-15 bg-red01 hover:bg-redHover w-full"
-            >
-              반려
-            </CustomButton>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

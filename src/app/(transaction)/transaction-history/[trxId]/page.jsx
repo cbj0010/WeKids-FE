@@ -20,37 +20,33 @@ const TransactionDetailPage = ({ params }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (data?.memo) {
-      setMemo(data.memo);
+    if (data) {
+      setMemo(data.memo); // 서버에서 받은 메모를 상태에 반영
     }
   }, [data]);
 
   const { mutate, isLoading: isUpdating } = useUpdateTransactionMemo();
 
   const handleUpdateMemo = () => {
-    console.log("HandleUpdateMemo called");
     if (!trxId) {
       return;
     }
-    if (memo == "") {
-      router.push(`${urlPath.TRANSACTION_HISTORY}`);
-    } else {
-      mutate(
-        { transactionId: trxId, memo },
-        {
-          onSuccess: () => {
-            console.log("메모 업데이트 성공!");
-            router.push(`${urlPath.TRANSACTION_HISTORY}`);
-          },
-          onError: (error) => {
-            console.error("메모 업데이트 실패:", error.message);
-          },
+    console.log(memo);
+    mutate(
+      { transactionId: trxId, memo: memo || "" },
+      {
+        onSuccess: () => {
+          console.log("메모 업데이트 성공!");
+          router.push(`${urlPath.TRANSACTION_HISTORY}`);
         },
-      );
-    }
+        onError: (error) => {
+          console.error("메모 업데이트 실패:", error.message);
+        },
+      },
+    );
   };
 
-  if (isLoading) {
+  if (isLoading || !data) {
     return <Loader />;
   }
 

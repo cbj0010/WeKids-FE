@@ -8,7 +8,7 @@ export default function PasswordTop({
   setAllowed,
   index = 6,
   title = "간편 비밀번호를",
-  type = "간편",
+  type = "간편 비밀번호",
 }) {
   const [check, setChecked] = useState(0);
   const [isShaking, setIsShaking] = useState(false);

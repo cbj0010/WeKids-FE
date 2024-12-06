@@ -15,6 +15,10 @@ export default function TransferDonePage() {
   const { accountInfo } = useAccountStore();
   const [amount, setAmount] = useState(0);
 
+  useEffect(() => {
+    console.log(accountInfo);
+  }, []);
+
   return (
     <>
       {type == "CONFIRM" ? (
@@ -25,7 +29,7 @@ export default function TransferDonePage() {
           setAmount={setAmount}
           childName={childName}
           amount={amount}
-          accountInfo={accountInfo.accountNumber}
+          accountNumber={accountInfo.accountNumber}
           setType={setType}
         />
       ) : type == "SEND" ? (

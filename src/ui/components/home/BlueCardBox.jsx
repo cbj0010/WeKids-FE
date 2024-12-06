@@ -1,7 +1,6 @@
 "use client";
 
 import { characterInfoMap, urlPath } from "@/src/constants/common";
-import { useTransactionStore } from "@/src/stores/transactionStore";
 import {
   useAccountStore,
   useSelectUserStore,
@@ -81,8 +80,7 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
       </div>
       <div className="absolute right-0 bottom-[75px] w-[180px] h-[180px] overflow-hidden">
         <Image
-          width={0}
-          height={0}
+          fill
           src={characterInfoMap[selectedAccount.character].imagePath}
           alt="Mascot"
           className="w-full h-full object-cover"

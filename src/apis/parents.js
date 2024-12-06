@@ -29,7 +29,7 @@ export const getParentsAccounts = async () => {
   return data;
 };
 
-export const agreeAccountInquiry = async (identification) => {
+export const agreeAccountInquiry = async (residentRegistrationNumber) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
 
@@ -37,9 +37,6 @@ export const agreeAccountInquiry = async (identification) => {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-
-  const residentRegistrationNumber =
-    identification.slice(0, 6) + "-" + identification.slice(6);
 
   try {
     const response = await fetch(`${BASE_URL}/parents/agree-account-inquiry`, {
@@ -67,5 +64,26 @@ export const agreeAccountInquiry = async (identification) => {
       success: false,
       message: "오류가 발생했습니다. 다시 시도해주세요",
     };
+  }
+};
+
+export const patchAccount = async ({ accountNumber }) => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+
+  const response = await fetch(`${BASE_URL}/parents/account`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      accountNumber: accountNumber,
+    }),
+  });
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(`Error fetching transaction: ${errorMessage}`);
   }
 };

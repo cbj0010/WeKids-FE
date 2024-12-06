@@ -1,7 +1,8 @@
-import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { urlPath } from "@/src/constants/common";
 import Image from "next/image";
+import Link from "next/link";
 
-export const MessageBox = ({ subtitle, description, imgUrl }) => {
+export const ButtonMessageBox = ({ subtitle, description }) => {
   const [firstPart, secondPart] = subtitle.split("\n");
   return (
     <div className="bg-white rounded-lg px-6 pb-4">
@@ -11,9 +12,7 @@ export const MessageBox = ({ subtitle, description, imgUrl }) => {
           <br />
           <span className="text-main02 whitespace-nowrap">{secondPart}</span>
         </p>
-        <div className="pl-2 pt-10">
-          <ArrowRightIcon className="w-6 h-6 text-neutral-400" />
-        </div>
+
         <Image
           src="/icons/favicon.svg"
           alt="WeKids"
@@ -23,13 +22,13 @@ export const MessageBox = ({ subtitle, description, imgUrl }) => {
         />
       </div>
       <p className="text-L-10 text-sub02">{description}</p>
-      <Image
-        src={imgUrl}
-        width={80}
-        height={17}
-        alt="weebee"
-        className="mt pt-3 mb-3"
-      />
+      <div className="justify-center flex ">
+        <Link href={urlPath.HOME}>
+          <button className="bg-main02 rounded-[11px] mt-4 text-white w-[155px] h-[25px] text-center text-R-16">
+            확인
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -8,12 +8,15 @@ import ParentMissionList from "./ParentMissionList";
 import { ParentNoMissionCard } from "./ParentNoMissionCard";
 import MissionModal from "../MissionModal";
 import MissionAddComponent from "./MissionAddComponent";
+import MissionAcceptComponent from "./MissionAcceptComponent";
 
 const ParentMissionHome = ({ initialData }) => {
   const { selectedChild, selectedCategory } = useMissionFilterStore();
   const [updateData, setData] = useState(initialData || []);
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [openMissionId, setOpenMissionId] = useState(null);
 
   useEffect(() => {
     const fetchFilteredMissions = async () => {
@@ -36,6 +39,11 @@ const ParentMissionHome = ({ initialData }) => {
     fetchFilteredMissions();
   }, [selectedChild, selectedCategory]);
 
+  const openModal = (missionId) => {
+    setOpenMissionId(missionId);
+    setIsDetailOpen(!isModalOpen);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <FilterHeader />
@@ -50,8 +58,17 @@ const ParentMissionHome = ({ initialData }) => {
               <ParentMissionList
                 key={mission.missionId}
                 missiondata={mission}
+                onClick={() => openModal(mission.missionId)}
               />
             ))}
+            {openMissionId && (
+              <MissionModal isOpen={isDetailOpen} setOpen={setIsDetailOpen}>
+                <MissionAcceptComponent
+                  setIsModalOpen={setIsDetailOpen}
+                  missionId={openMissionId}
+                />
+              </MissionModal>
+            )}
           </div>
         )}
       </div>

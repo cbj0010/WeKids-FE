@@ -30,6 +30,7 @@ export const designCreate = async (data) => {
     }
     throw new Error(`Failed to post data: ${errorMessage}`);
   }
+  return {};
 };
 
 export const designFetch = async (designId) => {

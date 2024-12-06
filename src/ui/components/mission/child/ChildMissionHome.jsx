@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import ChildMissionHeader from "./ChildMissionHeader";
 import ChildMissionList from "./ChildMissionList";
 import { ChildNoMissionCard } from "./ChildNoMissionCard";
+import MissionRequestComponent from "./MissionRequestComponent";
+import MissionModal from "../../atoms/MissionModal";
 
 export const ChildMissionHome = ({ initialData }) => {
   const [selectedStates, setSelectedStates] = useState([]); // 선택된 상태 배열
   const [updateData, setData] = useState(initialData || []);
   const [filteredData, setFilteredData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openMissionId, setOpenMissionId] = useState(null);
 
   useEffect(() => {
     const filterMissions = () => {
@@ -30,6 +34,10 @@ export const ChildMissionHome = ({ initialData }) => {
           ? prevStates.filter((s) => s !== state) // 이미 선택된 상태는 제거
           : [...prevStates, state], // 새로운 상태는 추가
     );
+  };
+  const openModal = (missionId) => {
+    setOpenMissionId(missionId);
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
@@ -57,9 +65,18 @@ export const ChildMissionHome = ({ initialData }) => {
                 <ChildMissionList
                   key={mission.missionId}
                   missiondata={mission}
+                  onClick={() => openModal(mission.missionId)}
                 />
               ))}
             </div>
+          )}
+          {openMissionId && (
+            <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
+              <MissionRequestComponent
+                setIsModalOpen={setIsModalOpen}
+                missionId={openMissionId} // 선택된 미션 ID 전달
+              />
+            </MissionModal>
           )}
         </>
       )}

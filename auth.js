@@ -4,6 +4,9 @@ import { decrypt } from "@/src/libs/session";
 import { cookies } from "next/headers";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  pages: {
+    error: "/error",
+  },
   providers: [
     Credentials({
       authorize: async (credentials) => {

@@ -15,6 +15,7 @@ export default function ChoiceDesign({
   character = "HEARTSPRING",
   color = "PINK2",
   memberId,
+  onClick,
 }) {
   const [design, setDesign] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +68,7 @@ export default function ChoiceDesign({
           size="mediumLarge"
           rounded={true}
           className="bg-main02 text-R-20"
+          onClick={onClick}
         >
           {buttonText}
         </CustomButton>

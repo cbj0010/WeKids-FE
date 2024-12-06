@@ -34,7 +34,13 @@ const Profile = ({
           ${className}
         `}
     >
-      <Image src={profile} alt="profile image" fill className="object-cover" />
+      <Image
+        src={profile}
+        alt="profile image"
+        className="object-cover"
+        width={60}
+        height={60}
+      />
     </div>
   );
 };

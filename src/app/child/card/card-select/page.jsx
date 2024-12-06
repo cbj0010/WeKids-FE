@@ -1,6 +1,5 @@
 "use client";
 
-import { designCreate } from "@/src/apis/design";
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
 import { useColorStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
@@ -21,20 +20,7 @@ export default function CardDesignSelector() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleConfirm = async () => {
-    try {
-      const data = {
-        character: selectedCharacter,
-        color: selectedColor,
-        userId: userId,
-      };
-      console.log("Sending design data:", data);
-      const response = await designCreate(data);
-      console.log("Design created:", response);
-      setIsModalOpen(true);
-      clearUserInfo(); //데이터 삭제
-    } catch (error) {
-      console.error("Failed to create design:", error);
-    }
+    setIsModalOpen(true);
   };
 
   return (

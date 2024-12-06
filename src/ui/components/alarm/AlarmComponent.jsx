@@ -9,14 +9,13 @@ const AlarmComponent = ({ data }) => {
   const { setChildId } = useSensitiveDataStore();
 
   const OnCheckClicker = (idx) => {
-    const alarm = data[idx]; // data 배열에서 해당 인덱스의 alarm 데이터 가져오기
-
+    const alarm = data[idx - 1]; // data 배열에서 해당 인덱스의 alarm 데이터 가져오기
     if (alarm.type === "CARD") {
       setChildId(alarm.targetId); // targetId를 Zustand에 저장
     }
 
     mutate(
-      { alarmId: idx + 1 },
+      { alarmId: idx },
       {
         onSuccess: () => {
           console.log("성공!");
@@ -34,12 +33,12 @@ const AlarmComponent = ({ data }) => {
         {data.map((alarm, index) => (
           <AlarmCard
             key={index}
-            index={index}
+            id={alarm.alarmId}
             type={alarm.type}
             targetId={alarm.targetId}
             targetState={alarm.targetState}
             isChecked={alarm.isChecked}
-            onClick={() => OnCheckClicker(index)} // index 전달
+            onClick={() => OnCheckClicker(alarm.alarmId)} // index 전달
           />
         ))}
       </div>

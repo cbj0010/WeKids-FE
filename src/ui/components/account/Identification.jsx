@@ -30,7 +30,10 @@ export default function Identification({ setIsChecked }) {
 
   const handleCheck = async () => {
     try {
-      const response = await agreeAccountInquiry(identification);
+      const residentRegistrationNumber =
+        identification.slice(0, 6) + "-" + identification.slice(6);
+
+      const response = await agreeAccountInquiry(residentRegistrationNumber);
       console.log("Response:", response);
 
       if (response.status === 401) {
@@ -50,7 +53,7 @@ export default function Identification({ setIsChecked }) {
   };
 
   return (
-    <div className="flex flex-col w-full h-full justify-around py-[40px] scrollbar-hide">
+    <div className="flex flex-col w-full h-full justify-between py-[20px] scrollbar-hide">
       <Toaster position="top-center" />
       <div className="flex flex-col items-center px-[40px]">
         <p className="text-R-20 mb-[40px]">

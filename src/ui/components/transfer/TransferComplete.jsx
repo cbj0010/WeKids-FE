@@ -36,7 +36,7 @@ const TransferComplete = ({
 
   useEffect(() => {
     console.log(missionId);
-
+    console.log(accountNumber);
     const fetchMissionDetail = async () => {
       try {
         const missionDetail = await showMissionDetail({ missionId });

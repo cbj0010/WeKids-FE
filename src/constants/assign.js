@@ -28,28 +28,106 @@ export const alarmData = {
     description: (missionName) =>
       `미션을 확인해보세요. <br/>아이가 ${missionName}미션을 완료했습니다.`,
   },
-  CARD: {
-    emoticon: "CARD",
+  READY: {
+    emoticon: "DOCUMENT",
     title: "등록된 카드 디자인 확인하기",
     description: () =>
-      `아이가 만든 카드 디자인을 확인하고 카드를 발행해주세요!`,
+      `아이가 카드 발급 신청했습니다. 부모님의 동의가 필요해요.`,
   },
-  DOCUMENT: {
-    emoticon: "DOCUMENT",
-    title: "협상 제안서 바로 보기",
-    description: () =>
-      `용돈 협상 제안서를 확인해보세요. <br/>아이가 용돈 협상 제안서를 등록했습니다!`,
+  CREATED: {
+    emoticon: "CARD",
+    title: "등록된 카드 디자인 확인하기",
+    description: () => `카드 발급이 완료되었습니다!`,
   },
   ANNOUNCEMENT: {
     emoticon: "ANNOUNCEMENT",
     title: "휴일에도 자동이체가 가능합니다!",
     description: () => `2024년 10월 7일부터 휴일에도 자동이체가 가능해요!`,
   },
-  MESSAGE: {
-    emoticon: "MESSAGE",
+  MISSION: {
+    emoticon: "MISSION",
     title: "부모 동의 알림 확인하기",
     description: () =>
       `가족관계 증명서 확인해주기. <br/>아이가 소셜로그인 가입을 위한 부모 동의 알림을 보냈습니다!`,
+  },
+};
+
+// export const missionData = {
+//   NEW: {
+//     emoticon: "MISSION",
+//     title: "미션이 등록되었어요.",
+//     description: () =>
+//       `아이가 미션을 등록했어요 확인해보세요!`,
+//   },
+//   SUBMIT: {
+//     emoticon: "MISSION",
+//     title: "미션 인증요청이 들어왔어요.",
+//     description: () =>
+//       `아이가 미션을 인증했어요 확인해보세요!`,
+//   },
+//   ACCEPT: {
+//     emoticon: "MISSION",
+//     title: "부모님이 미션을 승인했어요.",
+//     description: () =>
+//       `부모님이 미션 인증을 승인하셨어요 확인해보세요!`,
+//   },
+//   CANCEL: {
+//     emoticon: "MISSION",
+//     title: "부모님이 미션을 반려했어요.",
+//     description: () => `부모님이 미션 인증을 반려하셨어요 다음에는 더 열심히 해봐요!`,
+//   },
+//   OUTDATED: {
+//     emoticon: "MISSION",
+//     title: "미션 기한이 지났어요..!",
+//     description: () => `미션 기한이 지났어요 다음에는 더 열심히 해봐요!`,
+//   },
+
+// };
+
+export const missionData = {
+  NEW: {
+    emoticon: "MISSION",
+    title: "미션이 등록되었어요!",
+    description: () => `아이가 미션을 등록했어요 확인해보세요!`,
+  },
+  SUBMIT: {
+    emoticon: "MISSION",
+    title: "미션 인증요청이 들어왔어요!",
+    description: () => `아이가 미션을 인증했어요 확인해보세요!`,
+  },
+  ACCEPT: {
+    emoticon: "MISSION",
+    title: "부모님이 미션을 승인했어요!",
+    description: () => `부모님이 미션 인증을 승인하셨어요 확인해보세요!`,
+  },
+  CANCEL: {
+    emoticon: "MISSION",
+    title: "부모님이 미션을 반려했어요!",
+    description: () =>
+      `부모님이 미션 인증을 반려하셨어요 다음에는 더 열심히 해봐요!`,
+  },
+  OUTDATED: {
+    emoticon: "MISSION",
+    title: "미션 기한이 지났어요!",
+    description: () => `미션 기한이 지났어요 다음에는 더 열심히 해봐요!`,
+  },
+};
+
+export const cardData = {
+  NONE: {
+    emoticon: "CARD",
+    title: "카드가 아직 없어요.",
+    description: () => `혹시 모르니 넣어놓은 값!`,
+  },
+  READY: {
+    emoticon: "CARD",
+    title: "카드 발급 대기중이에요!",
+    description: () => `아이 카드 발급 인증을 해주세요!`,
+  },
+  CREATED: {
+    emoticon: "CARD",
+    title: "카드 발급이 완료되었어요!",
+    description: () => `부모님이 카드발급을 완료해주셨어요!`,
   },
 };
 

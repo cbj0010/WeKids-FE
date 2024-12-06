@@ -12,8 +12,8 @@ export default async function Header() {
     <header className="flex justify-between items-center pr-7 pl-6">
       <Link href={urlPath.HOME}>
         <Image
-          width={0}
-          height={0}
+          width={20}
+          height={26}
           src="/images/logoImg.svg"
           alt="Logo"
           className="w-fit h-fit mr-5 mt-5"

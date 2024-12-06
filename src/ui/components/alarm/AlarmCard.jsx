@@ -6,18 +6,15 @@ import {
   FileIcon,
   CardStackIcon,
 } from "@radix-ui/react-icons";
-import { alarmData } from "@/src/constants/assign";
+import { cardData, missionData } from "@/src/constants/assign";
 import Image from "next/image";
 import Link from "next/link";
 import { urlPath } from "@/src/constants/common";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const EMOTICON = {
-  MESSAGE: EnvelopeClosedIcon,
-  COMPLETED: CheckIcon,
-  DOCUMENT: FileIcon,
+  MISSION: FileIcon,
   CARD: CardStackIcon,
-  NOTIFICATION: "",
 };
 
 const AlarmCard = ({
@@ -30,10 +27,16 @@ const AlarmCard = ({
   className,
   onClick,
 }) => {
-  const data = alarmData[type || "MISSION"];
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (type === "MISSION") {
+      setData(missionData[targetState] || missionData.NEW); // 기본값: NEW
+    } else if (type === "CARD") {
+      setData(cardData[targetState] || cardData.CREATED); // 기본값: NONE
+    }
+  }, [type, targetState]);
   if (!data) return null;
-  const SelectedIcon =
-    data.emoticon != "NOTIFICATION" ? EMOTICON[data.emoticon] : "";
+  const SelectedIcon = EMOTICON[data.emoticon];
 
   return (
     <Link href={type == "MISSION" ? urlPath.MISSION : urlPath.ALARM_CARD}>
@@ -57,7 +60,7 @@ const AlarmCard = ({
           <div className="text-B-18 h-2/5 text-black">{data.title}</div>
           <div className="text-R-14 h-2/5 text-black/60">
             {data
-              .description(missionName)
+              .description()
               .split("<br/>")
               .map((line, index) => (
                 <p key={index}>{line}</p>

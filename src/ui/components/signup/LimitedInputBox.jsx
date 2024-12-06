@@ -58,7 +58,6 @@ const LimitedInputBox = ({
     };
 
     if (!inputValue && !isFocused) {
-      console.log(inputValue);
       // 입력 전 상태
       return {
         ...baseStyles,
@@ -68,7 +67,6 @@ const LimitedInputBox = ({
         boxShadow: "none",
       };
     } else if (inputValue && !isFocused) {
-      console.log("2");
       return {
         ...baseStyles,
         border: "1px solid #000000",
@@ -77,7 +75,6 @@ const LimitedInputBox = ({
         boxShadow: "none",
       };
     } else if (isFocused) {
-      console.log("3");
       // 입력 중 상태 - 떠있는 효과를 위한 그림자 추가
       return {
         ...baseStyles,
@@ -88,7 +85,6 @@ const LimitedInputBox = ({
         transform: "translateY(-2px)",
       };
     } else if (isCompleted) {
-      console.log("4");
       // 입력 완료 상태
       return {
         ...baseStyles,
