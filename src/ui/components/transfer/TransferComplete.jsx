@@ -9,11 +9,11 @@ import { showMissionDetail } from "@/src/apis/mission";
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) => `${amount}원 보냈어요`,
+    SUBTITLE: (amount) => `${(Number(amount) || 0).toLocaleString()}원 보냈어요`,
   },
   CONFIRM: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) => `${amount}원 송금하시겠습니까?`,
+    SUBTITLE: (amount) =>  `${(Number(amount) || 0).toLocaleString()}원 송금하시겠습니까?`,
   },
   BUTTONS: {
     CONFIRM: "확인",
