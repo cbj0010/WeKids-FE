@@ -1,6 +1,7 @@
 "use client";
 
 import { characterInfoMap, urlPath } from "@/src/constants/common";
+import { useTransactionStore } from "@/src/stores/transactionStore";
 import {
   useAccountStore,
   useSelectUserStore,
@@ -18,9 +19,14 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
   const { accountInfo } = useAccountStore();
   const { setSelectedAccountId, setSelectedAccountInfo } = useSelectUserStore();
-
+  const {setSelectedAccount} = useTransactionStore();
   useEffect(() => {
     setSelectedAccountId(selectedAccount.accountId);
+    setSelectedAccount({
+      id: selectedAccount.accountId,
+      name: selectedAccount.name,
+      accountNumber: selectedAccount.accountNumber
+    });
     setSelectedAccountInfo({
       name: selectedAccount.name,
       accountNumber: selectedAccount.accountNumber,
