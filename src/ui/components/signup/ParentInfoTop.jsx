@@ -31,12 +31,14 @@ export default function ParentInfoTop() {
   const [blank, setBlank] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    setAllCheck(
-      guardianName != "" &&
-        !guardianBirthday.includes(" ") &&
-        !guardianPhone.includes(" "),
-    );
-  }, [guardianName, guardianBirthday, guardianPhone]);
+  const isNameValid = guardianName.trim() !== "";
+  const isBirthdayValid =
+    guardianBirthday.length === 8 && !guardianBirthday.includes(" ");
+  const isPhoneValid =
+    guardianPhone.length === 11 && !guardianPhone.includes(" ");
+
+  setAllCheck(isNameValid && isBirthdayValid && isPhoneValid);
+}, [guardianName, guardianBirthday, guardianPhone]);
 
   useEffect(() => {
     if (time <= 0) {
