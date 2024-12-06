@@ -45,15 +45,17 @@ const TransferAmountDisplay = ({
               value={selectedAccount.name}
               onChange={handleUserChange}
             >
-              {childrenAccounts.map((user, index) => (
-                <option key={index} value={user.name}>
-                  {user.name}
-                </option>
-              ))}
+              {childrenAccounts
+                .filter((user) => user.accountNumber) // 계좌번호가 있는 사용자만 필터링
+                .map((user, index) => (
+                  <option key={index} value={user.name}>
+                    {user.name}
+                  </option>
+                ))}
             </select>
           </div>
           <div className="text-R-12 text-neutral-400">
-            {"우리은행"} {selectedAccount.account}
+            {"우리은행"} {selectedAccount.accountNumber}
           </div>
         </div>
         <button

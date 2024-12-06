@@ -60,6 +60,11 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const handleRewardChange = (e) => {
     const inputValue = e.target.value;
 
+    // 숫자가 아닌 문자 입력 시 무시
+    if (!/^\d*,*\d*$/.test(inputValue)) {
+      return;
+    }
+
     // 쉼표를 제거한 숫자 값
     const numericValue = inputValue.replace(/,/g, "");
 
@@ -97,11 +102,11 @@ export default function MissionAddComponent({ setIsModalOpen }) {
             },
             onError: (error) => {
               console.error(
-                `실패! Child ID: ${childId}, Error: ${error.message}`,
+                `실패! Child ID: ${childId}, Error: ${error.message}`
               );
             },
-          },
-        ),
+          }
+        )
       );
 
       // 모든 호출이 완료된 후 처리
@@ -121,7 +126,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
       <Toaster />
-      <p className="text-B-18 mb-5 px-7 pt-10">미션 등록하기</p>
+      <p className="text-B-18 mb-4 px-7 pt-8">미션 등록하기</p>
       <div className="w-full overflow-y-auto gap-3 h-full mb-1 px-7 pb-10">
         <div className="flex flex-col gap-1">
           <ButtonGroup
@@ -129,7 +134,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
             setTopButtonChecked={setChild}
             setBottomButtonChecked={setCategory}
           />
-          <div className="flex flex-col gap-1 mb-5 mt-5">
+          <div className="flex flex-col gap-1 mb-5 mt-3">
             <p className="text-R-10 text-sub02">미션명</p>
             <div
               className={`${title != "" ? "bg-main02/20" : "bg-gray01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
@@ -179,7 +184,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           />
         </div>
         <div className="flex flex-col w-full gap-2">
-          <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
+          <div className="flex flex-row gap-3 w-full justify-between h-[40px] mt-1">
             <div className="flex flex-col w-full">
               <CustomButton
                 size="mediumLarge"
