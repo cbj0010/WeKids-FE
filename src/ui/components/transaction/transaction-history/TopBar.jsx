@@ -12,8 +12,7 @@ import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function TopBar({ name, accountNumber }) {
-  const { userType } = useUserTypeStore();
+export default function TopBar({ }) {
   const { balance } = useTransFilterStore();
   const { selectedaccountInfo } = useSelectUserStore();
   const {accountInfo} = useAccountStore();
