@@ -1,5 +1,4 @@
 "use client";
-import { userdata } from "@/src/constants/userdata";
 import { useSignUpStore } from "@/src/stores/accountStore";
 import { useUserTypeStore } from "@/src/stores/userStore";
 import { signIn } from "next-auth/react";
@@ -22,17 +21,17 @@ export default function SignIn({ children }) {
     email: email,
     name: name,
     phone: phone,
-    birthday: "2020-01-10",
+    birthday: birthday,
     simplePassword: simplePassword,
     guardianName: guardianName,
-    guardianBirthday: "1985-01-05",
-    guardianPhone: "010-1234-5678",
+    guardianBirthday: guardianBirthday,
+    guardianPhone: guardianPhone,
     memberType: userType,
     social: "naver",
     redirectTo: "/",
   };
 
-  // console.log(data);
+   console.log(data);
   // let data = useSignUpStore.persist.clearStorage();
 
   return (

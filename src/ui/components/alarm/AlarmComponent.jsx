@@ -1,6 +1,6 @@
 "use client";
 
-import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
+import { useSensitiveDataStore } from "@/src/stores/cardStore";
 import AlarmCard from "./AlarmCard";
 import { useUpdateAlarmChecked } from "@/src/query/alarmQuery";
 

@@ -1,6 +1,6 @@
 "use client";
 import { getParentsAccounts } from "@/src/apis/parents";
-import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
+import { useSensitiveDataStore } from "@/src/stores/cardStore";
 import { useAccountStore } from "@/src/stores/userStore";
 import CardRequestReview from "@/src/ui/components/card/CardRequestReview";
 import InnerText from "@/src/ui/components/card/InnerText";

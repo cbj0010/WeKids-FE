@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { BASE_URL } from "@/src/constants/url";
 import CryptoJS from "crypto-js";
 
 const secretKey = process.env.NEXT_PUBLIC_PROFILE_SECRET_KEY || "default-key";

@@ -3,8 +3,8 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { urlPath } from "@/src/constants/common";
-import { useEffect } from "react";
 import Link from "next/link";
+import { useTransactionStore } from "@/src/stores/transactionStore";
 
 const MESSAGES = {
   COMPLETE: {
@@ -29,13 +29,12 @@ const TransferDone = ({
   // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
+  const {clearTransferData} = useTransactionStore();
 
+  useEffect(() => {
+    clearTransferData();
+  },[])
 
-  // type에 따라 다른 경로 설정
-  const nextPath =
-    type === "CONFIRM"
-      ? urlPath.MISSION_TRANSFER_PASSWORD // 비밀번호 입력 페이지로
-      : urlPath.HOME; // 완료 후 홈으로
 
   return (
     <main className="min-h-screen bg-white flex flex-col">

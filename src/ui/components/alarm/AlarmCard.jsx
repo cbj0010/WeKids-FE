@@ -1,8 +1,6 @@
 "use client";
 import {
   ChevronRightIcon,
-  EnvelopeClosedIcon,
-  CheckIcon,
   FileIcon,
   CardStackIcon,
 } from "@radix-ui/react-icons";

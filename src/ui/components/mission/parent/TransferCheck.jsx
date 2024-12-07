@@ -1,6 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useAcceptMission } from "@/src/query/missionQuery";
 import PasswordSecondBottom from "../../signup/PasswordSecondBottom";
 import PasswordSecondTop from "../../signup/PasswordSecondTop";

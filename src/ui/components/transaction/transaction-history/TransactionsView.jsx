@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { formatToLocalDate } from "@/src/constants/transaction";
-import { useAccountStore, useSelectUserStore } from "@/src/stores/userStore";
+import { useSelectUserStore } from "@/src/stores/userStore";
 import { urlPath } from "@/src/constants/common";
 import { formatShortDate } from "@/src/util/dateUtils";
 
@@ -24,7 +24,6 @@ export const TransactionsView = () => {
     startDate,
     endDate,
     type,
-    balance,
     setBalance,
   } = useTransFilterStore();
   const { selectedaccountId } = useSelectUserStore();
@@ -88,10 +87,11 @@ export const TransactionsView = () => {
   });
 
   useEffect(() => {
-    if (start && end) {
-      fetchNextPage();
+    // 필터가 변경될 때마다 새로 데이터를 가져옵니다.
+    if (start && end && typetoEng) {
+      fetchNextPage({ pageParam: 0 }); // 페이지 초기화 후 첫 번째 데이터 호출
     }
-  }, [start, end, fetchNextPage]);
+  }, [start, end, typetoEng, fetchNextPage]);
 
   useEffect(() => {
     if (data?.pages?.[0]?.balance !== undefined) {
@@ -102,8 +102,9 @@ export const TransactionsView = () => {
   // Intersection Observer가 뷰에 들어올 때 다음 페이지 가져오기
 
   if (isLoading && !data) {
-    return <div>Loading...</div>;
+    return <div><Loader /></div>;
   }
+
 
   if (error) {
     return <div>Error: {error.message}</div>; // 에러 발생 시 표시

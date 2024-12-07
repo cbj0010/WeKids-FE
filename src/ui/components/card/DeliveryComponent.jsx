@@ -1,4 +1,5 @@
-'use client'
+"use client";
+
 import React from "react";
 import { urlPath } from "@/src/constants/common";
 import CardDisplay from "@/src/ui/components/card/CardDisplay";

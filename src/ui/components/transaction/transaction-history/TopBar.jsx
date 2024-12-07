@@ -4,7 +4,6 @@ import { useTransFilterStore } from "@/src/stores/transactionStore";
 import {
   useAccountStore,
   useSelectUserStore,
-  useUserTypeStore,
 } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";

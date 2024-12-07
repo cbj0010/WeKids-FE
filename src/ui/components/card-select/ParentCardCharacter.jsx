@@ -1,6 +1,5 @@
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
 import { useSensitiveDataStore } from "@/src/stores/cardStore";
-import { useUserStore } from "@/src/stores/userStore";
 import { convertToPingName } from "@/src/util/userUtil";
 import Image from "next/image";
 

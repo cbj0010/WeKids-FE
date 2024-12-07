@@ -4,23 +4,13 @@ import { formatDate } from "@/src/util/missionUtils";
 import CategoryBadge from "../list/CategoryBadge";
 import StateBadge from "../list/StateBadge";
 import ChildProfileSection from "./ChildProfileSection";
-import { useState } from "react";
 
 const ParentMissionList = ({ missiondata, onClick }) => {
   const bgColor =
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
       : missionColorMap.NEW.background;
-  //todo 필요하면 쓰세요
-  //     const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const handleMissionClick = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
+ 
 
   return (
     <div
