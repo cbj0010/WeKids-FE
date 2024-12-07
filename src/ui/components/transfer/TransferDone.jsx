@@ -50,7 +50,7 @@ const TransferDone = ({
         <div className="text-center space-y-2 mb-4">
           <p className="text-B-28 text-black/80">{messages.TITLE(childName)}</p>
           <p className="text-B-28 text-black/80">{messages.SUBTITLE(amount)}</p>
-          <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
+          <div className="flex items-center justify-center text-R-14 text-black/70 pt-4">
             {"우리은행 "}
             {accountNumber}
             <ChevronRightIcon

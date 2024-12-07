@@ -4,23 +4,12 @@ import { formatDate } from "@/src/util/missionUtils";
 import CategoryBadge from "../list/CategoryBadge";
 import StateBadge from "../list/StateBadge";
 import ChildProfileSection from "./ChildProfileSection";
-import { useState } from "react";
 
 const ParentMissionList = ({ missiondata, onClick }) => {
   const bgColor =
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
       : missionColorMap.NEW.background;
-  //todo 필요하면 쓰세요
-  //     const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const handleMissionClick = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
 
   return (
     <div
@@ -44,7 +33,9 @@ const ParentMissionList = ({ missiondata, onClick }) => {
           </div>
           <div className="space-y-1">
             <h3 className="text-R-14 text-sub02">{missiondata.title}</h3>
-            <p className="text-L-12 text-sub02">{missiondata.content}</p>
+            <p className="text-L-12 text-sub02">
+              미션 성공 시 총 {missiondata.amount.toLocaleString()}원 지급
+            </p>
           </div>
           <p className="text-R-10 text-sub02/60 mt-2">
             🍪 {formatDate(missiondata.deadline)}
