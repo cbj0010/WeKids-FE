@@ -32,6 +32,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         let body;
 
+        console.log(credentials);
+        
+
         if (credentials.memberType === "PARENT") {
           body = {
             birthday: credentials.birthday,

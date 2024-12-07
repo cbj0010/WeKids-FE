@@ -18,7 +18,7 @@ export const useSensitiveDataStore = create((set, get) => ({
   childId: null,
   childName: "",
   residentRegistrationNumber: "",
-  accountPassword: "1234",
+  accountPassword: "",
   cardPassword: "",
 
   // childId 관리

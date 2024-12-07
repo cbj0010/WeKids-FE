@@ -31,6 +31,10 @@ export default function SignIn({ children }) {
     redirectTo: "/",
   };
 
+  if(userType === "CHILD") {
+    data["birthday"] = "2018-10-13";
+  }
+
    console.log(data);
   // let data = useSignUpStore.persist.clearStorage();
 
