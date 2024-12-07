@@ -29,7 +29,13 @@ export const submitTransfer = async ({
     }),
   });
 
-  return response.status !== 204 ? await response.json() : null;
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(`Error fetching transaction: ${errorMessage}`);
+  }
+
+  const data = await response.json();
+  return data;
 };
 
 export const fetchTransactions = async ({

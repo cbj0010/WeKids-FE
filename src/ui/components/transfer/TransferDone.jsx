@@ -5,6 +5,7 @@ import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { urlPath } from "@/src/constants/common";
 import Link from "next/link";
 import { useTransactionStore } from "@/src/stores/transactionStore";
+import { useEffect } from "react";
 
 const MESSAGES = {
   COMPLETE: {

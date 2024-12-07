@@ -64,6 +64,7 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
       e.preventDefault();
     }
   };
+  
 
   return (
     <div
@@ -101,6 +102,7 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
         <div className="flex text-black">
           <Link
             href={`${urlPath.TRANSACTION_HISTORY}`}
+            
             className="flex-1 py-4 text-center text-R-20 border-black hover:bg-white/10 transition-colors"
           >
             <button>조회</button>

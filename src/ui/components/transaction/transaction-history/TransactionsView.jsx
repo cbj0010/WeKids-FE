@@ -25,6 +25,7 @@ export const TransactionsView = () => {
     endDate,
     type,
     setBalance,
+    balance
   } = useTransFilterStore();
   const { selectedaccountId } = useSelectUserStore();
 
@@ -36,39 +37,43 @@ export const TransactionsView = () => {
   const [typetoEng, setTypeToEng] = useState("ALL");
 
   useEffect(() => {
-    if (type == TypeEnum.ALL) {
-      setTypeToEng("ALL");
-    } else if (type == TypeEnum.DEPOSIT) {
-      setTypeToEng("DEPOSIT");
-    } else if (type == TypeEnum.WITHDRAWAL) {
-      setTypeToEng("WITHDRAWAL");
-    }
-
-    if (range === RangeEnum.ONE_MONTH) {
-      MonthsAgo.setMonth(now.getMonth() - 1); // 한 달 전
-      setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
-      setEnd(formatToLocalDate(now)); // 현재 날짜 설정
-    } else if (range === RangeEnum.THREE_MONTHS) {
-      MonthsAgo.setMonth(now.getMonth() - 3); // 세 달 전
-      setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
-      setEnd(formatToLocalDate(now)); // 현재 날짜 설정
-    } else if (range === RangeEnum.LAST_MONTH) {
-      const firstDayLastMonth = new Date(
-        now.getFullYear(),
-        now.getMonth() - 1,
-        1,
-      ); // 지난달 1일
-      const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
-      setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
-      setEnd(formatToLocalDate(lastDayLastMonth)); // 포맷팅 후 설정
-    } else if (range === RangeEnum.CUSTOM) {
-      setStart(startDate.toISOString().split("T")[0]); // 포맷팅 후 설정
-      setEnd(endDate.toISOString().split("T")[0]); // 현재 날짜 설정
-    } else {
-      MonthsAgo.setMonth(now.getMonth() - 3); // 기본 세 달 전
-      setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
-      setEnd(formatToLocalDate(now)); // 현재 날짜 설정
-    }
+    
+      if (type == TypeEnum.ALL) {
+        setTypeToEng("ALL");
+      } else if (type == TypeEnum.DEPOSIT) {
+        setTypeToEng("DEPOSIT");
+      } else if (type == TypeEnum.WITHDRAWAL) {
+        setTypeToEng("WITHDRAWAL");
+      }
+  
+      if (range === RangeEnum.ONE_MONTH) {
+        MonthsAgo.setMonth(now.getMonth() - 1); // 한 달 전
+        setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
+        setEnd(formatToLocalDate(now)); // 현재 날짜 설정
+      } else if (range === RangeEnum.THREE_MONTHS) {
+        MonthsAgo.setMonth(now.getMonth() - 3); // 세 달 전
+        setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
+        setEnd(formatToLocalDate(now)); // 현재 날짜 설정
+      } else if (range === RangeEnum.LAST_MONTH) {
+        const firstDayLastMonth = new Date(
+          now.getFullYear(),
+          now.getMonth() - 1,
+          1,
+        ); // 지난달 1일
+        const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
+        setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
+        setEnd(formatToLocalDate(lastDayLastMonth)); // 포맷팅 후 설정
+      } else if (range === RangeEnum.CUSTOM) {
+        setStart(startDate.toISOString().split("T")[0]); // 포맷팅 후 설정
+        setEnd(endDate.toISOString().split("T")[0]); // 현재 날짜 설정
+      } else {
+        MonthsAgo.setMonth(now.getMonth() - 3); // 기본 세 달 전
+        setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
+        setEnd(formatToLocalDate(now)); // 현재 날짜 설정
+      }
+   
+    
+    
   }, [range, type, startDate, endDate]);
 
   const {
@@ -78,6 +83,7 @@ export const TransactionsView = () => {
     fetchNextPage,
     hasNextPage,
     error,
+    refetch,
   } = useTransactionList({
     accountId: selectedaccountId,
     start,
@@ -89,13 +95,18 @@ export const TransactionsView = () => {
   useEffect(() => {
     // 필터가 변경될 때마다 새로 데이터를 가져옵니다.
     if (start && end && typetoEng) {
-      fetchNextPage({ pageParam: 0 }); // 페이지 초기화 후 첫 번째 데이터 호출
+      refetch();
+      fetchNextPage({ pageParam: 0 });
+      
+       // 페이지 초기화 후 첫 번째 데이터 호출
     }
+    console.log(balance)
   }, [start, end, typetoEng, fetchNextPage]);
 
   useEffect(() => {
     if (data?.pages?.[0]?.balance !== undefined) {
       setBalance(data.pages[0].balance); // 첫 페이지의 balance를 설정
+      console.log(data);
     }
   }, [data, setBalance]);
 
