@@ -11,7 +11,7 @@ export default function Page() {
           title="카드 발급 완료!"
           subText=""
           buttonText="카드 비밀번호 등록하기"
-          linkUrl={urlPath.PARENT_CARD_PASSWORD}
+          linkUrl={urlPath.PARENT_CARD_CHECK}
         />
       </div>
     </CardDesignLayout>

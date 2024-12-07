@@ -12,29 +12,11 @@ export default function Page() {
   const [pwd, setPwd] = useState("");
   const [allow, setAllowed] = useState(false);
   const router = useRouter();
-  const { getChildId, getCardPassword, getAccountPassword, getResidentRegistrationNumber } =
-    useSensitiveDataStore();
-  const { mutate, isLoading } = useRegisterPassword();
+  const { setAccountPassword } = useSensitiveDataStore();
   const handleSubmit = () => {
     if (allow) {
-      console.log(getChildId(), getResidentRegistrationNumber(), getAccountPassword(), pwd)
-      mutate(
-        {
-          childId: getChildId(),
-          residentRegistrationNumber: getResidentRegistrationNumber(), // 상태에서 가져온 값
-          accountPassword: getAccountPassword(), // 상태에서 가져온 값
-          cardPassword: pwd.slice(0,4),
-        },
-        {
-          onSuccess: () => {
-            console.log("비밀번호 등록이 성공적으로 완료되었습니다.");
-            router.push(urlPath.PARENT_CARD_CONFIRM);
-          },
-          onError: (error) => {
-            console.error("비밀번호 등록 실패:", error.message);
-          },
-        },
-      );
+        setAccountPassword(pwd);
+      router.push(urlPath.PARENT_CARD_ACCOUNT);
     }
   };
 
@@ -47,6 +29,8 @@ export default function Page() {
         setPwd={setPwd}
         setAllowed={setAllowed}
         index={4}
+        title = "아이 계좌 비밀번호를"
+        type = "계좌 비밀번호"
       />
       <Digit4PasswordButton
         pwd={pwd}
