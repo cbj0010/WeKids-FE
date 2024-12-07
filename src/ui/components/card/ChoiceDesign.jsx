@@ -23,7 +23,6 @@ export default function ChoiceDesign({
   const { childId } = useSensitiveDataStore();
 
   useEffect(() => {
-    console.log(childId);
     const fetchDesign = async () => {
       try {
         const session = await auth(); // 세션에서 사용자 정보를 가져옴
@@ -33,10 +32,7 @@ export default function ChoiceDesign({
           throw new Error("Member ID not found");
         }
 
-        console.log("Fetching design...");
-
         const data = await designFetch({ member: memberId });
-        console.log(data);
         setDesign(data); // zustand에 저장
         if (setChildCharacter && setChildColor) {
           setChildCharacter(data?.character || character);

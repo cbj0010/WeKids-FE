@@ -19,9 +19,7 @@ export const designCreate = async (data) => {
     body: JSON.stringify(data),
     credentials: "include",
   });
-  console.log(data + "data입니다")
   if (!response.ok) {
-    console.log("!!!!!!!!!!!!1111111")
     let errorMessage = `Status Code: ${response.status}`;
     try {
       const errorData = await response.json();
@@ -42,8 +40,6 @@ export const designFetch = async ({designId}) => {
 
   const session = await auth();
   const authorization = session?.user?.Authorization;
-  console.log("????????")
-  console.log(designId)
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,

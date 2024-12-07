@@ -13,13 +13,11 @@ export default function CardReview() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log(childId);
     const getParentsAccount = async () => {
       try {
         setLoading(true); // 로딩 상태 시작
         const data = await getParentsAccounts();
         if (data) {
-          console.log(data);
           const child = data.children.find((c) => c.childId === childId);
           setChildName(child.name);
         }

@@ -31,7 +31,6 @@ export default function TransferDetail({ userdata }) {
 
   useEffect(() => {
     if (first) {
-      console.log(userdata);
       setTransferAmount(0);
       setFirst(false);
     }

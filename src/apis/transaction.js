@@ -10,7 +10,6 @@ export const submitTransfer = async ({
   receiver,
   simplePassword,
 }) => {
-  console.log(parentAccountNumber);
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
@@ -49,8 +48,6 @@ export const fetchTransactions = async ({
   };
   const url = `${BASE_URL}/accounts/${accountId}/transactions`;
 
-  console.log("Fetching URL:", url);
-
   try {
     const response = await fetch(
       `${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`,
@@ -67,7 +64,6 @@ export const fetchTransactions = async ({
     }
 
     const data = await response.json();
-    console.log(data.transactions);
 
     // API 응답 구조에 맞게 반환
     return {
@@ -104,7 +100,6 @@ export const fetchTransactionById = async (transactionId) => {
     }
 
     const data = await response.json();
-    console.log("Fetched transaction data:", data);
     return data;
   } catch (error) {
     console.error("Error in fetchTransactionById:", error.message);
@@ -119,7 +114,6 @@ export const updateTransactionMemo = async ({ transactionId, memo }) => {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-  console.log("Request data:", { transactionId, memo });
   const response = await fetch(
     `${BASE_URL}/transactions/${transactionId}/memo`,
     {

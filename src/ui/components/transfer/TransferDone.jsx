@@ -30,9 +30,6 @@ const TransferDone = ({
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
 
-  useEffect(() => {
-    console.log(childName);
-  }, []);
 
   // type에 따라 다른 경로 설정
   const nextPath =

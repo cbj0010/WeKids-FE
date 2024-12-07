@@ -13,7 +13,6 @@ export default function TransferCheck({ missionId, setType }) {
   const { mutate, isLoading: isUpdating } = useAcceptMission();
 
   const handleSubmit = () => {
-    console.log(missionId);
     mutate(
       {
         missionId: missionId,

@@ -35,22 +35,18 @@ const TransferComplete = ({
   const messages = MESSAGES[messageType];
 
   useEffect(() => {
-    console.log(missionId);
-    console.log(accountNumber);
     const fetchMissionDetail = async () => {
       try {
         const missionDetail = await showMissionDetail({ missionId });
         setChildName(missionDetail.childName);
         setAmount(missionDetail.amount);
-        console.log(amount);
+
       } catch (error) {
         console.error("Failed to fetch mission details:", error);
       }
     };
 
     fetchMissionDetail();
-
-    console.log("??");
   }, []);
 
   // type에 따라 다른 경로 설정

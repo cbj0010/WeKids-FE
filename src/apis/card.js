@@ -50,7 +50,6 @@ export const registerPassword = async ({
     });
 
     const responseText = await response.text();
-    console.log(responseText);
 
     if (!response.ok) {
       return {

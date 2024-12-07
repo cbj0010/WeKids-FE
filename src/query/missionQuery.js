@@ -14,7 +14,7 @@ export const useCreateMission = () => {
       });
     },
     onSuccess: (data) => {
-      console.log("성공:", data);
+      console.log("성공");
     },
   });
 };
@@ -25,7 +25,7 @@ export const useAcceptMission = () => {
       return missionAccept({ missionId, simplePassword });
     },
     onSuccess: (data) => {
-      console.log("성공:", data);
+      console.log("성공");
     },
   });
 };

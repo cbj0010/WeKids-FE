@@ -37,7 +37,6 @@ export const TransactionsView = () => {
   const [typetoEng, setTypeToEng] = useState("ALL");
 
   useEffect(() => {
-    console.log(selectedaccountId);
     if (type == TypeEnum.ALL) {
       setTypeToEng("ALL");
     } else if (type == TypeEnum.DEPOSIT) {
@@ -97,7 +96,6 @@ export const TransactionsView = () => {
   useEffect(() => {
     if (data?.pages?.[0]?.balance !== undefined) {
       setBalance(data.pages[0].balance); // 첫 페이지의 balance를 설정
-      console.log(data.pages[0].balance);
     }
   }, [data, setBalance]);
 

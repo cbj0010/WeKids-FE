@@ -18,7 +18,6 @@ export default function ChildInputForm({ setAllChecked, parentName }) {
   useEffect(() => {
     if (residentfront.length === 6 && residentback.length === 7) {
       setResidentRegistrationNumber(`${residentfront}-${residentback}`);
-      console.log(getResidentRegistrationNumber());
     }
     setAllChecked(
       name !== "" && residentfront.length == 6 && residentback.length == 7,

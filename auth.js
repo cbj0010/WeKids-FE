@@ -11,7 +11,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       authorize: async (credentials) => {
-        console.log("credentials", credentials);
 
         const cookieStore = await cookies();
 

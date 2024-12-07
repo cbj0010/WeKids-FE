@@ -99,11 +99,7 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
 
   const handleMissionSubmit = async () => {
     try {
-      console.log("Submitting mission with:", {
-        missionId,
-        memo: memo,
-        image: file,
-      });
+      
 
       await missionAuth({
         missionId: missionId,

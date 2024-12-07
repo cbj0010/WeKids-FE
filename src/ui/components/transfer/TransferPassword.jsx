@@ -17,7 +17,6 @@ export default function TransferPassword({
   const { mutate, isLoading: isUpdating } = useTransaction();
 
   const handleSubmit = () => {
-    console.log(transferAmount);
     mutate(
       {
         parentAccountNumber: sendUser.accountNumber,
