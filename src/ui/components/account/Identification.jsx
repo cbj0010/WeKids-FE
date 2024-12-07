@@ -34,7 +34,6 @@ export default function Identification({ setIsChecked }) {
         identification.slice(0, 6) + "-" + identification.slice(6);
 
       const response = await agreeAccountInquiry(residentRegistrationNumber);
-      console.log("Response:", response);
 
       if (response.status === 401) {
         showToast.error("주민번호가 틀렸습니다. 다시 입력해주세요!");

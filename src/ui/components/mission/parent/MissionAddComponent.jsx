@@ -29,12 +29,6 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const route = useRouter();
 
   useEffect(() => {
-    console.log(child);
-    console.log(category);
-    console.log(title);
-    console.log(content);
-    console.log(amount);
-    console.log(deadline);
     if (child.length && category && title && content && amount && deadline) {
       setChecked(true);
     } else {
@@ -104,7 +98,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           }, // 각 childId로 API 호출
           {
             onSuccess: () => {
-              console.log(`성공! Child ID: ${childId}`);
+              console.log(`성공!`);
             },
             onError: (error) => {
               console.error(

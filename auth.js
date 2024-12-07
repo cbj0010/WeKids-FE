@@ -11,7 +11,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       authorize: async (credentials) => {
-        console.log("credentials", credentials);
 
         const cookieStore = await cookies();
 
@@ -32,6 +31,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         cookieStore.delete("birthday");
 
         let body;
+
+        console.log(credentials);
+        
 
         if (credentials.memberType === "PARENT") {
           body = {

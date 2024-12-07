@@ -2,7 +2,6 @@
 
 import { AccountCardLayout } from "../AccountCardLayout";
 import { ButtonMessageBox } from "../ButtonMessageBox";
-import { MessageBox } from "../MessageBox";
 
 export const ApprovalWaitingCard = ({ name }) => {
   return (

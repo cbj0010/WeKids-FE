@@ -94,7 +94,6 @@ export const showMissionDetail = async ({ missionId }) => {
 export const missionAuth = async ({ missionId, memo, image }) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
-  console.log(missionId);
   // FormData 생성
   const formData = new FormData();
 
@@ -189,15 +188,13 @@ export const getMissionList = async (params = {}) => {
 
   const data = await response.json();
 
-  console.log("Received mission list:", data); // 받은 데이터 로깅
   console.log(
     "Number of missions:",
     Array.isArray(data) ? data.length : "Not an array",
   ); // 배열인 경우 길이 출력
 
   if (Array.isArray(data) && data.length > 0) {
-    console.log("First mission:", data[0]); // 첫 번째 미션 데이터 출력
+    //console.log("First mission:", data[0]); // 첫 번째 미션 데이터 출력
   }
-  console.log("mission list 잘 들엉옴?" + response.status);
   return data;
 };

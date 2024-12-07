@@ -22,7 +22,6 @@ export const fetchAccounts = async () => {
   }
 
   const data = await response.json(); // JSON 형태로 반환
-  console.log("API 데이터:", data);
   return data;
 };
 

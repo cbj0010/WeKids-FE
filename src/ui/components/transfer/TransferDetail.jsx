@@ -11,8 +11,6 @@ import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
 import { useQuery } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import PasswordTop from "../signup/PasswordTop";
-import PasswordBottom from "../signup/PasswordBottom";
 import TransferPassword from "./TransferPassword";
 
 export default function TransferDetail({ userdata }) {
@@ -23,7 +21,6 @@ export default function TransferDetail({ userdata }) {
     setSelectedAccount,
     transferAmount,
     setTransferAmount,
-    childrenAccounts,
     clearTransferData,
   } = useTransactionStore();
   const [first, setFirst] = useState(true);
@@ -31,7 +28,6 @@ export default function TransferDetail({ userdata }) {
 
   useEffect(() => {
     if (first) {
-      console.log(userdata);
       setTransferAmount(0);
       setFirst(false);
     }

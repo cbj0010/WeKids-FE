@@ -9,7 +9,7 @@ export const useFetchAccount = () => {
       return patchAccount({ accountNumber });
     },
     onSuccess: (data) => {
-      console.log("업데이트 성공:", data);
+      console.log("업데이트 성공");
     },
     onError: (error) => {
       console.error("업데이트 실패:", error.message);

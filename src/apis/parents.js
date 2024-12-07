@@ -11,7 +11,6 @@ export const getParentsAccounts = async () => {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-  console.log(headers);
 
   const response = await fetch(`${BASE_URL}/parents`, {
     method: "GET",
@@ -23,9 +22,6 @@ export const getParentsAccounts = async () => {
   }
 
   const data = await response.json();
-  if (data) {
-    console.log(data.parent);
-  }
   return data;
 };
 

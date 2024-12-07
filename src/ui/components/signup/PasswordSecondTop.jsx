@@ -35,7 +35,6 @@ export default function PasswordSecondTop({
         // 한 번 입력만 필요한 경우
         setAllowed(true);
         setAccountPassword(pwd.slice(0, index)); // 비밀번호 저장
-        console.log("비밀번호 저장 완료:", getAccountPassword());
       } else {
         // 두 번 입력이 필요한 경우
         if (check === 0) {
@@ -52,7 +51,6 @@ export default function PasswordSecondTop({
           if (firstValue === secondValue) {
             setAllowed(true);
             setAccountPassword(firstValue); // 비밀번호 저장
-            console.log("비밀번호 저장 완료:", getAccountPassword());
           } else {
             setIsShaking(true); // 비밀번호 불일치 시 흔들림 애니메이션
           }

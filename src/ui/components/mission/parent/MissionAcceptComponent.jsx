@@ -3,13 +3,9 @@
 import { deleteMission, showMissionDetail } from "@/src/apis/mission";
 import { urlPath } from "@/src/constants/common";
 import missionCategories from "@/src/constants/mission";
-import { useMissionIDStore } from "@/src/stores/missionFilterStore";
-import Image from "next/image";
+import { getParentsAccounts } from "@/src/apis/parents";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import CustomButton from "../../atoms/CustomButton";
-import Profile from "../../atoms/Profile";
-import MissionConfirmModal from "../MissionConfirmModal";
 
 const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [amount, setAmount] = useState(0); // 초기값을 0으로 설정
@@ -90,7 +86,18 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
       }
     } else {
       // 승인 상태에서 페이지 이동
-      router.push(urlPath.MISSION_TRANSFER);
+     try{
+      const data = await getParentsAccounts();
+      if(data && data.parent.balance <= amount){
+        alert("미션 금액이 보유하신 잔액보다 커요.");
+        router.push(urlPath.HOME);
+      }
+      else{
+        router.push(urlPath.MISSION_TRANSFER);
+      }
+     } catch(error){
+      console.error("실패:", error);
+     }
     }
 
     setIsModalOpen(false); // 모달 닫기

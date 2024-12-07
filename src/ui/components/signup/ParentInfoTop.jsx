@@ -21,29 +21,34 @@ export default function ParentInfoTop() {
     setGuardianBirthday,
     setGuardianPhone,
   } = useSignUpStore();
-  // const [name, setName] = useState("");
-  // const [birth, setBirth] = useState("".padStart(8, " "));
-  // const [phone, setPhone] = useState("".padStart(11, " ")); // 부모 폰
   const [time, setTime] = useState(0);
   const [allCheck, setAllCheck] = useState(false);
   const [isRequest, setIsRequest] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [blank, setBlank] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
-    setAllCheck(
-      guardianName != "" &&
-        !guardianBirthday.includes(" ") &&
-        !guardianPhone.includes(" "),
-    );
+    const isNameValid = guardianName.trim().length > 0 && !guardianName.includes(" ");
+    const isBirthdayValid =
+      guardianBirthday.length === 10 &&
+      guardianBirthday.includes("-") &&
+      !guardianBirthday.includes(" ");
+    const isPhoneValid =
+      guardianPhone.length === 13 &&
+      guardianPhone.includes("-") &&
+      !guardianPhone.includes(" ");
+  
+    setAllCheck(isNameValid && isBirthdayValid && isPhoneValid);
   }, [guardianName, guardianBirthday, guardianPhone]);
+
 
   useEffect(() => {
     if (time <= 0) {
       if (time === 0 && isRequest) {
         setGuardianName("");
-        setGuardianBirthday("".padStart(8, " "));
-        setGuardianPhone("".padStart(11, " "));
+        setGuardianBirthday("");
+        setGuardianPhone("");
         setIsRequest(false);
         setIsOpen(false);
       }
@@ -58,22 +63,32 @@ export default function ParentInfoTop() {
 
   const OnChangeBirthHandler = (value, type) => {
     const tempValue = String(value);
-    const stringValue = tempValue.length == 1 ? "0" + tempValue : tempValue;
+    const stringValue = tempValue.length === 1 ? "0" + tempValue : tempValue;
     let updatedDate;
     switch (type) {
-      case 1:
+      case 1: // 년도
         updatedDate =
-          stringValue.padEnd(8, " ").slice(0, 4) + guardianBirthday.slice(4);
+          stringValue +
+          "-" +
+          guardianBirthday.slice(5, 7) +
+          "-" +
+          guardianBirthday.slice(8, 10);
         break;
-      case 2:
+      case 2: // 월
         updatedDate =
           guardianBirthday.slice(0, 4) +
-          stringValue.padEnd(2, " ").slice(0, 2) +
-          guardianBirthday.slice(6);
+          "-" +
+          stringValue +
+          "-" +
+          guardianBirthday.slice(8, 10);
         break;
-      case 3:
+      case 3: // 일
         updatedDate =
-          guardianBirthday.slice(0, 6) + stringValue.padEnd(2, " ").slice(0, 2);
+          guardianBirthday.slice(0, 4) +
+          "-" +
+          guardianBirthday.slice(5, 7) +
+          "-" +
+          stringValue;
         break;
       default:
         break;
@@ -83,19 +98,24 @@ export default function ParentInfoTop() {
 
   const OnChangePhoneHandler = (value, type) => {
     let phoneNumber;
+    const paddedPhone = guardianPhone.padEnd(13, " ");
+
     switch (type) {
       case 1:
-        phoneNumber = value.padEnd(3, " ").slice(0, 3) + guardianPhone.slice(3);
+        phoneNumber =
+          value.padEnd(3, " ").slice(0, 3) + "-" + paddedPhone.slice(4);
         break;
       case 2:
         phoneNumber =
-          guardianPhone.slice(0, 3) +
+          paddedPhone.slice(0, 3) +
+          "-" +
           value.padEnd(4, " ").slice(0, 4) +
-          guardianPhone.slice(7);
+          "-" +
+          paddedPhone.slice(9);
         break;
       case 3:
         phoneNumber =
-          guardianPhone.slice(0, 7) + value.padEnd(4, " ").slice(0, 4);
+          paddedPhone.slice(0, 8) + "-" + value.padEnd(4, " ").slice(0, 4);
         break;
       default:
         break;
@@ -110,6 +130,7 @@ export default function ParentInfoTop() {
       router.push(urlPath.HOME);
     }, 5000);
   };
+
   return (
     <>
       <div className="flex flex-col px-10 gap-4 h-2/3">
@@ -156,22 +177,22 @@ export default function ParentInfoTop() {
             <LimitedInputBox
               placeholder="010"
               maxLength={3}
-              text={guardianPhone.slice(0, 3).replace(/\s/g, "")}
-              value={guardianPhone.slice(0, 3).replace(/\s/g, "")}
+              text={guardianPhone.slice(0, 3).trim()}
+              value={guardianPhone.slice(0, 3).trim()}
               onChange={(e) => OnChangePhoneHandler(e, 1)}
             />
             <LimitedInputBox
               placeholder="0000"
               maxLength={4}
-              text={guardianPhone.slice(3, 7).replace(/\s/g, "")}
-              value={guardianPhone.slice(3, 7).replace(/\s/g, "")}
+              text={guardianPhone.slice(4, 8).trim()}
+              value={guardianPhone.slice(4, 8).trim()}
               onChange={(e) => OnChangePhoneHandler(e, 2)}
             />
             <LimitedInputBox
               placeholder="0000"
               maxLength={4}
-              text={guardianPhone.slice(7, 11).replace(/\s/g, "")}
-              value={guardianPhone.slice(7, 11).replace(/\s/g, "")}
+              text={guardianPhone.slice(9, 13).trim()}
+              value={guardianPhone.slice(9, 13).trim()}
               onChange={(e) => OnChangePhoneHandler(e, 3)}
             />
           </div>
@@ -219,7 +240,7 @@ export default function ParentInfoTop() {
             onClick={() => {
               if (allCheck) {
                 setBlank(false);
-                setIsRequest(true); // 상태 업데이트
+                setIsRequest(true);
                 setTime(100);
               } else {
                 setBlank(true);

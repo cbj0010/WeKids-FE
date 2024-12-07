@@ -1,6 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useAcceptMission } from "@/src/query/missionQuery";
 import PasswordSecondBottom from "../../signup/PasswordSecondBottom";
 import PasswordSecondTop from "../../signup/PasswordSecondTop";
@@ -13,7 +12,6 @@ export default function TransferCheck({ missionId, setType }) {
   const { mutate, isLoading: isUpdating } = useAcceptMission();
 
   const handleSubmit = () => {
-    console.log(missionId);
     mutate(
       {
         missionId: missionId,

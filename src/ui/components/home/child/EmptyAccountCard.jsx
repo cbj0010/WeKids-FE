@@ -1,12 +1,10 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
 import { useUserStore } from "@/src/stores/userStore";
-
 import { useRouter } from "next/navigation";
 import { AccountCardLayout } from "../AccountCardLayout";
 import { MessageBox } from "../MessageBox";
 
-// 예시: 버튼 클릭시 저장
 
 export const EmptyAccountCard = ({ name }) => {
   const setUserInfo = useUserStore((state) => state.setUserInfo);

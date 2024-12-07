@@ -88,7 +88,7 @@ export const missionData = {
   NEW: {
     emoticon: "MISSION",
     title: "미션이 등록되었어요!",
-    description: () => `아이가 미션을 등록했어요 확인해보세요!`,
+    description: () => `부모님이 미션을 등록했어요 확인해보세요!`,
   },
   SUBMIT: {
     emoticon: "MISSION",

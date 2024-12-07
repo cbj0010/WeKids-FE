@@ -1,7 +1,6 @@
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
-import Link from "next/link";
 
 export default function PasswordSecondBottom({
   pwd,

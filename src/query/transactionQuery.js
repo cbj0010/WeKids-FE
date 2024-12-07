@@ -15,7 +15,6 @@ export const useTransactionList = ({
   return useInfiniteQuery({
     queryKey: ["transactions", accountId, start, end, type, size],
     queryFn: ({ pageParam = 0 }) => {
-      console.log("Fetching page:", pageParam);
       return fetchTransactions({
         page: pageParam,
         start,
@@ -45,7 +44,7 @@ export const useUpdateTransactionMemo = () => {
       return updateTransactionMemo({ transactionId, memo });
     },
     onSuccess: (data) => {
-      console.log("메모 업데이트 성공:", data);
+      console.log("메모 업데이트 성공");
     },
     onError: (error) => {
       console.error("메모 업데이트 실패:", error.message);
@@ -73,7 +72,7 @@ export const useTransaction = () => {
       });
     },
     onSuccess: (data) => {
-      console.log("성공:", data);
+      console.log("성공");
     },
     onError: (error) => {
       console.error("실패:", error.message);

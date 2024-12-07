@@ -3,18 +3,17 @@
 import { designFetch } from "@/src/apis/design";
 import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ParentCardCharacter from "../card-select/ParentCardCharacter";
 
-export default function ChoiceDesign({
+export default function ChoiceParentDesign({
   title,
   subText,
   buttonText,
   linkUrl,
   character = "HEARTSPRING",
   color = "PINK2",
-  memberId,
   onClick,
 }) {
   const [design, setDesign] = useState(null);
@@ -23,37 +22,41 @@ export default function ChoiceDesign({
   const { childId } = useSensitiveDataStore();
 
   useEffect(() => {
+
+
     const fetchDesign = async () => {
+      setIsLoading(true); // 로딩 시작
       try {
-        const session = await auth(); // 세션에서 사용자 정보를 가져옴
-        const memberId = session?.user?.id; // 사용자 ID를 가져옴
 
-        if (!memberId) {
-          throw new Error("Member ID not found");
-        }
+        // API 호출
+        const data = await designFetch({ designId: childId });
 
-        const data = await designFetch({ member: memberId });
-        setDesign(data); // zustand에 저장
+        // 상태 업데이트
+        setDesign(data);
         if (setChildCharacter && setChildColor) {
+
           setChildCharacter(data?.character || character);
           setChildColor(data?.color || color);
         }
       } catch (error) {
-        console.error("Error fetching design:", error.message);
+        console.error("디자인 데이터를 가져오는 중 에러 발생:", error.message);
       } finally {
-        setIsLoading(false);
+        setIsLoading(false); // 로딩 종료
       }
     };
-    if (memberId) {
+
+    if (childId) {
       fetchDesign();
+    } else {
+      console.warn("childId가 유효하지 않음!");
     }
-  }, [memberId]);
+  }, [childId]);
 
   return (
     <div className="flex flex-col items-center gap-10">
       <div className="text-R-28 text-white">{title}</div>
       <div className="w-[196px] h-[312px]">
-        <CardCharacter
+        <ParentCardCharacter
           selectedCharacter={design?.character || character}
           selectedColor={design?.color || color}
         />
@@ -65,8 +68,9 @@ export default function ChoiceDesign({
           rounded={true}
           className="bg-main02 text-R-20"
           onClick={onClick}
+          disabled={isLoading} // 로딩 중 버튼 비활성화
         >
-          {buttonText}
+          {isLoading ? "로딩 중..." : buttonText}
         </CustomButton>
       </Link>
     </div>

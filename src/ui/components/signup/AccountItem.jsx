@@ -5,8 +5,6 @@ import SelectorAccount from "@/src/ui/components/signup/SelectorAccount";
 export default async function AccountItem({ selectedIndex, setSelectedIndex }) {
   const data = await fetchAccounts();
 
-  console.log(data);
-
   const toggleAccountSelection = (index) => {
     setSelectedIndex((prev) => (prev === index ? null : index));
   };

@@ -31,7 +31,7 @@ const TransactionDetailPage = ({ params }) => {
     if (!trxId) {
       return;
     }
-    console.log(memo);
+
     mutate(
       { transactionId: trxId, memo: memo || "" },
       {

@@ -5,8 +5,6 @@ import EmptyAccountCard from "./EmptyAccountCard";
 
 export default async function ChildHome() {
   const data = await getChildAccounts();
-  // const data = await childAccountData;
-  console.log(data);
 
   if (!data) {
     return <div>Loading...</div>;
