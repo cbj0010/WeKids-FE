@@ -1,13 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import CustomButton from "../../atoms/CustomButton";
-import Image from "next/image";
-import Profile from "../../atoms/Profile";
-import MissionConfirmModal from "../MissionConfirmModal";
-import { useRouter } from "next/navigation";
 import { deleteMission, showMissionDetail } from "@/src/apis/mission";
-import { useMissionIDStore } from "@/src/stores/missionFilterStore";
 import { urlPath } from "@/src/constants/common";
 import missionCategories from "@/src/constants/mission";
 import { getParentsAccounts } from "@/src/apis/parents";
@@ -50,7 +43,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         setState(missionDetail.state || null);
         missionDetail.memo ? setMemo(missionDetail.memo) : "";
         const categoryData = missionCategories.find(
-          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK"),
+          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK")
         );
         setIconSrc(categoryData ? categoryData.icon : "/images/trashImg.svg");
       } catch (error) {
@@ -65,7 +58,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
     if (type == "accept") {
       if (state != "SUBMIT") {
         setText(
-          `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
+          `아이가 미션을 완료하지 않았습니다.\n 인증을 완료하시겠습니까?`
         );
         setConfirmModalOpen(true);
       } else if (state == "SUBMIT") {
@@ -118,7 +111,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
             imagePath="https://ssl.pstatic.net/static/pwe/address/img_profile.png"
           />
         </div>
-        <div className="text-sub02 text-R-15 flex flex-row">
+        <div className="text-sub02 text-R-15 flex pr-3 gap-3">
           {title}
           <Image src={iconSrc} width={19} height={19} alt="delete icon" />
         </div>

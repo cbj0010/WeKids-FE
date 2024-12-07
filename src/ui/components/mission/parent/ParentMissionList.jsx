@@ -10,7 +10,6 @@ const ParentMissionList = ({ missiondata, onClick }) => {
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
       : missionColorMap.NEW.background;
- 
 
   return (
     <div
@@ -34,7 +33,9 @@ const ParentMissionList = ({ missiondata, onClick }) => {
           </div>
           <div className="space-y-1">
             <h3 className="text-R-14 text-sub02">{missiondata.title}</h3>
-            <p className="text-L-12 text-sub02">{missiondata.content}</p>
+            <p className="text-L-12 text-sub02">
+              미션 성공 시 총 {missiondata.amount.toLocaleString()}원 지급
+            </p>
           </div>
           <p className="text-R-10 text-sub02/60 mt-2">
             🍪 {formatDate(missiondata.deadline)}

@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import CustomButton from "../atoms/CustomButton";
 
 const MissionConfirmModal = ({ setParentOpen, setOpen, text, onConfirm }) => {
@@ -21,10 +20,7 @@ const MissionConfirmModal = ({ setParentOpen, setOpen, text, onConfirm }) => {
           ✕
         </button>
         <div className="flex flex-col items-center gap-12">
-          <div
-            dangerouslySetInnerHTML={{ __html: text }}
-            className="text-R-14 text-black/80"
-          ></div>
+          <p className="text-R-14 text-black/80 whitespace-pre-line">{text}</p>
           <div className="w-full h-[40px]">
             <CustomButton
               size="mediumLarge"

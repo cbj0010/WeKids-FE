@@ -20,8 +20,8 @@ export default function ChildMissionList({ missiondata, onClick }) {
             <h3 className="text-R-14 text-black truncate">
               {missiondata.title}
             </h3>
-            <p className="text-R-12 text-sub02 pt-2 break-words">
-              {missiondata.content}
+            <p className="text-L-12 text-sub02 break-words">
+              미션 성공 시 총 {missiondata.amount.toLocaleString()}을 받을 수 있어요.
             </p>
           </div>
           <div className="flex flex-col items-end gap-2 shrink-0">
