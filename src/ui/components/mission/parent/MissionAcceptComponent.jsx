@@ -4,6 +4,8 @@ import { deleteMission, showMissionDetail } from "@/src/apis/mission";
 import { urlPath } from "@/src/constants/common";
 import missionCategories from "@/src/constants/mission";
 import { getParentsAccounts } from "@/src/apis/parents";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [amount, setAmount] = useState(0); // 초기값을 0으로 설정
