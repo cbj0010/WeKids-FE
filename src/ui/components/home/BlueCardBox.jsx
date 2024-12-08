@@ -77,11 +77,11 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
             <Text className="text-R-10">{selectedAccount.accountNumber}</Text>
             <CopyIcon onClick={handleCopy} className="cursor-pointer" />
           </div>
-          <Text className="text-B-28 mt-9">{selectedAccount.name}</Text>
+          <Text className="text-B-22 mt-9">{selectedAccount.name}</Text>
         </div>
       </div>
       <div className="absolute w-full bottom-20 text-right pr-7">
-        <Text className="text-R-28">
+        <Text className="text-R-25">
           {selectedAccount.balance.toLocaleString()} 원
         </Text>
       </div>

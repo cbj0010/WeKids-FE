@@ -35,7 +35,7 @@ const Profile = ({
         `}
     >
       <Image
-        src={profile}
+        src={profile || PROFILE_DEFAULT.imagePath}
         alt="profile image"
         className="object-cover"
         width={60}

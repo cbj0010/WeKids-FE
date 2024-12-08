@@ -37,6 +37,7 @@ module.exports = {
         "B-20": ["20px", { lineHeight: "normal", fontWeight: 700 }],
         "B-18": ["18px", { lineHeight: "normal", fontWeight: 700 }],
         "R-28": ["28px", { lineHeight: "normal", fontWeight: 400 }],
+        "R-25": ["25px", { lineHeight: "normal", fontWeight: 400 }],
         "R-20": ["20px", { lineHeight: "normal", fontWeight: 400 }],
         "R-18": ["18px", { lineHeight: "normal", fontWeight: 400 }],
         "R-15": ["14px", { lineHeight: "normal", fontWeight: 400 }],
