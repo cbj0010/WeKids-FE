@@ -42,7 +42,7 @@ const TransactionDetailPage = ({ params }) => {
         onError: (error) => {
           console.error("메모 업데이트 실패:", error.message);
         },
-      },
+      }
     );
   };
 
@@ -68,8 +68,14 @@ const TransactionDetailPage = ({ params }) => {
             label="거래구분"
             value={data.type === "DEPOSIT" ? "입금" : "출금"}
           />
-          <TransactionDetail label="거래금액" value={data.amount} />
-          <TransactionDetail label="거래 후 잔액" value={data.balance} />
+          <TransactionDetail
+            label="거래금액"
+            value={data.amount.toLocalString()}
+          />
+          <TransactionDetail
+            label="거래 후 잔액"
+            value={data.balance.toLocalString()}
+          />
         </div>
       </div>
 
