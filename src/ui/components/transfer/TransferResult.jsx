@@ -67,7 +67,10 @@ const TransferResult = ({
             />
           </div>
           {transferData.memo && (
-            <p className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block">
+            <p
+              className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block"
+              onClick={showToast}
+            >
               {transferData.memo}
             </p>
           )}

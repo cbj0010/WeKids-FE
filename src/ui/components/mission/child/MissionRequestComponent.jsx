@@ -1,8 +1,8 @@
+import { missionAuth, showMissionDetail } from "@/src/apis/mission";
 import imageCompression from "browser-image-compression";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
-import { missionAuth, showMissionDetail } from "@/src/apis/mission";
 
 const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
   const [previewURL, setPreviewURL] = useState("");
@@ -99,8 +99,6 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
 
   const handleMissionSubmit = async () => {
     try {
-      
-
       await missionAuth({
         missionId: missionId,
         memo: memo || "",
@@ -126,17 +124,17 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
       <div className="gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">
         {mission?.title}
       </div>
-      <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-3 overflow-auto">
-        <p className="text-R-10 text-sub02">미션 완료 방법</p>
+      <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-2 overflow-auto">
+        <p className="text-R-14 text-sub02">미션 완료 방법</p>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           {mission?.content}
         </div>
-        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
+        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-14 shadow-md text-sub02/60">
           미션 성공 시 총{" "}
           <span className="text-sub02">{mission?.amount.toLocaleString()}</span>{" "}
           원을 받을 수 있어요
         </p>
-        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
+        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-14 shadow-md text-sub02/60">
           🍪{" "}
           <span className="text-sub02">
             {deadline
@@ -146,7 +144,7 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
           까지 완료할 수 있어요
         </p>
 
-        <p className="text-R-10 mt-6 text-sub02">미션 완료 인증하기</p>
+        <p className="text-R-14 mt-6 text-sub02">미션 완료 인증하기</p>
         <div
           className={`flex flex-col items-center justify-center p-3 mb-6 ${
             isDragging ? "bg-white" : "bg-main02/20"
@@ -204,7 +202,7 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
             </div>
           )}
         </div>
-        <p className="text-R-10 text-sub02">부모님께 보낼 메시지</p>
+        <p className="text-R-14 text-sub02">부모님께 보낼 메시지</p>
         <div
           className={`${
             memo ? "bg-main02/20" : "bg-gray01/20"
@@ -216,21 +214,21 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
             className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2 text-black/80"
           ></textarea>
         </div>
-        {state == "CANCEL" || state == "ACCEPT" ? (
-          <></>
-        ) : (
-          <div className="flex flex-col h-[40px] px-10 mt-9 items-center">
-            <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              onClick={handleMissionSubmit} // 버튼 클릭 시 API 호출
-              className="text-R-20 bg-main02 w-full"
-            >
-              미 션 완 료
-            </CustomButton>
-          </div>
-        )}
       </div>
+      {state == "CANCEL" || state == "ACCEPT" ? (
+        <></>
+      ) : (
+        <div className="flex flex-col w-full h-[40px] px-20 items-center">
+          <CustomButton
+            size="mediumLarge"
+            rounded={true}
+            onClick={handleMissionSubmit} // 버튼 클릭 시 API 호출
+            className="text-R-20 bg-main02 w-full"
+          >
+            미 션 완 료
+          </CustomButton>
+        </div>
+      )}
     </div>
   );
 };

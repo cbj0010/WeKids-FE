@@ -28,14 +28,14 @@ const TransferModal = ({
     >
       <div className="flex flex-col items-center mt-4 p-8">
         <Profile />
+        <p className="text-R-20 mt-5 mb-2 text-gray-400">
+          우리은행 {selectedAccount.accountNumber}
+        </p>
         <p className="text-base mt-2">
-          <span className="text-B-22">{selectedAccount.name}</span>님에게
+          <span className="text-B-22">{selectedAccount.name}</span>님에게{" "}
           <span className="text-B-22">{transferAmount.toLocaleString()}원</span>
         </p>
         <p className="text-R-20 mt-1">이체하시겠습니까?</p>
-        <p className="text-R-12 mt-5 text-gray-400">
-          받는계좌 : 우리은행 {selectedAccount.accountNumber}
-        </p>
       </div>
       <div className="flex flex-row w-[393px] space-x-3 mt-7 px-8 pb-2">
         <CustomButton
