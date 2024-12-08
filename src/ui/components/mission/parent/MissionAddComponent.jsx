@@ -114,13 +114,13 @@ export default function MissionAddComponent({ setIsModalOpen }) {
         .then(() => {
           queryClient.invalidateQueries(["missionList"]);
           console.log("모든 API 호출이 완료되었습니다!");
-          route.refresh();
+          window.location.reload();
         })
         .catch((error) => {
           console.error("하나 이상의 API 호출이 실패했습니다:", error);
           showToast.error("미션 등록에 실패했습니다.");
         });
-      setIsModalOpen(false);
+      
     } else {
       toast("빈칸을 모두 채워주세요!");
     }

@@ -1,5 +1,6 @@
 "use client";
 
+import { characterInfoMap } from "@/src/constants/common";
 import { useAccountStore } from "@/src/stores/userStore";
 import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
@@ -64,7 +65,7 @@ export default function AccountView({ accountData }) {
             >
               <Profile
                 accountInfo={child}
-                imagePath={child.profile}
+                imagePath={characterInfoMap[child.character].imagePath}
                 className="w-10 h-10 relative z-10 ring-1 ring-black/60"
               />
               {selectedAccount?.id !== child.id && (
