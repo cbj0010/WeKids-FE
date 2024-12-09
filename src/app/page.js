@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-
 import Link from "next/link";
 import { urlPath } from "../constants/common";
 import ChildHome from "../ui/components/home/child/ChildHome";
