@@ -9,7 +9,6 @@ import {
 } from "@/src/stores/transactionStore";
 import { useSelectUserStore } from "@/src/stores/userStore";
 import Loader from "@/src/ui/components/atoms/Loader";
-import { formatShortDate } from "@/src/util/dateUtils";
 import { Flex } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";

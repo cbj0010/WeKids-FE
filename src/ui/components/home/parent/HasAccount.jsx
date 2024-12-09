@@ -81,6 +81,7 @@ export default function AccountView({ accountData }) {
           <BlueCardBox
             selectedAccount={selectedAccount}
             isParent={selectedProfile === "parent"}
+            userSession="parent"
             hasChild={accountData.children.length > 0}
           />
         ) : (

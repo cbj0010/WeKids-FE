@@ -128,4 +128,8 @@ export const urlPath = {
   MISSION_TRANSFER: "/mission/transfer",
   MISSION_TRANSFER_PASSWORD: "/mission/transfer/password", // 송금 비밀번호 등록
   MISSION_TRANSFER_DONE: "/mission/transfer/done", // 송금 완료
+
+  //금융아티클
+  FINANCIAL: "/financial",
+  MYPAGE: "/mypage"
 };
