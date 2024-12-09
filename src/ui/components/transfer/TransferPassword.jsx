@@ -5,11 +5,7 @@ import { useTransaction } from "@/src/query/transactionQuery";
 import { useRouter } from "next/navigation";
 import PasswordSecondTop from "../signup/PasswordSecondTop";
 import PasswordSecondBottom from "../signup/PasswordSecondBottom";
-export default function TransferPassword({
-  selectedAccount,
-  sendUser,
-  transferAmount,
-}) {
+export default function TransferPassword({ selectedAccount, sendUser, transferAmount }) {
   const [isInput, setIsInput] = useState(Array(6).fill(false));
   const [pwd, setPwd] = useState("");
   const [allow, setAllowed] = useState(false);
@@ -17,6 +13,7 @@ export default function TransferPassword({
   const { mutate, isLoading: isUpdating } = useTransaction();
 
   const handleSubmit = () => {
+    setAllowed(false);
     mutate(
       {
         parentAccountNumber: sendUser.accountNumber,
@@ -34,7 +31,7 @@ export default function TransferPassword({
         onError: (error) => {
           alert("이체 실패: " + error.message);
         },
-      },
+      }
     );
   };
   return (
