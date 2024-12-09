@@ -1,15 +1,12 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
 import { formatToLocalDate } from "@/src/constants/transaction";
-import { urlPath } from "@/src/constants/common";
-import { formatToLocalDate } from "@/src/constants/transaction";
 import { useTransactionList } from "@/src/query/transactionQuery";
 import {
   RangeEnum,
   TypeEnum,
   useTransFilterStore,
 } from "@/src/stores/transactionStore";
-import { useSelectUserStore } from "@/src/stores/userStore";
 import { useSelectUserStore } from "@/src/stores/userStore";
 import Loader from "@/src/ui/components/atoms/Loader";
 import { formatShortDate } from "@/src/util/dateUtils";
@@ -30,7 +27,6 @@ export const TransactionsView = () => {
     type,
     setBalance,
     balance,
-    balance,
   } = useTransFilterStore();
   const { selectedaccountId } = useSelectUserStore();
 
@@ -40,26 +36,6 @@ export const TransactionsView = () => {
   const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
   const [end, setEnd] = useState(formatToLocalDate(now));
   const [typetoEng, setTypeToEng] = useState("ALL");
-
-  const {
-    data,
-    isLoading,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-    error,
-    refetch,
-  } = useTransactionList({
-    accountId: selectedaccountId,
-    start,
-    end,
-    type: typetoEng,
-    size,
-  });
-
-  useEffect(() => {
-    refetch(); // 마운트 시점에 강제로 refetch
-  }, [refetch]);
 
   useEffect(() => {
     if (type == TypeEnum.ALL) {
@@ -83,7 +59,6 @@ export const TransactionsView = () => {
         now.getFullYear(),
         now.getMonth() - 1,
         1
-        1
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
@@ -98,7 +73,21 @@ export const TransactionsView = () => {
     }
   }, [range, type, startDate, endDate]);
 
-
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+    error,
+    refetch,
+  } = useTransactionList({
+    accountId: selectedaccountId,
+    start,
+    end,
+    type: typetoEng,
+    size,
+  });
 
   useEffect(() => {
     // 필터가 변경될 때마다 새로 데이터를 가져옵니다.
@@ -107,32 +96,18 @@ export const TransactionsView = () => {
       fetchNextPage({ pageParam: 0 });
 
       // 페이지 초기화 후 첫 번째 데이터 호출
-    // 필터가 변경될 때마다 새로 데이터를 가져옵니다.
-    if (start && end && typetoEng) {
-      refetch();
-      fetchNextPage({ pageParam: 0 });
-
-      // 페이지 초기화 후 첫 번째 데이터 호출
     }
-  }, [start, end, typetoEng, fetchNextPage]);
   }, [start, end, typetoEng, fetchNextPage]);
 
   useEffect(() => {
     if (data?.pages?.[0]?.balance !== undefined) {
       setBalance(data.pages[0].balance); // 첫 페이지의 balance를 설정
-      console.log(data);
     }
-    
   }, [data, setBalance]);
 
   // Intersection Observer가 뷰에 들어올 때 다음 페이지 가져오기
 
   if (isLoading && !data) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
     return (
       <div>
         <Loader />
@@ -148,22 +123,6 @@ export const TransactionsView = () => {
   const transactions = data?.pages.flatMap((page) => page.transactions) || [];
 
   if (transactions.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full">
-        <div className="relative w-[200px] h-[200px] ml-4">
-          <Image
-            src="/icons/favicon.svg"
-            alt="favicon"
-            fill
-            className="opacity-30"
-          />
-        </div>
-        <p className="text-center whitespace-pre-line text-L-12 text-black/70">
-          아직 한번도 거래를 하지 않았어요!{"\n"}거래를 시작하면 내역이
-          표시됩니다!
-        </p>
-      </div>
-    );
     return (
       <div className="flex flex-col items-center justify-center h-full">
         <div className="relative w-[200px] h-[200px] ml-4">
