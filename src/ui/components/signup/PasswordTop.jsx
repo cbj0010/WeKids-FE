@@ -8,7 +8,7 @@ export default function PasswordTop({
   setAllowed,
   index = 6,
   title = "간편 비밀번호를",
-  type = "간편 비밀번호",
+  type = "간편 비밀번호를",
 }) {
   const [check, setChecked] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
@@ -39,7 +39,6 @@ export default function PasswordTop({
         // 비밀번호가 일치하면 처리
         setAllowed(true);
         setAccountPassword(firstValue);
-        console.log(getAccountPassword());
       } else {
         // 비밀번호가 일치하지 않으면 흔들림 애니메이션 처리
         setIsShaking(true);

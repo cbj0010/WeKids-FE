@@ -1,8 +1,9 @@
+import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { urlPath } from "@/src/constants/common";
+import toast, { Toaster } from "react-hot-toast";
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
@@ -37,8 +38,13 @@ const TransferResult = ({
       ? urlPath.MISSION_TRANSFER_PASSWORD // 비밀번호 입력 페이지로
       : urlPath.HOME; // 완료 후 홈으로
 
+  const showToast = () => {
+    toast("추후에 추가될 기능입니다.");
+  };
+
   return (
     <main className="min-h-screen bg-white flex flex-col">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="w-[60px] h-[60px] rounded-full bg-main02 flex items-center justify-center mb-6">
           <CheckIcon className="w-[42px] h-[42px]" />
@@ -61,7 +67,10 @@ const TransferResult = ({
             />
           </div>
           {transferData.memo && (
-            <p className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block">
+            <p
+              className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block"
+              onClick={showToast}
+            >
               {transferData.memo}
             </p>
           )}
@@ -70,7 +79,7 @@ const TransferResult = ({
 
       <div className="px-5 pb-8">
         <div className="flex gap-2">
-          <ShareButton rounded={true} />
+          <ShareButton onClick={showToast} rounded={true} />
           <Link href={nextPath} className="flex-1">
             <CustomButton rounded={true} size="medium" color="main">
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>

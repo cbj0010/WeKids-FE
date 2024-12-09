@@ -3,7 +3,7 @@
 import { urlPath } from "@/src/constants/common";
 import { useColorStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
+import ParentCardCharacter from "@/src/ui/components/card-select/ParentCardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
 import Link from "next/link";
@@ -41,7 +41,7 @@ export default function Page() {
             배송지 선택하기
           </div>
           <div className="flex w-[196px] h-[312px] mt-6">
-            <CardCharacter
+            <ParentCardCharacter
               selectedCharacter={childcharacter ? childcharacter : "DADAPING"}
               selectedColor={childcolor ? childcolor : "BLUE"}
             />

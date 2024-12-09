@@ -2,7 +2,6 @@
 import { useSignUpStore } from "@/src/stores/accountStore";
 import { useUserTypeStore } from "@/src/stores/userStore";
 import { signIn } from "next-auth/react";
-import { useEffect } from "react";
 
 export default function SignIn({ children }) {
   const { userType } = useUserTypeStore();
@@ -17,36 +16,35 @@ export default function SignIn({ children }) {
     guardianPhone,
   } = useSignUpStore();
 
+  //todo: 보호자 생일이랑 전화번호 작대기 넣어서 zustand에 저장해서 줘야함 그거 되면 밑에 데이터 바꾸기
   const data = {
     email: email,
     name: name,
     phone: phone,
     birthday: birthday,
-    simplePassword: simplePassword || null,
-    guardianName: guardianName || null,
-    guardianBirthday: guardianBirthday || null,
-    guardianPhone: guardianPhone || null,
-    social: "naver",
+    simplePassword: simplePassword,
+    guardianName: guardianName,
+    guardianBirthday: guardianBirthday,
+    guardianPhone: guardianPhone,
     memberType: userType,
+    social: "naver",
     redirectTo: "/",
   };
 
-  if (userType === "CHILD") {
-    data["birthday"] = "2017-03-15";
+  if(userType === "CHILD") {
+    data["birthday"] = "2018-10-13";
   }
 
-  useEffect(() => {
-    // 클라이언트에서만 clearStorage 실행
-    if (typeof window !== "undefined") {
-      useSignUpStore.persist.clearStorage();
-    }
-  }, []);
+  // let data = useSignUpStore.persist.clearStorage();
 
   return (
     <form
       action={() => {
         signIn("credentials", data);
       }}
+
+
+
     >
       {children}
     </form>

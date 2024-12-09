@@ -19,7 +19,6 @@ export const designCreate = async (data) => {
     body: JSON.stringify(data),
     credentials: "include",
   });
-
   if (!response.ok) {
     let errorMessage = `Status Code: ${response.status}`;
     try {
@@ -33,7 +32,7 @@ export const designCreate = async (data) => {
   return {};
 };
 
-export const designFetch = async (designId) => {
+export const designFetch = async ({designId}) => {
   const storedDesign = useColorStore.getState().design;
   if (storedDesign) {
     return storedDesign;
@@ -41,7 +40,6 @@ export const designFetch = async (designId) => {
 
   const session = await auth();
   const authorization = session?.user?.Authorization;
-
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,

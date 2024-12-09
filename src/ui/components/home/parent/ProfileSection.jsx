@@ -2,7 +2,6 @@ import { characterInfoMap } from "@/src/constants/common";
 
 const { default: Profile } = require("../../atoms/Profile");
 
-// src/components/home/ProfileSection.jsx
 export default function ProfileSection({
   children,
   selectedAccount,

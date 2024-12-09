@@ -1,19 +1,21 @@
 "use client";
+import { showMissionDetail } from "@/src/apis/mission";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { urlPath } from "@/src/constants/common";
 import { useEffect } from "react";
-import { showMissionDetail } from "@/src/apis/mission";
+import toast, { Toaster } from "react-hot-toast";
 
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) => `${amount}원 보냈어요`,
+    SUBTITLE: (amount) =>
+      `${(Number(amount) || 0).toLocaleString()}원 보냈어요`,
   },
   CONFIRM: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) => `${amount}원 송금하시겠습니까?`,
+    SUBTITLE: (amount) =>
+      `${(Number(amount) || 0).toLocaleString()}원 송금하시겠습니까?`,
   },
   BUTTONS: {
     CONFIRM: "확인",
@@ -35,33 +37,26 @@ const TransferComplete = ({
   const messages = MESSAGES[messageType];
 
   useEffect(() => {
-    console.log(missionId);
-    console.log(accountNumber);
     const fetchMissionDetail = async () => {
       try {
         const missionDetail = await showMissionDetail({ missionId });
         setChildName(missionDetail.childName);
         setAmount(missionDetail.amount);
-        console.log(amount);
       } catch (error) {
         console.error("Failed to fetch mission details:", error);
       }
     };
 
     fetchMissionDetail();
-
-    console.log("??");
   }, []);
-
-  // type에 따라 다른 경로 설정
-  const nextPath =
-    type === "CONFIRM"
-      ? urlPath.MISSION_TRANSFER_PASSWORD // 비밀번호 입력 페이지로
-      : urlPath.HOME; // 완료 후 홈으로
+  const showToast = () => {
+    toast("추후에 구현될 기능입니다.");
+  };
 
   return (
     <main className="min-h-screen bg-white flex flex-col">
       <div className="flex-1 flex flex-col items-center justify-center">
+        <Toaster position="top-center" reverseOrder={false} />
         <div className="w-[60px] h-[60px] rounded-full bg-main02 flex items-center justify-center mb-6">
           <CheckIcon className="w-[42px] h-[42px]" />
         </div>
@@ -80,7 +75,10 @@ const TransferComplete = ({
             />
           </div>
 
-          <p className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block">
+          <p
+            className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block"
+            onClick={showToast}
+          >
             {"메모 입력"}
           </p>
         </div>
@@ -88,8 +86,7 @@ const TransferComplete = ({
 
       <div className="px-5 pb-8">
         <div className="flex gap-2">
-          <ShareButton rounded={true} />
-
+          <ShareButton rounded={true} onClick={showToast} />
           <CustomButton
             onClick={() => setType("SEND")}
             rounded={true}

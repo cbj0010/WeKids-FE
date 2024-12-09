@@ -15,8 +15,6 @@ export default function AccountList() {
   const { mutate, isLoading: isUpdating } = useFetchAccount();
   const clickHandler = () => {
     if (selectedIndex !== null) {
-      // null이 아닌 경우만 실행
-      console.log("Selected index:", selectedIndex);
       mutate(
         {
           accountNumber: accountNumber,
@@ -90,7 +88,7 @@ export default function AccountList() {
       <CustomButton
         color={selectedIndex !== null ? "main" : "gray"}
         onClick={clickHandler}
-        disabled={selectedIndex === null} // 선택되지 않았으면 비활성화
+        disabled={selectedIndex === null}
       >
         가져오기
       </CustomButton>

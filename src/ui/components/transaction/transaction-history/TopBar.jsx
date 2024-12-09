@@ -4,7 +4,6 @@ import { useTransFilterStore } from "@/src/stores/transactionStore";
 import {
   useAccountStore,
   useSelectUserStore,
-  useUserTypeStore,
 } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
@@ -72,7 +71,7 @@ export default function TopBar({ }) {
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
         {selectedaccountInfo.accountNumber == accountInfo.accountNumber && (
           <>
-            <Link href={urlPath.TRANSFER}>
+            <Link href={urlPath.ACCOUNT_LIST}>
               <CustomButton
                 className="text-R-14"
                 size="small"

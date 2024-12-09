@@ -1,20 +1,17 @@
 "use client";
 import PasswordTop from "@/src/ui/components/signup/PasswordTop";
 import PasswordBottom from "@/src/ui/components/signup/PasswordBottom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { urlPath } from "@/src/constants/common";
 import { useAcceptMission } from "@/src/query/missionQuery";
 
 export default function TransferCheck({ missionId, setType }) {
   const [isInput, setIsInput] = useState(Array(6).fill(false));
   const [pwd, setPwd] = useState("");
   const [allow, setAllowed] = useState(false);
-  const router = useRouter();
   const { mutate, isLoading: isUpdating } = useAcceptMission();
 
   const handleSubmit = () => {
-    console.log(missionId);
     mutate(
       {
         missionId: missionId,

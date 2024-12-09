@@ -5,8 +5,6 @@ import EmptyAccountCard from "./EmptyAccountCard";
 
 export default async function ChildHome() {
   const data = await getChildAccounts();
-  // const data = await childAccountData;
-  console.log(data);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -19,5 +17,5 @@ export default async function ChildHome() {
     return <ApprovalWaitingCard name={data.name} />;
   }
 
-  return <BlueCardBox selectedAccount={data} isParent={false} />;
+  return <BlueCardBox selectedAccount={data} isParent={false} hasChild={false} userSession="child"/>;
 }

@@ -54,14 +54,12 @@ export const CountAlarmData = async () => {
 };
 
 export const CheckAlarmData = async ({ alarmId }) => {
-  console.log({ alarmId });
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-  console.log("Request data:", { alarmId });
   const response = await fetch(`${BASE_URL}/alarms/${alarmId}/check`, {
     method: "PATCH",
     headers,

@@ -5,10 +5,21 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 const secretKey = process.env.NEXT_PUBLIC_PROFILE_SECRET_KEY || "default-key";
 
-export const useUserTypeStore = create((set) => ({
-  userType: "", // 'PARENT' or 'CHILD'
-  setUserType: (type) => set({ userType: type }),
-}));
+export const useUserTypeStore = create(
+  persist(
+    (set) => ({
+      userType: "", // 'PARENT' or 'CHILD'
+      setUserType: (type) => set({ userType: type }),
+      clearUserType: () => set({ userType: "" }),
+    }),
+    {
+      name: "usertype-storage",
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  )
+  
+  
+);
 
 export const useUserStore = create(
   persist(
@@ -136,3 +147,10 @@ export const useSelectUserStore = create(
     },
   ),
 );
+
+
+export const useMissionFilterStore = create((set) => ({
+  block: false,
+  setBlockTrue: () => set({ block: true }),
+  setBlockTrue: () => set({ block: false }),
+}));

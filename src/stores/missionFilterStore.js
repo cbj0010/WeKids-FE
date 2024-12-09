@@ -9,7 +9,7 @@ export const ChildEnum = {
 
 export const CategoryEnum = {
   ALL: "전체",
-  CLEAN: "청소",
+  CLEAN: "집안일",
   DEVELOP: "자기계발",
   HABIT: "생활습관",
   ETC: "기타",

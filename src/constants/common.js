@@ -113,10 +113,11 @@ export const urlPath = {
   //부모 url
   PARENT_ACCOUNT: "/parent/account",
   PARENT_CARD_APPLY: "/parent/card/apply",
+  PARENT_CARD_CHECK: "/parent/card/apply/check",
   PARENT_CARD_PASSWORD: "/parent/card/apply/password",
   PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
   PARENT_CARD_SETUP: "/parent/card/apply/card-setup",
-
+  PARENT_CARD_ACCOUNT: "/parent/card/apply/account",
   PARENT_CARD_VERIFICATION: "/parent/card/verification",
   PARENT_CARD_ALARM: "/parent/card/alarm",
 
@@ -127,4 +128,8 @@ export const urlPath = {
   MISSION_TRANSFER: "/mission/transfer",
   MISSION_TRANSFER_PASSWORD: "/mission/transfer/password", // 송금 비밀번호 등록
   MISSION_TRANSFER_DONE: "/mission/transfer/done", // 송금 완료
+
+  //금융아티클
+  FINANCIAL: "/financial",
+  MYPAGE: "/mypage"
 };

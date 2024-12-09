@@ -1,6 +1,6 @@
 "use client";
-import { urlPath } from "@/src/constants/common";
 import { fetchChildAccounts } from "@/src/apis/account";
+import { urlPath } from "@/src/constants/common";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
@@ -11,8 +11,6 @@ import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
 import { useQuery } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import PasswordTop from "../signup/PasswordTop";
-import PasswordBottom from "../signup/PasswordBottom";
 import TransferPassword from "./TransferPassword";
 
 export default function TransferDetail({ userdata }) {
@@ -23,7 +21,6 @@ export default function TransferDetail({ userdata }) {
     setSelectedAccount,
     transferAmount,
     setTransferAmount,
-    childrenAccounts,
     clearTransferData,
   } = useTransactionStore();
   const [first, setFirst] = useState(true);
@@ -31,7 +28,6 @@ export default function TransferDetail({ userdata }) {
 
   useEffect(() => {
     if (first) {
-      console.log(userdata);
       setTransferAmount(0);
       setFirst(false);
     }
@@ -138,7 +134,6 @@ export default function TransferDetail({ userdata }) {
             </div>
             <CustomButton
               onClick={handleButtonClick}
-              // 버튼 비활성화 및 호버 효과 제거
               className={`${isButtonDisabled ? "bg-stone-300 cursor-not-allowed pointer-events-none" : ""}`}
             >
               다음

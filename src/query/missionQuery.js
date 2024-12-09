@@ -1,11 +1,13 @@
+'use client'
 import { useMutation } from "@tanstack/react-query";
 import { createMission, missionAccept } from "../apis/mission";
 
 export const useCreateMission = () => {
+  
   return useMutation({
-    mutationFn: ({ childId, title, content, deadline, amount, category }) => {
+    mutationFn: ({ childrenId, title, content, deadline, amount, category }) => {
       return createMission({
-        childId,
+        childrenId,
         title,
         content,
         deadline,
@@ -14,7 +16,7 @@ export const useCreateMission = () => {
       });
     },
     onSuccess: (data) => {
-      console.log("성공:", data);
+      console.log("성공");
     },
   });
 };
@@ -25,7 +27,7 @@ export const useAcceptMission = () => {
       return missionAccept({ missionId, simplePassword });
     },
     onSuccess: (data) => {
-      console.log("성공:", data);
+      console.log("성공");
     },
   });
 };

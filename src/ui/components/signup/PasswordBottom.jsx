@@ -50,16 +50,17 @@ export default function Page({
     <>
       <div className="flex flex-col h-1/5 p-10">
         <Link href={getRedirectPath()} onClick={handleClick}>
-          <CustomButton
-            rounded="true"
-            className={`mt-auto w-full ${
-              allow
-                ? "bg-main02"
-                : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
-            }`}
-          >
-            확인
-          </CustomButton>
+          {allow ? (
+            <CustomButton
+              rounded="true"
+              className="mt-auto w-full
+                  bg-main02"
+            >
+              확인
+            </CustomButton>
+          ) : (
+            ""
+          )}
         </Link>
       </div>
       <div className="flex flex-col mt-auto w-[393px]">

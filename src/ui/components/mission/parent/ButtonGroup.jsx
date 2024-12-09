@@ -1,11 +1,12 @@
+import missionCategories from "@/src/constants/mission";
 import Image from "next/image";
 import { useState } from "react";
-import missionCategories from "@/src/constants/mission";
 
 export default function ButtonGroup({
   childrenData, // 외부에서 받아오는 자녀 데이터
   setTopButtonChecked,
   setBottomButtonChecked,
+  setCount,
 }) {
   const [selectedTopButtons, setSelectedTopButtons] = useState([]);
   const [isAllSelected, setIsAllSelected] = useState(false); // ALL 버튼 상태
@@ -27,14 +28,19 @@ export default function ButtonGroup({
       setSelectedTopButtons(allSelections);
       setTopButtonChecked(allSelections);
       setIsAllSelected(!isAllSelected);
+      console.log(allSelections)
+      setCount(allSelections.length)
     } else {
       const newSelection = selectedTopButtons.includes(id)
         ? selectedTopButtons.filter((button) => button !== id)
         : [...selectedTopButtons, id];
       setSelectedTopButtons(newSelection);
       setTopButtonChecked(newSelection);
+      console.log(newSelection)
       setIsAllSelected(false);
+      setCount(newSelection.length)
     }
+    
   };
 
   const handleBottomButtonClick = (id) => {
@@ -60,7 +66,7 @@ export default function ButtonGroup({
 
   return (
     <div className="flex flex-col w-full">
-      <p className="text-R-10 mb-1 text-sub02">미션을 수행할 자녀</p>
+      <p className="text-R-14 mb-1 text-sub02">미션을 수행할 자녀</p>
       <div className="flex flex-row justify-between gap-3 w-full mb-2">
         {topButtons.map((button) => (
           <button
@@ -70,7 +76,7 @@ export default function ButtonGroup({
               button.id,
               button.id === "all"
                 ? isAllSelected
-                : selectedTopButtons.includes(button.id),
+                : selectedTopButtons.includes(button.id)
             )}
           >
             <span className="text-R-10 whitespace-nowrap overflow-hidden">
@@ -79,7 +85,7 @@ export default function ButtonGroup({
           </button>
         ))}
       </div>
-      <p className="text-R-10 mb-1 mt-2 text-sub02">미션 카테고리</p>
+      <p className="text-R-14 mb-1 mt-2 text-sub02">미션 카테고리</p>
       <div className="flex flex-row justify-between gap-2 w-full">
         {missionCategories.map((button) => (
           <button

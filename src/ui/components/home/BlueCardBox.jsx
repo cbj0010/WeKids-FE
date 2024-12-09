@@ -1,6 +1,7 @@
 "use client";
 
 import { characterInfoMap, urlPath } from "@/src/constants/common";
+import { useTransactionStore } from "@/src/stores/transactionStore";
 import {
   useAccountStore,
   useSelectUserStore,
@@ -13,14 +14,19 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const BlueCardBox = ({ selectedAccount, isParent }) => {
+const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState("");
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
   const { accountInfo } = useAccountStore();
   const { setSelectedAccountId, setSelectedAccountInfo } = useSelectUserStore();
-
+  const {setSelectedAccount} = useTransactionStore();
   useEffect(() => {
     setSelectedAccountId(selectedAccount.accountId);
+    setSelectedAccount({
+      id: selectedAccount.accountId,
+      name: selectedAccount.name,
+      accountNumber: selectedAccount.accountNumber
+    });
     setSelectedAccountInfo({
       name: selectedAccount.name,
       accountNumber: selectedAccount.accountNumber,
@@ -57,7 +63,11 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
     if (selectedAccount == null) {
       e.preventDefault();
     }
+    if(!hasChild){
+      toast.error("아이가 없어요")
+    }
   };
+  
 
   return (
     <div
@@ -70,11 +80,11 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
             <Text className="text-R-10">{selectedAccount.accountNumber}</Text>
             <CopyIcon onClick={handleCopy} className="cursor-pointer" />
           </div>
-          <Text className="text-B-28 mt-9">{selectedAccount.name}</Text>
+          <Text className="text-B-22 mt-9">{selectedAccount.name}</Text>
         </div>
       </div>
       <div className="absolute w-full bottom-20 text-right pr-7">
-        <Text className="text-R-28">
+        <Text className="text-R-25">
           {selectedAccount.balance.toLocaleString()} 원
         </Text>
       </div>
@@ -99,13 +109,10 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
           >
             <button>조회</button>
           </Link>
-          {isParent && (
+          {/* 부모 세션이거나 부모가 자녀 계좌를 선택했을 때만 이체 버튼 표시 */}
+          {(userSession === 'parent' || (isParent && selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
             <Link
-              href={
-                accountInfo.accountNumber != selectedAccount.accountNumber
-                  ? urlPath.TRANSFER
-                  : urlPath.ACCOUNT_LIST
-              }
+              href={urlPath.TRANSFER}
               onClick={clickHandler}
               className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >

@@ -2,7 +2,16 @@ import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Link from "next/link";
 
-export default function InnerText({ isChild = true, name1, name2 }) {
+export default function InnerText({
+  isChild = true,
+  name1,
+  name2,
+  isCompleted = false,
+}) {
+  const onDisabledListener = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="flex flex-col w-full">
       <div className="h-3/4 pl-3">
@@ -25,14 +34,30 @@ export default function InnerText({ isChild = true, name1, name2 }) {
         </div>
       </div>
       <div className="p-3">
-        <Link href={urlPath.PARENT_CARD_ALARM}>
-          <CustomButton
-            rounded={true}
-            size={"mediumLarge"}
-            className="max-w-full"
-          >
-            카드 디자인 보기
-          </CustomButton>
+        <Link
+          href={
+            isChild ? urlPath.CHILD_CARD_COMPLETE : urlPath.PARENT_CARD_ALARM
+          }
+        >
+          {isCompleted ? (
+            <CustomButton
+              rounded={true}
+              size={"mediumLarge"}
+              color="gray"
+              className="max-w-full hover:bg-stone-300"
+              onClick={onDisabledListener}
+            >
+              카드 생성 완료
+            </CustomButton>
+          ) : (
+            <CustomButton
+              rounded={true}
+              size={"mediumLarge"}
+              className="max-w-full"
+            >
+              카드 디자인 보기
+            </CustomButton>
+          )}
         </Link>
       </div>
     </div>

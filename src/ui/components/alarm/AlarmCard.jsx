@@ -1,8 +1,6 @@
 "use client";
 import {
   ChevronRightIcon,
-  EnvelopeClosedIcon,
-  CheckIcon,
   FileIcon,
   CardStackIcon,
 } from "@radix-ui/react-icons";
@@ -39,7 +37,15 @@ const AlarmCard = ({
   const SelectedIcon = EMOTICON[data.emoticon];
 
   return (
-    <Link href={type == "MISSION" ? urlPath.MISSION : urlPath.ALARM_CARD}>
+    <Link
+  href={
+    type === "MISSION"
+      ? urlPath.MISSION
+      : type === "CARD" && targetState === "READY"
+      ? urlPath.ALARM_CARD
+      : urlPath.HOME
+  }
+>
       <div
         onClick={onClick}
         className={`flex flex-row w-full h-[149px] ${isChecked ? "bg-white" : "bg-main03"} px-6 pt-6 pb-5 gap-5 ${className}`}

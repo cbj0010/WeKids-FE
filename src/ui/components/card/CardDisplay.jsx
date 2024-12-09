@@ -1,6 +1,6 @@
 import React from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
+import ParentCardCharacter from "../card-select/ParentCardCharacter";
 
 const CardDisplay = ({
   selectedCharacter,
@@ -14,7 +14,7 @@ const CardDisplay = ({
         "w-[313px] h-[513px] flex-shrink-0 rounded-[40px] border-2 border-black/40 flex flex-col bg-main02 items-center justify-center"
       }
     >
-      <CardCharacter
+      <ParentCardCharacter
         selectedCharacter={selectedCharacter}
         selectedColor={selectedColor}
       />

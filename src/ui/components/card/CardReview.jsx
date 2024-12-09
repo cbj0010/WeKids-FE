@@ -1,6 +1,6 @@
 "use client";
 import { getParentsAccounts } from "@/src/apis/parents";
-import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
+import { useSensitiveDataStore } from "@/src/stores/cardStore";
 import { useAccountStore } from "@/src/stores/userStore";
 import CardRequestReview from "@/src/ui/components/card/CardRequestReview";
 import InnerText from "@/src/ui/components/card/InnerText";
@@ -8,21 +8,21 @@ import { useEffect, useState } from "react";
 
 export default function CardReview() {
   const { accountInfo } = useAccountStore();
-  const { childId } = useSensitiveDataStore();
-  const [childname, setChildname] = useState("");
+  const { childName, setChildName, childId } = useSensitiveDataStore();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    console.log(childId);
     const getParentsAccount = async () => {
       try {
         setLoading(true); // 로딩 상태 시작
         const data = await getParentsAccounts();
         if (data) {
-          console.log(data);
           const child = data.children.find((c) => c.childId === childId);
-          setChildname(child.name);
+          setChildName(child.name);
+
+          child.cardState == "CREATED" && setIsCompleted(true);
         }
       } catch (err) {
         setError(err.message); // 에러 처리
@@ -38,8 +38,9 @@ export default function CardReview() {
     <CardRequestReview>
       <InnerText
         name1={accountInfo ? accountInfo.name : ""}
-        name2={childname ? childname : ""}
+        name2={childName ? childName : ""}
         isChild={false}
+        isCompleted={isCompleted}
       />
     </CardRequestReview>
   );
