@@ -125,7 +125,7 @@ export default function ContentList() {
           가장 인기 있던 아티클을 모아봤어요
         </p>
 
-        {/* 아티클 카드 */}
+        {/* 추천 지식 카드 */}
         <div className="space-y-4">
           <article
             className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 cursor-pointer"
@@ -171,15 +171,16 @@ export default function ContentList() {
       <section>
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold">오늘의 금융 아티클</h2>
+          <button className="text-gray-500 text-sm">더보기 &gt;</button>
         </div>
         <p className="text-gray-500 text-sm mb-4">
-          흥미로운 외울거리를 모아봤어요
+          흥미로운 워울거리를 모아봤어요
         </p>
 
         {/* 금융 아티클 카드 */}
         <div className="mb-16">
           <article
-            className="bg-white rounded-2xl p-5 mb-5 shadow-sm border border-gray-100 cursor-pointer"
+            className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 cursor-pointer"
             onClick={() => handleArticleClick("financial")}
           >
             <div className="flex justify-between items-start">
@@ -193,16 +194,18 @@ export default function ContentList() {
                 <p className="text-gray-600 text-sm mt-2">
                   성공적인 가업승계를 위한 핵심 포인트
                 </p>
+                <div className="mt-4">
+                  <Image
+                    src="/images/article.png"
+                    width={100}
+                    height={100}
+                    alt="article"
+                  />
+                </div>
               </div>
               <button className="text-gray-400 hover:text-gray-600 transition-colors">
                 <HeartIcon />
               </button>
-              <Image
-                src="/images/article.png"
-                width={100}
-                height={100}
-                alt="article"
-              />
             </div>
           </article>
         </div>
