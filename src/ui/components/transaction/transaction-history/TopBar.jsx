@@ -71,7 +71,7 @@ export default function TopBar({ }) {
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
         {selectedaccountInfo.accountNumber == accountInfo.accountNumber && (
           <>
-            <Link href={urlPath.TRANSFER}>
+            <Link href={urlPath.ACCOUNT_LIST}>
               <CustomButton
                 className="text-R-14"
                 size="small"
