@@ -112,7 +112,7 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
           {/* 부모 세션이거나 부모가 자녀 계좌를 선택했을 때만 이체 버튼 표시 */}
           {(userSession === 'parent' || (isParent && selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
             <Link
-              href={urlPath.TRANSFER}
+              href={userSession === 'parent' ? urlPath.ACCOUNT_LIST : urlPath.TRANSFER}
               onClick={clickHandler}
               className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >
