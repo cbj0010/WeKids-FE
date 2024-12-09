@@ -4,7 +4,7 @@ import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -34,7 +34,7 @@ const TransferDone = ({
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
   const { clearTransferData } = useTransactionStore();
-
+  const router = useRouter();
   useEffect(() => {
     clearTransferData();
   }, []);
@@ -42,7 +42,9 @@ const TransferDone = ({
   const showToast = () => {
     toast("추후에 구현될 기능입니다.");
   };
-
+  const handleRouteChange = () => {
+    window.location.href = urlPath.HOME;
+  };
   return (
     <main className="min-h-screen bg-white flex flex-col">
       <div className="flex-1 flex flex-col items-center justify-center">
@@ -77,11 +79,11 @@ const TransferDone = ({
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-          <Link href={urlPath.HOME}>
-            <CustomButton rounded={true} size="medium" color="main">
+          
+            <CustomButton rounded={true} size="medium" color="main" onClick={handleRouteChange}>
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
-          </Link>
+          
         </div>
       </div>
     </main>

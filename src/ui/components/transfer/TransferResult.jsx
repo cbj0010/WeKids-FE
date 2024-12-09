@@ -2,7 +2,7 @@ import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 const MESSAGES = {
   COMPLETE: {
@@ -31,7 +31,7 @@ const TransferResult = ({
   // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
-
+  const router = useRouter();
   // type에 따라 다른 경로 설정
   const nextPath =
     type === "CONFIRM"
@@ -41,7 +41,10 @@ const TransferResult = ({
   const showToast = () => {
     toast("추후에 추가될 기능입니다.");
   };
-
+  const handleRouteChange = () => {
+    // 라우터를 통해 강제 새로고침
+    window.location.href = urlPath.HOME;
+  };
   return (
     <main className="min-h-screen bg-white flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />
@@ -80,11 +83,11 @@ const TransferResult = ({
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton onClick={showToast} rounded={true} />
-          <Link href={nextPath} className="flex-1">
-            <CustomButton rounded={true} size="medium" color="main">
+          
+            <CustomButton rounded={true} size="medium" color="main" onClick={handleRouteChange}>
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
-          </Link>
+          
         </div>
       </div>
     </main>
