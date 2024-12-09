@@ -102,9 +102,9 @@ export const missionData = {
   },
   CANCEL: {
     emoticon: "MISSION",
-    title: "부모님이 미션을 반려했어요!",
+    title: "부모님이 미션을 취소했어요!",
     description: () =>
-      `부모님이 미션 인증을 반려하셨어요 다음에는 더 열심히 해봐요!`,
+      `부모님이 미션 인증을 취소하셨어요 다음에는 더 열심히 해봐요!`,
   },
   OUTDATED: {
     emoticon: "MISSION",
