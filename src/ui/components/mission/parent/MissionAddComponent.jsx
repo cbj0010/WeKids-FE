@@ -1,6 +1,5 @@
 "use client";
 import { getParentsAccounts } from "@/src/apis/parents";
-import { showToast } from "@/src/constants/toast";
 import { useCreateMission } from "@/src/query/missionQuery";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
@@ -23,10 +22,9 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const [checked, setChecked] = useState(false);
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const { mutate, isLoading: isUpdating } = useCreateMission();
+  const { mutateAsync, isLoading: isUpdating } = useCreateMission();
   const queryClient = useQueryClient();
   const [count, setCount] = useState(0);
-  const [check, setCheck] = useState(0);
   const route = useRouter();
 
   useEffect(() => {
@@ -87,50 +85,30 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   };
 
   const AddAndCloseModal = async () => {
-    if (checked) {
-      const currentChild = JSON.parse(JSON.stringify(child));
-      console.log("API 호출 직전 child 상태:", currentChild);
-  
-      try {
-        // 각 childId에 대해 API 호출
-        const results = await Promise.all(
-          currentChild.map((childId) =>
-            new Promise((resolve, reject) => {
-              mutate(
-                {
-                  childId: childId,
-                  title: title,
-                  content: content,
-                  deadline: deadline,
-                  amount: amount,
-                  category: category,
-                },
-                {
-                  onSuccess: (data) => {
-                    console.log(`성공! Child ID: ${childId}`);
-                    resolve(data); // 성공 시 resolve
-                  },
-                  onError: (error) => {
-                    //console.error(`실패! Child ID: ${childId}, Error: ${error.message}`);
-                    reject(error); // 실패 시 reject
-                  },
-                }
-              );
-            })
-          )
-        );
-  
-        console.log("모든 API 호출 완료", results);
-        queryClient.invalidateQueries(["missionList"]); // 캐시 무효화
-      } catch (error) {
-        //console.error("API 호출 중 오류 발생:", error);
-      } finally {
-        window.location.reload(); // 페이지 새로고침
-      }
-    } else {
+    if (!checked) {
       toast("빈칸을 모두 채워주세요!");
+      return;
+    }
+  
+    try {
+      const data = await mutateAsync({
+        childrenId: child,
+        title: title,
+        content: content,
+        deadline: deadline,
+        amount: amount,
+        category: category,
+      });
+  
+      console.log(`성공! Child ID: ${child}`);
+      queryClient.invalidateQueries(["missionList"]); // 캐시 무효화
+    } catch (error) {
+      console.error(`실패! Child ID: ${child}, Error: ${error.message}`);
+    } finally {
+      window.location.reload(); // 페이지 새로고침
     }
   };
+  
   
   
   

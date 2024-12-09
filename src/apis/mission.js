@@ -8,8 +8,9 @@ export const createMission = async ({
   deadline,
   amount,
   category,
-  childId,
+  childrenId,
 }) => {
+  console.log(childrenId)
   const session = await auth();
   const authorization = session?.user?.Authorization;
 
@@ -27,7 +28,7 @@ export const createMission = async ({
       deadline,
       amount,
       category,
-      childId,
+      childrenId,
     }),
   });
 
@@ -37,7 +38,7 @@ export const createMission = async ({
   }
 
   // 응답 본문이 없으므로 JSON 변환을 시도하지 않음
-  return response;
+  //return await response.json();
 };
 
 export const showMissionList = async ({ state, category, child }) => {

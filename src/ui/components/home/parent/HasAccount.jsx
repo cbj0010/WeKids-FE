@@ -16,6 +16,7 @@ export default function AccountView({ accountData }) {
 
   useEffect(() => {
     if (accountData) {
+      console.log(accountData);
       setSelectedAccount(accountData.parent);
       setAccountId(accountData.accountId);
       setAccountInfo({
@@ -43,7 +44,7 @@ export default function AccountView({ accountData }) {
         >
           <Profile
             accountInfo={accountData.parent}
-            imagePath={accountData.parent.profile}
+            profile={characterInfoMap[accountData.parent.profile].imagePath}
             className="w-10 h-10 relative z-10 ring-1 ring-black/60"
           />
           {selectedProfile !== "parent" && (
@@ -65,7 +66,7 @@ export default function AccountView({ accountData }) {
             >
               <Profile
                 accountInfo={child}
-                profile={characterInfoMap[child.character].imagePath}
+                profile={characterInfoMap[child.character]?.imagePath}
                 className="w-10 h-10 relative z-10 ring-1 ring-black/60"
               />
               {selectedAccount?.id !== child.id && (

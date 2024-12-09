@@ -28,6 +28,7 @@ export default function ButtonGroup({
       setSelectedTopButtons(allSelections);
       setTopButtonChecked(allSelections);
       setIsAllSelected(!isAllSelected);
+      console.log(allSelections)
       setCount(allSelections.length)
     } else {
       const newSelection = selectedTopButtons.includes(id)
@@ -35,6 +36,7 @@ export default function ButtonGroup({
         : [...selectedTopButtons, id];
       setSelectedTopButtons(newSelection);
       setTopButtonChecked(newSelection);
+      console.log(newSelection)
       setIsAllSelected(false);
       setCount(newSelection.length)
     }

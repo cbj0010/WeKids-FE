@@ -147,3 +147,10 @@ export const useSelectUserStore = create(
     },
   ),
 );
+
+
+export const useMissionFilterStore = create((set) => ({
+  block: false,
+  setBlockTrue: () => set({ block: true }),
+  setBlockTrue: () => set({ block: false }),
+}));
