@@ -16,7 +16,6 @@ const AlarmComponent = ({ data }) => {
 
   const OnCheckClicker = (idx) => {
     const alarm = data[idx];
-    console.log(alarm);
 
     if (alarm.type === "CARD") {
       setChildId(alarm.targetId); // targetId를 Zustand에 저장

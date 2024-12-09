@@ -121,7 +121,7 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className="gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">
+      <div className="gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-B-18">
         {mission?.title}
       </div>
       <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-2 overflow-auto">
@@ -129,12 +129,12 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           {mission?.content}
         </div>
-        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-14 shadow-md text-sub02/60">
+        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           미션 성공 시 총{" "}
           <span className="text-sub02">{mission?.amount.toLocaleString()}</span>{" "}
           원을 받을 수 있어요
         </p>
-        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-14 shadow-md text-sub02/60">
+        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
           <span className="text-sub02">
             {deadline

@@ -97,13 +97,11 @@ export const TransactionsView = () => {
 
       // 페이지 초기화 후 첫 번째 데이터 호출
     }
-    console.log(balance);
   }, [start, end, typetoEng, fetchNextPage]);
 
   useEffect(() => {
     if (data?.pages?.[0]?.balance !== undefined) {
       setBalance(data.pages[0].balance); // 첫 페이지의 balance를 설정
-      console.log(data);
     }
   }, [data, setBalance]);
 

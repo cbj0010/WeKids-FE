@@ -6,6 +6,7 @@ export default function ButtonGroup({
   childrenData, // 외부에서 받아오는 자녀 데이터
   setTopButtonChecked,
   setBottomButtonChecked,
+  setCount,
 }) {
   const [selectedTopButtons, setSelectedTopButtons] = useState([]);
   const [isAllSelected, setIsAllSelected] = useState(false); // ALL 버튼 상태
@@ -27,6 +28,7 @@ export default function ButtonGroup({
       setSelectedTopButtons(allSelections);
       setTopButtonChecked(allSelections);
       setIsAllSelected(!isAllSelected);
+      setCount(allSelections.length)
     } else {
       const newSelection = selectedTopButtons.includes(id)
         ? selectedTopButtons.filter((button) => button !== id)
@@ -34,7 +36,9 @@ export default function ButtonGroup({
       setSelectedTopButtons(newSelection);
       setTopButtonChecked(newSelection);
       setIsAllSelected(false);
+      setCount(newSelection.length)
     }
+    
   };
 
   const handleBottomButtonClick = (id) => {

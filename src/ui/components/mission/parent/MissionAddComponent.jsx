@@ -25,6 +25,8 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const [isLoading, setLoading] = useState(false);
   const { mutate, isLoading: isUpdating } = useCreateMission();
   const queryClient = useQueryClient();
+  const [count, setCount] = useState(0);
+  const [check, setCheck] = useState(0);
   const route = useRouter();
 
   useEffect(() => {
@@ -40,7 +42,8 @@ export default function MissionAddComponent({ setIsModalOpen }) {
       try {
         setLoading(true); // 로딩 상태 시작
         const data = await getParentsAccounts();
-        setChildList(data.children);
+        const serializedChildren = JSON.parse(JSON.stringify(data.children));
+        setChildList(serializedChildren);
       } catch (err) {
         setError(err.message); // 에러 처리
       } finally {
@@ -83,46 +86,54 @@ export default function MissionAddComponent({ setIsModalOpen }) {
     }
   };
 
-  const AddAndCloseModal = () => {
+  const AddAndCloseModal = async () => {
     if (checked) {
-      const apiCalls = child.map((childId) =>
-        mutate(
-          {
-            childId: childId,
-            title: title,
-            content: content,
-            deadline: deadline,
-            amount: amount,
-            category: category,
-          },
-          {
-            onSuccess: () => {
-              console.log(`성공!`);
-            },
-            onError: (error) => {
-              console.error(
-                `실패! Child ID: ${childId}, Error: ${error.message}`
+      const currentChild = JSON.parse(JSON.stringify(child));
+      console.log("API 호출 직전 child 상태:", currentChild);
+  
+      try {
+        // 각 childId에 대해 API 호출
+        const results = await Promise.all(
+          currentChild.map((childId) =>
+            new Promise((resolve, reject) => {
+              mutate(
+                {
+                  childId: childId,
+                  title: title,
+                  content: content,
+                  deadline: deadline,
+                  amount: amount,
+                  category: category,
+                },
+                {
+                  onSuccess: (data) => {
+                    console.log(`성공! Child ID: ${childId}`);
+                    resolve(data); // 성공 시 resolve
+                  },
+                  onError: (error) => {
+                    //console.error(`실패! Child ID: ${childId}, Error: ${error.message}`);
+                    reject(error); // 실패 시 reject
+                  },
+                }
               );
-            },
-          }
-        )
-      );
-
-      // 모든 호출이 완료된 후 처리
-      Promise.all(apiCalls)
-        .then(() => {
-          queryClient.invalidateQueries(["missionList"]);
-          console.log("모든 API 호출이 완료되었습니다!");
-          window.location.reload();
-        })
-        .catch((error) => {
-          console.error("하나 이상의 API 호출이 실패했습니다:", error);
-          showToast.error("미션 등록에 실패했습니다.");
-        });
+            })
+          )
+        );
+  
+        console.log("모든 API 호출 완료", results);
+        queryClient.invalidateQueries(["missionList"]); // 캐시 무효화
+      } catch (error) {
+        //console.error("API 호출 중 오류 발생:", error);
+      } finally {
+        window.location.reload(); // 페이지 새로고침
+      }
     } else {
       toast("빈칸을 모두 채워주세요!");
     }
   };
+  
+  
+  
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
@@ -134,6 +145,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
             childrenData={childlist}
             setTopButtonChecked={setChild}
             setBottomButtonChecked={setCategory}
+            setCount={setCount}
           />
           <div className="flex flex-col gap-1 mb-5 mt-3">
             <p className="text-R-14 text-sub02">미션명</p>

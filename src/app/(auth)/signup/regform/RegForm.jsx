@@ -6,17 +6,13 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Bottom from "@/src/ui/components/signup/SignUpFooter";
 import Top from "@/src/ui/components/signup/SignUpHeader";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function RegForm({ data }) {
   const [topChecked, setTopChecked] = useState(false);
   const [bottomChecked, setBottomChecked] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    console.log(bottomChecked, topChecked);
-  },[bottomChecked, topChecked])
 
   const notify = () => {
     toast("빈칸을 채워주세요!");

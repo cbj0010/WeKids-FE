@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const BlueCardBox = ({ selectedAccount, isParent }) => {
+const BlueCardBox = ({ selectedAccount, isParent, hasChild }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState("");
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
   const { accountInfo } = useAccountStore();
@@ -62,6 +62,9 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
   const clickHandler = (e) => {
     if (selectedAccount == null) {
       e.preventDefault();
+    }
+    if(!hasChild){
+      toast.error("아이가 없어요")
     }
   };
   

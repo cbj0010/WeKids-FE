@@ -1,3 +1,4 @@
+'use client'
 import { useMutation } from "@tanstack/react-query";
 import { createMission, missionAccept } from "../apis/mission";
 

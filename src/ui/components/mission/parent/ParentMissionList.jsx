@@ -1,5 +1,5 @@
 "use client";
-import { missionColorMap } from "@/src/constants/common";
+import { characterInfoMap, missionColorMap } from "@/src/constants/common";
 import { formatDate } from "@/src/util/missionUtils";
 import CategoryBadge from "../list/CategoryBadge";
 import StateBadge from "../list/StateBadge";
@@ -19,7 +19,7 @@ const ParentMissionList = ({ missiondata, onClick }) => {
       <div className="flex gap-3">
         <div className="flex items-center">
           <ChildProfileSection
-            profileUrl={missiondata.childProfile}
+            profileUrl={characterInfoMap[missiondata.childProfile].imagePath}
             childName={missiondata.childName}
           />
         </div>

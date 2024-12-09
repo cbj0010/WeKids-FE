@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import MissionConfirmModal from "../MissionConfirmModal";
+import { characterInfoMap } from "@/src/constants/common";
 
 const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [amount, setAmount] = useState(0); // 초기값을 0으로 설정
@@ -25,6 +26,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [text, setText] = useState("");
   const [denied, setDenied] = useState(false);
   const [iconSrc, setIconSrc] = useState("/images/trashImg.svg");
+  const [childProfile, setChildProfile] = useState('');
   const router = useRouter();
   const { setMissionId } = useMissionIDStore();
   const deadlineDate = deadline ? new Date(deadline) : null;
@@ -47,6 +49,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         setMissionId(missionDetail.missionId);
         setImage(missionDetail.image);
         setState(missionDetail.state || null);
+        setChildProfile(missionDetail.childProfile);
         missionDetail.memo ? setMemo(missionDetail.memo) : "";
         const categoryData = missionCategories.find(
           (cat) => cat.id === (missionDetail.category || "HOUSE_WORK")
@@ -106,15 +109,15 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className="flex flex-col gap-1 mb-2 w-full pt-10 px-7 ">
+      <div className="flex flex-row gap-3 mb-2 w-full pt-10 px-7">
         <div className="flex flex-row text-B-22 mb-1">
           <Profile
-            width="w-[40px]"
-            height="h-[40px]"
-            imagePath="https://ssl.pstatic.net/static/pwe/address/img_profile.png"
+            width="w-[56px]"
+            height="h-[56px]"
+            profile={childProfile && characterInfoMap[childProfile].imagePath}
           />
         </div>
-        <div className="text-sub02 text-R-15 gap-2 flex flex-row">
+        <div className="text-sub02 text-B-18 gap-2 items-center flex flex-row">
           {title}
           <Image src={iconSrc} width={19} height={19} alt="delete icon" />
         </div>

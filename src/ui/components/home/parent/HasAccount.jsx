@@ -80,6 +80,7 @@ export default function AccountView({ accountData }) {
           <BlueCardBox
             selectedAccount={selectedAccount}
             isParent={selectedProfile === "parent"}
+            hasChild={accountData.children.length > 0}
           />
         ) : (
           <ChildNoCard name={selectedAccount?.name || "자녀"} />

@@ -21,9 +21,8 @@ export default function CardReview() {
         if (data) {
           const child = data.children.find((c) => c.childId === childId);
           setChildName(child.name);
-          console.log(child);
+
           child.cardState == "CREATED" && setIsCompleted(true);
-          console.log(child.cardState);
         }
       } catch (err) {
         setError(err.message); // 에러 처리

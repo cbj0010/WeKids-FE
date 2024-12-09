@@ -10,7 +10,7 @@ export const getCurrentDateInKoreanFormat = (period) => {
 };
 
 export const missionCategories = [
-  { id: "HOUSE_WORK", label: "청소", icon: "/images/trashImg.svg" },
+  { id: "HOUSE_WORK", label: "집안일", icon: "/images/trashImg.svg" },
   { id: "LIFESTYLE_HABITS", label: "생활습관", icon: "/images/pinImg.svg" },
   { id: "SELF_DEVELOPMENT", label: "자기계발", icon: "/images/pencilImg.svg" },
   { id: "ETC", label: "기타", icon: "/images/ectImg.svg" },

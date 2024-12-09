@@ -13,7 +13,7 @@ const CategoryBadge = ({
     const stateInfo = {
       HOUSE_WORK: {
         icon: "/images/trashImg.svg",
-        text: "청소",
+        text: "집안일",
       },
       SELF_DEVELOPMENT: {
         icon: "/images/pencilImg.svg",
