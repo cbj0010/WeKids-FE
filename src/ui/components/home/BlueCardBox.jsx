@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const BlueCardBox = ({ selectedAccount, isParent, hasChild }) => {
+const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState("");
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
   const { accountInfo } = useAccountStore();
@@ -105,18 +105,14 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild }) => {
         <div className="flex text-black">
           <Link
             href={`${urlPath.TRANSACTION_HISTORY}`}
-            
             className="flex-1 py-4 text-center text-R-20 border-black hover:bg-white/10 transition-colors"
           >
             <button>조회</button>
           </Link>
-          {isParent && (
+          {/* 부모 세션이거나 부모가 자녀 계좌를 선택했을 때만 이체 버튼 표시 */}
+          {(userSession === 'parent' || (isParent && selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
             <Link
-              href={
-                accountInfo.accountNumber != selectedAccount.accountNumber
-                  ? urlPath.TRANSFER
-                  : urlPath.ACCOUNT_LIST
-              }
+              href={urlPath.TRANSFER}
               onClick={clickHandler}
               className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >

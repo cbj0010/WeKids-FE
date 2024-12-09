@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { urlPath } from "../constants/common";
 import ChildHome from "../ui/components/home/child/ChildHome";
+import FinancialCard from "../ui/components/home/FinancialCard";
 import ChildMissionCard from "../ui/components/home/mission/ChildMissionCard";
 import ParentMissionCard from "../ui/components/home/mission/ParentMissionCard";
 import ParentHome from "../ui/components/home/parent/ParentHome";
@@ -35,6 +36,9 @@ export default async function Home() {
             <ChildMissionCard />
           )}
         </div>
+      </Link>
+      <Link href={urlPath.FINANCIAL}>
+      <FinancialCard />
       </Link>
     </div>
   );
