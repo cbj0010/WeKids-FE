@@ -20,7 +20,6 @@ export default async function Header() {
         />
       </Link>
       <div className="flex space-x-3 items-baseline mt-10">
-        {/* 알람 아이콘과 배지 */}
         <div className="relative">
           <Link href={urlPath.ALARM}>
             <BellIcon className="h-5 w-5 cursor-pointer" />
@@ -31,8 +30,9 @@ export default async function Header() {
             </div>
           )}
         </div>
-        {/* 프로필 아이콘 */}
-        <PersonIcon className="h-5 w-5 mr-4 cursor-pointer" />
+        <Link href={urlPath.MYPAGE}>
+          <PersonIcon className="h-5 w-5 mr-4 cursor-pointer" />
+        </Link>
       </div>
     </header>
   );

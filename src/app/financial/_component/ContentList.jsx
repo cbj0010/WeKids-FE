@@ -171,7 +171,6 @@ export default function ContentList() {
       <section>
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold">오늘의 금융 아티클</h2>
-          <button className="text-gray-500 text-sm">더보기 &gt;</button>
         </div>
         <p className="text-gray-500 text-sm mb-4">
           흥미로운 워울거리를 모아봤어요
