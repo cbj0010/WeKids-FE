@@ -1,5 +1,6 @@
 "use client";
 
+import { characterInfoMap } from "@/src/constants/common";
 import { useAccountStore } from "@/src/stores/userStore";
 import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
@@ -15,6 +16,7 @@ export default function AccountView({ accountData }) {
 
   useEffect(() => {
     if (accountData) {
+      console.log(accountData);
       setSelectedAccount(accountData.parent);
       setAccountId(accountData.accountId);
       setAccountInfo({
@@ -42,7 +44,7 @@ export default function AccountView({ accountData }) {
         >
           <Profile
             accountInfo={accountData.parent}
-            imagePath={accountData.parent.profile}
+            profile={characterInfoMap[accountData.parent.profile].imagePath}
             className="w-10 h-10 relative z-10 ring-1 ring-black/60"
           />
           {selectedProfile !== "parent" && (
@@ -64,7 +66,7 @@ export default function AccountView({ accountData }) {
             >
               <Profile
                 accountInfo={child}
-                imagePath={child.profile}
+                profile={characterInfoMap[child.character]?.imagePath}
                 className="w-10 h-10 relative z-10 ring-1 ring-black/60"
               />
               {selectedAccount?.id !== child.id && (
@@ -80,6 +82,7 @@ export default function AccountView({ accountData }) {
             selectedAccount={selectedAccount}
             isParent={selectedProfile === "parent"}
             userSession="parent"
+            hasChild={accountData.children.length > 0}
           />
         ) : (
           <ChildNoCard name={selectedAccount?.name || "자녀"} />

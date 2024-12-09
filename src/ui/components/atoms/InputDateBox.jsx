@@ -27,7 +27,7 @@ const InputDateBox = ({
       {label && (
         <label
           htmlFor="date-input"
-          className="block text-R-10 font-medium text-sub02 mb-2"
+          className="block text-R-14 font-medium text-sub02 mb-2"
         >
           {label}
         </label>

@@ -17,5 +17,5 @@ export default async function ChildHome() {
     return <ApprovalWaitingCard name={data.name} />;
   }
 
-  return <BlueCardBox selectedAccount={data} isParent={false} userSession="child"/>;
+  return <BlueCardBox selectedAccount={data} isParent={false} hasChild={false} userSession="child"/>;
 }

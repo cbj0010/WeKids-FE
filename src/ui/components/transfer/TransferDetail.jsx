@@ -1,6 +1,6 @@
 "use client";
-import { urlPath } from "@/src/constants/common";
 import { fetchChildAccounts } from "@/src/apis/account";
+import { urlPath } from "@/src/constants/common";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
@@ -134,7 +134,6 @@ export default function TransferDetail({ userdata }) {
             </div>
             <CustomButton
               onClick={handleButtonClick}
-              // 버튼 비활성화 및 호버 효과 제거
               className={`${isButtonDisabled ? "bg-stone-300 cursor-not-allowed pointer-events-none" : ""}`}
             >
               다음

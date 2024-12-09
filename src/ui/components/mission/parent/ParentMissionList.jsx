@@ -19,7 +19,7 @@ const ParentMissionList = ({ missiondata, onClick }) => {
       <div className="flex gap-3">
         <div className="flex items-center">
           <ChildProfileSection
-            profileUrl={characterInfoMap[missiondata.character].imgPathurl}
+            profileUrl={characterInfoMap[missiondata.childProfile].imagePath}
             childName={missiondata.childName}
           />
         </div>

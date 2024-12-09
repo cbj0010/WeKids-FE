@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const BlueCardBox = ({ selectedAccount, isParent, userSession }) => {
+const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState("");
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
   const { accountInfo } = useAccountStore();
@@ -63,6 +63,9 @@ const BlueCardBox = ({ selectedAccount, isParent, userSession }) => {
     if (selectedAccount == null) {
       e.preventDefault();
     }
+    if(!hasChild){
+      toast.error("아이가 없어요")
+    }
   };
   
 
@@ -77,11 +80,11 @@ const BlueCardBox = ({ selectedAccount, isParent, userSession }) => {
             <Text className="text-R-10">{selectedAccount.accountNumber}</Text>
             <CopyIcon onClick={handleCopy} className="cursor-pointer" />
           </div>
-          <Text className="text-B-28 mt-9">{selectedAccount.name}</Text>
+          <Text className="text-B-22 mt-9">{selectedAccount.name}</Text>
         </div>
       </div>
       <div className="absolute w-full bottom-20 text-right pr-7">
-        <Text className="text-R-28">
+        <Text className="text-R-25">
           {selectedAccount.balance.toLocaleString()} 원
         </Text>
       </div>

@@ -11,6 +11,7 @@ export default function CardReview() {
   const { childName, setChildName, childId } = useSensitiveDataStore();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
     const getParentsAccount = async () => {
@@ -20,6 +21,8 @@ export default function CardReview() {
         if (data) {
           const child = data.children.find((c) => c.childId === childId);
           setChildName(child.name);
+
+          child.cardState == "CREATED" && setIsCompleted(true);
         }
       } catch (err) {
         setError(err.message); // 에러 처리
@@ -37,6 +40,7 @@ export default function CardReview() {
         name1={accountInfo ? accountInfo.name : ""}
         name2={childName ? childName : ""}
         isChild={false}
+        isCompleted={isCompleted}
       />
     </CardRequestReview>
   );
