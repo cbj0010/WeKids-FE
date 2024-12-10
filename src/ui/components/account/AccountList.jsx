@@ -76,7 +76,7 @@ export default function AccountList() {
     <div className="flex flex-col w-full h-full justify-around overflow-auto scrollbar-hide">
       <div className="w-full flex flex-col px-[25px] overflow-hidden h-5/6">
         <div className="text-R-28 text-black/80">내 계좌</div>
-        <div className="pointer-events-none text-black/80 h-[48px] w-full flex text-R-20 bg-stone-300 hover:bg-neutral-400 rounded-[13px] items-center justify-between px-4 my-4">
+        <div className="pointer-events-none shadow-sm shadow-black/20 text-black/80 h-[48px] w-full flex text-R-20 bg-main04/20 rounded-[13px] items-center justify-between px-4 my-4">
           <span>총 {data.length} 개</span>
           <span>{totalBalance.toLocaleString()} 원</span>
         </div>
