@@ -1,36 +1,40 @@
 "use client";
 
-import React from "react";
 import { urlPath } from "@/src/constants/common";
-import CardDisplay from "@/src/ui/components/card/CardDisplay";
+import { useColorStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import CardDisplay from "@/src/ui/components/card/CardDisplay";
 import Link from "next/link";
-import { useColorStore, } from "@/src/stores/cardStore";
+
 const DesignChracterColor = {
-    color: "PINK1",
-    character: "HEARTSPRING",
-  };
+  color: "PINK1",
+  character: "HEARTSPRING",
+};
 
 export default function DeliveryComponent() {
-  const {childcharacter, childcolor} = useColorStore();
-  
-    return (
-        <>
-            <div className="flex-grow flex items-center justify-center">
+  const { childcharacter, childcolor } = useColorStore();
+
+  return (
+    <div className="flex flex-col items-center min-h-screen bg-sub02">
+      <div className="flex-1 flex items-center">
         <CardDisplay
-          selectedCharacter={childcharacter ? childcharacter : DesignChracterColor.character}
-          selectedColor={childcolor ? childcolor : DesignChracterColor.color}
-          buttonText="뒷면보기"
-          message="카드 발급을 완료했습니다!"
+          selectedCharacter={childcharacter || DesignChracterColor.character}
+          selectedColor={childcolor || DesignChracterColor.color}
+          message={`카드 및 계좌 발급이 \n완료 되었습니다`}
         />
       </div>
-      <Link href={urlPath.PARENT_CARD_DELIVERY}>
-        <div>
-          <CustomButton size={"large"} rounded={false}>
+
+      <div className="w-full px-4 mb-8">
+        <Link href={urlPath.PARENT_CARD_DELIVERY}>
+          <CustomButton
+            size="large"
+            rounded={true}
+            className="w-full bg-blue01"
+          >
             배송지 등록하러가기
           </CustomButton>
-        </div>
-      </Link>
-        </>
-    );
+        </Link>
+      </div>
+    </div>
+  );
 }

@@ -1,10 +1,8 @@
-import Modal from "@/src/ui/components/atoms/Modal";
-import { PlusIcon } from "@radix-ui/react-icons";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import { useState, useEffect } from "react";
+import { PlusIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
 
 const CardAddress = ({ address, postcode, setAddress, setPostcode }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isExistCode, setExistCode] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -36,17 +34,12 @@ const CardAddress = ({ address, postcode, setAddress, setPostcode }) => {
         setPostcode(data.zonecode);
         setAddress(data.address); // 주소와 우편번호 업데이트
         setExistCode(true);
-        setIsOpen(true);
       },
     }).open({
       popupTitle: "Wekids 우편번호 검색",
       left: window.screen.width / 2 - width / 2,
       top: window.screen.height / 2 - height / 2,
     });
-  };
-
-  const modalHandler = () => {
-    setIsOpen(!isOpen);
   };
 
   return (
@@ -69,29 +62,6 @@ const CardAddress = ({ address, postcode, setAddress, setPostcode }) => {
           )}
         </div>
       </CustomButton>
-      <Modal
-        isOpen={isOpen}
-        modalHandler={modalHandler}
-        border="rounded-3xl"
-        bottom="bottom-[332px]"
-        width="w-[393px]"
-        height="h-[208px]"
-        deletebutton={true}
-      >
-        <div className="flex flex-col w-full h-full justify-center items-center gap-5 mt-12">
-          <div className="text-R-20 text-black">배송지 등록 완료</div>
-          <div className="text-R-14 text-black/60">
-            배송지 등록이 완료 되었습니다.
-          </div>
-          <CustomButton
-            size="mediumLarge"
-            rounded={true}
-            onClick={modalHandler}
-          >
-            확인
-          </CustomButton>
-        </div>
-      </Modal>
     </div>
   );
 };

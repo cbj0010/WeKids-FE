@@ -1,5 +1,5 @@
 import { CheckIcon } from "@radix-ui/react-icons";
-export default function CardConfirmItem() {
+export default function CardConfirmItem({description}) {
   return (
     <>
       <div>
@@ -8,7 +8,7 @@ export default function CardConfirmItem() {
         </div>
       </div>
       <div>
-        <span className="text-R-20">카드 비밀번호가 등록 되었어요.</span>
+        <span className="text-R-20">{description}</span>
       </div>
     </>
   );

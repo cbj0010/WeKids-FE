@@ -3,6 +3,7 @@
 import { urlPath } from "@/src/constants/common";
 import { useColorStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import Modal from "@/src/ui/components/atoms/Modal";
 import ParentCardCharacter from "@/src/ui/components/card-select/ParentCardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
@@ -11,6 +12,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Page() {
+  const [isOpen, setIsOpen] = useState(false);
   const [postcode, setPostcode] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
@@ -21,15 +23,22 @@ export default function Page() {
     toast(
       <div>
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
-      </div>,
+      </div>
     );
   };
 
   const clickHandler = (e) => {
     if (phone === "" || name === "" || address === "") {
       e.preventDefault();
+
       notify();
+    } else {
+      setIsOpen(true);
     }
+  };
+
+  const modalHandler = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -62,18 +71,39 @@ export default function Page() {
             setAddress={setAddress}
           />
           <div className="flex flex-col items-center h-[102px] justify-end">
-            <Link
-              href={urlPath.PARENT_CARD_DELIVERY_COMPLETE}
+            <CustomButton
+              size={"mediumLarge"}
+              rounded={true}
+              className="border border-1 border-black/80"
               onClick={clickHandler}
             >
-              <CustomButton
-                size={"mediumLarge"}
-                rounded={true}
-                className="border border-1 border-black/80"
-              >
-                확인
-              </CustomButton>
-            </Link>
+              확인
+            </CustomButton>
+            <Modal
+              isOpen={isOpen}
+              modalHandler={modalHandler}
+              border="rounded-3xl"
+              bottom="bottom-[332px]"
+              width="w-[393px]"
+              height="h-[208px]"
+              deletebutton={true}
+            >
+              <div className="flex flex-col w-full h-full justify-center items-center gap-5 mt-12">
+                <div className="text-R-20 text-black">배송지 등록 완료</div>
+                <div className="text-R-14 text-black/60">
+                  배송지 등록이 완료 되었습니다.
+                </div>
+                <Link href={urlPath.HOME} >
+                  <CustomButton
+                    size="mediumLarge"
+                    rounded={true}
+                    onClick={modalHandler}
+                  >
+                    확인
+                  </CustomButton>
+                </Link>
+              </div>
+            </Modal>
           </div>
         </div>
       </div>
