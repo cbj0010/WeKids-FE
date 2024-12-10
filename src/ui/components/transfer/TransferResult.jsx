@@ -2,6 +2,7 @@ import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 const MESSAGES = {
@@ -41,10 +42,7 @@ const TransferResult = ({
   const showToast = () => {
     toast("추후에 추가될 기능입니다.");
   };
-  const handleRouteChange = () => {
-    // 라우터를 통해 강제 새로고침
-    window.location.href = urlPath.HOME;
-  };
+  
   return (
     <main className="min-h-screen bg-white flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />
@@ -83,11 +81,11 @@ const TransferResult = ({
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton onClick={showToast} rounded={true} />
-          
-            <CustomButton rounded={true} size="medium" color="main" onClick={handleRouteChange}>
+          <Link href={urlPath.HOME}>
+            <CustomButton rounded={true} size="medium" color="main">
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
-          
+          </Link>
         </div>
       </div>
     </main>

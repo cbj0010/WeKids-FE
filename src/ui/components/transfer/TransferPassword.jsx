@@ -27,8 +27,6 @@ export default function TransferPassword({
       },
       {
         onSuccess: () => {
-          alert("이체가 성공적으로 완료되었습니다!");
-          
           router.push(urlPath.DONE);
         },
         onError: (error) => {
