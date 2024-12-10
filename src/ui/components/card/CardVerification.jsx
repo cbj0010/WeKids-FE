@@ -43,7 +43,7 @@ export default function CardVerification() {
         </div>
       </div>
       <div className="flex flex-col px-10 py-5 gap-6">
-        <Link href={urlPath.PARENT_CARD_APPLY}>
+        <Link href={urlPath.PARENT_CARD_CHECK}>
           <CustomButton
             rounded="true"
             className={`w-full ${
