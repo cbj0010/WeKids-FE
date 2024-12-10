@@ -10,7 +10,7 @@ export const createMission = async ({
   category,
   childrenId,
 }) => {
-  console.log(childrenId)
+  console.log(childrenId);
   const session = await auth();
   const authorization = session?.user?.Authorization;
 

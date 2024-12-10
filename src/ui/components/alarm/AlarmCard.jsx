@@ -38,14 +38,14 @@ const AlarmCard = ({
 
   return (
     <Link
-  href={
-    type === "MISSION"
-      ? urlPath.MISSION
-      : type === "CARD" && targetState === "READY"
-      ? urlPath.ALARM_CARD
-      : urlPath.HOME
-  }
->
+      href={
+        type === "MISSION"
+          ? urlPath.MISSION
+          : type === "CARD" && targetState === "READY"
+            ? urlPath.ALARM_CARD
+            : urlPath.HOME
+      }
+    >
       <div
         onClick={onClick}
         className={`flex flex-row w-full h-[149px] ${isChecked ? "bg-white" : "bg-main03"} px-6 pt-6 pb-5 gap-5 ${className}`}

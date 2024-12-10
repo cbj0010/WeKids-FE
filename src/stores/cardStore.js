@@ -49,8 +49,7 @@ export const useSensitiveDataStore = create((set, get) => ({
     set({ accountPassword: encrypt(password) }),
   setEncryptedCardPassword: (password) =>
     set({ cardPassword: encrypt(password) }),
-  setEncryptedChildName: (name) =>
-    set({ childName: encrypt(name) }),
+  setEncryptedChildName: (name) => set({ childName: encrypt(name) }),
 
   // 암호화된 데이터 복호화
   getDecryptedChildId: () => decrypt(get().childId),

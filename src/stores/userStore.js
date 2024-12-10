@@ -16,9 +16,7 @@ export const useUserTypeStore = create(
       name: "usertype-storage",
       storage: createJSONStorage(() => sessionStorage),
     },
-  )
-  
-  
+  ),
 );
 
 export const useUserStore = create(
@@ -147,7 +145,6 @@ export const useSelectUserStore = create(
     },
   ),
 );
-
 
 export const useMissionFilterStore = create((set) => ({
   block: false,

@@ -23,7 +23,7 @@ export default function Page() {
     toast(
       <div>
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
-      </div>
+      </div>,
     );
   };
 
@@ -93,7 +93,7 @@ export default function Page() {
                 <div className="text-R-14 text-black/60">
                   배송지 등록이 완료 되었습니다.
                 </div>
-                <Link href={urlPath.HOME} >
+                <Link href={urlPath.HOME}>
                   <CustomButton
                     size="mediumLarge"
                     rounded={true}

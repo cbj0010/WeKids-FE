@@ -42,7 +42,7 @@ export default function Page({
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        <CustomButton
+      {allow ? <CustomButton
           rounded="true"
           onClick={handleClick}
           className={`mt-auto w-full ${
@@ -52,7 +52,9 @@ export default function Page({
           }`}
         >
           확인
-        </CustomButton>
+        </CustomButton> :
+        "" }
+        
       </div>
       <div className="flex flex-col mt-auto w-[393px]">
         <KeyPad isDoubleButton={false} number={inputHandler} />

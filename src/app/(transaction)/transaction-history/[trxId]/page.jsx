@@ -15,7 +15,6 @@ import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-
 const TransactionDetailPage = ({ params }) => {
   const resolvedParams = use(params);
   const trxId = resolvedParams.trxId;
@@ -29,9 +28,7 @@ const TransactionDetailPage = ({ params }) => {
       setMemo(data.memo); // 서버에서 받은 메모를 상태에 반영
       const trimmed = data.createAt.substring(0, 19); // "2024-12-09T16:21:58"
       setCreateAt(trimmed.replace("T", " "));
-
     }
-    
   }, [data]);
 
   const { mutate, isLoading: isUpdating } = useUpdateTransactionMemo();
@@ -83,13 +80,21 @@ const TransactionDetailPage = ({ params }) => {
             label="거래구분"
             value={data.type === "DEPOSIT" ? "입금" : "출금"}
           />
-          <TransactionDetail label="거래금액" value={Math.abs(data?.amount)} type="money"/>
-          <TransactionDetail label="거래 후 잔액" value={data?.balance} type="money"/>
+          <TransactionDetail
+            label="거래금액"
+            value={Math.abs(data?.amount)}
+            type="money"
+          />
+          <TransactionDetail
+            label="거래 후 잔액"
+            value={data?.balance}
+            type="money"
+          />
         </div>
       </div>
 
       <div className="flex w-full">
-        <ShareButton onClick={notify}/>
+        <ShareButton onClick={notify} />
         <CustomButton onClick={handleUpdateMemo} isLoading={isUpdating}>
           확인
         </CustomButton>

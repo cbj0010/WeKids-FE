@@ -21,7 +21,7 @@ export default function ChildInputForm({ setAllChecked, parentName }) {
       setResidentRegistrationNumber(`${residentfront}-${residentback}`);
     }
     setAllChecked(
-      name !== "" && residentfront.length == 6 && residentback.length == 7
+      name !== "" && residentfront.length == 6 && residentback.length == 7,
     );
   }, [name, residentfront, residentback, setResidentRegistrationNumber]);
 
