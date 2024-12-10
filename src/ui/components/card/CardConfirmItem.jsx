@@ -1,5 +1,5 @@
 import { CheckIcon } from "@radix-ui/react-icons";
-export default function CardConfirmItem({description}) {
+export default function CardConfirmItem({ description }) {
   return (
     <>
       <div>

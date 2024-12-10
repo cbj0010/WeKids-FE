@@ -25,7 +25,11 @@ export default function DeliveryComponent() {
 
       <div className="w-full px-4 mb-8">
         <Link href={urlPath.PARENT_CARD_DELIVERY}>
-          <CustomButton size="large" rounded={true} className="w-full bg-blue01">
+          <CustomButton
+            size="large"
+            rounded={true}
+            className="w-full bg-blue01"
+          >
             배송지 등록하러가기
           </CustomButton>
         </Link>
