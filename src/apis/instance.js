@@ -11,7 +11,7 @@ const fetchInstance = async (url, options) => {
   };
 
   if (accessToken) {
-    headers.Authorization = `Bearer ${accessToken}`;
+    headers.Authorization = `Authorization ${accessToken}`;
   }
 
   try {
