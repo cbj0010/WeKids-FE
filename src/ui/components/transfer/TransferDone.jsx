@@ -7,29 +7,22 @@ import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
+import Link from "next/link";
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) =>
-      `${(Number(amount) || 0).toLocaleString()}원 보냈어요`,
+    SUBTITLE: (amount) => `${(Number(amount) || 0).toLocaleString()}원 보냈어요`,
   },
   CONFIRM: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) =>
-      `${(Number(amount) || 0).toLocaleString()}원 송금하시겠습니까?`,
+    SUBTITLE: (amount) => `${(Number(amount) || 0).toLocaleString()}원 송금하시겠습니까?`,
   },
   BUTTONS: {
     CONFIRM: "확인",
   },
 };
 
-const TransferDone = ({
-  type = "COMPLETE",
-  childName,
-  amount,
-  accountNumber,
-}) => {
+const TransferDone = ({ type = "COMPLETE", childName, amount, accountNumber }) => {
   // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
@@ -41,9 +34,6 @@ const TransferDone = ({
 
   const showToast = () => {
     toast("추후에 구현될 기능입니다.");
-  };
-  const handleRouteChange = () => {
-    window.location.href = urlPath.HOME;
   };
   return (
     <main className="min-h-screen bg-white flex flex-col">
@@ -59,12 +49,7 @@ const TransferDone = ({
           <div className="flex items-center justify-center text-R-14 text-black/70 pt-4">
             {"우리은행 "}
             {accountNumber}
-            <ChevronRightIcon
-              width="16"
-              height="16"
-              stroke="text-neutral-300"
-              strokeWidth={0.5}
-            />
+            <ChevronRightIcon width="16" height="16" stroke="text-neutral-300" strokeWidth={0.5} />
           </div>
 
           <p
@@ -79,15 +64,11 @@ const TransferDone = ({
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-
-          <CustomButton
-            rounded={true}
-            size="medium"
-            color="main"
-            onClick={handleRouteChange}
-          >
-            <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
-          </CustomButton>
+          <Link href={urlPath.HOME}>
+            <CustomButton rounded={true} size="medium" color="main">
+              <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
+            </CustomButton>
+          </Link>
         </div>
       </div>
     </main>

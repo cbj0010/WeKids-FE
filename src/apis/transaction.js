@@ -38,14 +38,7 @@ export const submitTransfer = async ({
   return data;
 };
 
-export const fetchTransactions = async ({
-  page,
-  start,
-  end,
-  size = 5,
-  type,
-  accountId,
-}) => {
+export const fetchTransactions = async ({ page, start, end, size = 5, type, accountId }) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
@@ -62,17 +55,16 @@ export const fetchTransactions = async ({
       {
         method: "GET",
         headers: headers,
-      },
+      }
     );
 
     if (!response.ok) {
       // HTTP 상태 코드가 200-299가 아니면 에러 처리
       const errorMessage = await response.text();
-      throw new Error(`Error fetching transactions: ${errorMessage}`);
+      console.error("데이터를 불러오는 중에 에러가 발생");
     }
 
     const data = await response.json();
-    console.log(data.transactions.pages + "데이터입니다.");
 
     // API 응답 구조에 맞게 반환
     return {
@@ -81,7 +73,7 @@ export const fetchTransactions = async ({
       balance: data.balance,
     };
   } catch (error) {
-    console.error("Error fetching transactions:", error);
+    //console.error("Error fetching transactions:", error);
     throw error; // 에러를 다시 던져 React Query에서 처리
   }
 };
@@ -123,14 +115,11 @@ export const updateTransactionMemo = async ({ transactionId, memo }) => {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-  const response = await fetch(
-    `${BASE_URL}/transactions/${transactionId}/memo`,
-    {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
-    },
-  );
+  const response = await fetch(`${BASE_URL}/transactions/${transactionId}/memo`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
+  });
 
   if (!response.ok) {
     throw new Error(`Failed to update memo: ${response.statusText}`);
