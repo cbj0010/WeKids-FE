@@ -24,7 +24,7 @@ const CharacterButton = ({
     >
       <Profile
         profile={imagePath}
-        className="w-full h-full object-cover transform scale-150 translate-x-[+00%] translate-y-[+20%]"
+        className="w-full h-full object-cover transform scale-150 translate-x-[+10%] translate-y-[+20%]"
       />
     </button>
   );
