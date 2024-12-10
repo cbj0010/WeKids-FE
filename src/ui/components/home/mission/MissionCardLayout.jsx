@@ -11,7 +11,7 @@ export default function MissionCardLayout({
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className={`w-[330px] ${bgcolor} rounded-xl px-6 pt-5 pb-5`}>
+      <div className={`w-[330px] ${bgcolor} rounded-xl px-6 pt-5 pb-5 shadow-md`}>
         <p className="text-sub02 text-R-14 text-center mb-2">{title}</p>
         <div className="bg-white rounded-[10px] p-5">
           {/* <div className="text-L-10 text-right"> */}

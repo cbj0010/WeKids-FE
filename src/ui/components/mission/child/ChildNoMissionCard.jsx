@@ -3,7 +3,7 @@ import { NoMissionCardLayout } from "../NoMissionCardLayout";
 import { NoMissionMessageBox } from "../NoMissionMessageBox";
 
 export const ChildNoMissionCard = () => {
-  const missionStates = ["ACCEPT", "NEW", "SUBMIT", "CANCEL", "OUTDATED"];
+  const missionStates = ["NEW", "SUBMIT", "ACCEPT", "CANCEL", "OUTDATED"];
   return (
     <NoMissionCardLayout bgColor="bg-purple01/30">
       <NoMissionMessageBox
