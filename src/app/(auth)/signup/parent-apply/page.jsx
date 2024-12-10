@@ -9,8 +9,8 @@ export default function Page() {
       <div className="flex flex-col w-full h-full">
         <div className="flex flex-row px-7 pt-7 w-full h-20">
           <div className="flex flex-row w-1/3">
-          <Link href={urlPath.SIGNUP_REGFOM}>
-            <ArrowLeftIcon className="cursor-pointer"/>
+            <Link href={urlPath.SIGNUP_REGFOM}>
+              <ArrowLeftIcon className="cursor-pointer" />
             </Link>
           </div>
           <div className="flex text-R-14 pl-7 w-full">네이버로 가입하기</div>

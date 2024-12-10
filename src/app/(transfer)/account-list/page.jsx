@@ -34,7 +34,6 @@ export default function Page() {
     fetchAccounts();
   }, [setChildrenAccounts]);
 
-
   // 계좌 선택 핸들러
   const handleSelect = useCallback(
     (user, e) => {

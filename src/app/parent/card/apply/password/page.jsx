@@ -12,18 +12,27 @@ export default function Page() {
   const [pwd, setPwd] = useState("");
   const [allow, setAllowed] = useState(false);
   const router = useRouter();
-  const { getChildId, getCardPassword, getAccountPassword, getResidentRegistrationNumber } =
-    useSensitiveDataStore();
+  const {
+    getChildId,
+    getCardPassword,
+    getAccountPassword,
+    getResidentRegistrationNumber,
+  } = useSensitiveDataStore();
   const { mutate, isLoading } = useRegisterPassword();
   const handleSubmit = () => {
     if (allow) {
-      console.log(getChildId(), getResidentRegistrationNumber(), getAccountPassword(), pwd)
+      console.log(
+        getChildId(),
+        getResidentRegistrationNumber(),
+        getAccountPassword(),
+        pwd,
+      );
       mutate(
         {
           childId: getChildId(),
           residentRegistrationNumber: getResidentRegistrationNumber(), // 상태에서 가져온 값
           accountPassword: getAccountPassword(), // 상태에서 가져온 값
-          cardPassword: pwd.slice(0,4),
+          cardPassword: pwd.slice(0, 4),
         },
         {
           onSuccess: () => {
@@ -47,6 +56,8 @@ export default function Page() {
         setPwd={setPwd}
         setAllowed={setAllowed}
         index={4}
+        title="카드 비밀번호를"
+        type="카드 비밀번호를"
       />
       <Digit4PasswordButton
         pwd={pwd}

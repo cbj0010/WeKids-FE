@@ -29,7 +29,8 @@ export default function ParentInfoTop() {
   const router = useRouter();
 
   useEffect(() => {
-    const isNameValid = guardianName.trim().length > 0 && !guardianName.includes(" ");
+    const isNameValid =
+      guardianName.trim().length > 0 && !guardianName.includes(" ");
     const isBirthdayValid =
       guardianBirthday.length === 10 &&
       guardianBirthday.includes("-") &&
@@ -38,10 +39,9 @@ export default function ParentInfoTop() {
       guardianPhone.length === 13 &&
       guardianPhone.includes("-") &&
       !guardianPhone.includes(" ");
-  
+
     setAllCheck(isNameValid && isBirthdayValid && isPhoneValid);
   }, [guardianName, guardianBirthday, guardianPhone]);
-
 
   useEffect(() => {
     if (time <= 0) {

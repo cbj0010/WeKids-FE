@@ -16,6 +16,7 @@ export default function TransferPassword({
   const router = useRouter();
   const { mutate, isLoading: isUpdating } = useTransaction();
   const handleSubmit = () => {
+    setAllowed(false);
     mutate(
       {
         parentAccountNumber: sendUser.accountNumber,

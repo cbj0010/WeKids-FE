@@ -22,19 +22,15 @@ export default function ChoiceParentDesign({
   const { childId } = useSensitiveDataStore();
 
   useEffect(() => {
-
-
     const fetchDesign = async () => {
       setIsLoading(true); // 로딩 시작
       try {
-
         // API 호출
         const data = await designFetch({ designId: childId });
 
         // 상태 업데이트
         setDesign(data);
         if (setChildCharacter && setChildColor) {
-
           setChildCharacter(data?.character || character);
           setChildColor(data?.color || color);
         }

@@ -11,7 +11,6 @@ export const useTransactionList = ({
   end,
   type,
   size = 5,
-  
 }) => {
   console.log(start);
   console.log(end);

@@ -1,11 +1,12 @@
-import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
-import { FileTextIcon } from "@radix-ui/react-icons";
-import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
-import React, { useState, useEffect } from "react";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import Modal from "../atoms/Modal";
-import Loader from "../atoms/Loader";
 import { useSensitiveDataStore } from "@/src/stores/cardStore";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
+import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
+import { FileTextIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Loader from "../atoms/Loader";
+import Modal from "../atoms/Modal";
 
 export default function ChildInputForm({ setAllChecked, parentName }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -107,8 +108,15 @@ export default function ChildInputForm({ setAllChecked, parentName }) {
               <div className="text-R-14 text-black/80">
                 5초정도의 시간이 소요될 수 있어요.
               </div>
-              <div className="flex items-center justify-center mt-4">
+              <div className="flex flex-col items-center justify-center mt-4">
                 <Loader size="medium" />
+                <Image
+                  src="/images/hachupingImg.svg"
+                  width={200}
+                  height={200}
+                  alt="발급 티니핑"
+                  className="pt-3 animate-bounce"
+                />
               </div>
             </div>
           </Modal>

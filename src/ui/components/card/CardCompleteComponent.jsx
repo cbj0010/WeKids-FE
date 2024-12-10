@@ -19,7 +19,7 @@ export default function CardCompleteComponent() {
   };
   return (
     <>
-      <div className="flex-grow flex items-center justify-center">
+      {/* <div className="flex-grow flex items-center justify-center">
         <CardDisplay
           selectedCharacter={
             childcharacter != ""
@@ -32,7 +32,8 @@ export default function CardCompleteComponent() {
           buttonText="뒷면보기"
           message="카드 발급을 완료했습니다!"
         />
-      </div>
+      </div> 
+      */}
 
       <div>
         <Link href={urlPath.HOME}>

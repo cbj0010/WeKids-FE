@@ -68,11 +68,10 @@ export const fetchTransactions = async ({
     if (!response.ok) {
       // HTTP 상태 코드가 200-299가 아니면 에러 처리
       const errorMessage = await response.text();
-      console.error("데이터를 불러오는 중에 에러가 발생")
+      console.error("데이터를 불러오는 중에 에러가 발생");
     }
 
     const data = await response.json();
-    //console.log(data.transactions.pages + "데이터입니다.")
 
     // API 응답 구조에 맞게 반환
     return {

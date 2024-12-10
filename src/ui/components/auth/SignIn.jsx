@@ -31,7 +31,7 @@ export default function SignIn({ children }) {
     redirectTo: "/",
   };
 
-  if(userType === "CHILD") {
+  if (userType === "CHILD") {
     data["birthday"] = "2018-10-13";
   }
 
@@ -42,9 +42,6 @@ export default function SignIn({ children }) {
       action={() => {
         signIn("credentials", data);
       }}
-
-
-
     >
       {children}
     </form>
