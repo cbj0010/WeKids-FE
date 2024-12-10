@@ -7,7 +7,7 @@ import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
+import Link from "next/link";
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
@@ -41,9 +41,6 @@ const TransferDone = ({
 
   const showToast = () => {
     toast("추후에 구현될 기능입니다.");
-  };
-  const handleRouteChange = () => {
-    window.location.href = urlPath.HOME;
   };
   return (
     <main className="min-h-screen bg-white flex flex-col">
@@ -79,11 +76,11 @@ const TransferDone = ({
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-          
-            <CustomButton rounded={true} size="medium" color="main" onClick={handleRouteChange}>
+          <Link href={urlPath.HOME}>
+            <CustomButton rounded={true} size="medium" color="main">
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
-          
+          </Link>
         </div>
       </div>
     </main>
