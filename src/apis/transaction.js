@@ -38,7 +38,14 @@ export const submitTransfer = async ({
   return data;
 };
 
-export const fetchTransactions = async ({ page, start, end, size = 5, type, accountId }) => {
+export const fetchTransactions = async ({
+  page,
+  start,
+  end,
+  size = 5,
+  type,
+  accountId,
+}) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
@@ -55,7 +62,7 @@ export const fetchTransactions = async ({ page, start, end, size = 5, type, acco
       {
         method: "GET",
         headers: headers,
-      }
+      },
     );
 
     if (!response.ok) {
@@ -115,11 +122,14 @@ export const updateTransactionMemo = async ({ transactionId, memo }) => {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-  const response = await fetch(`${BASE_URL}/transactions/${transactionId}/memo`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
-  });
+  const response = await fetch(
+    `${BASE_URL}/transactions/${transactionId}/memo`,
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
+    },
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to update memo: ${response.statusText}`);

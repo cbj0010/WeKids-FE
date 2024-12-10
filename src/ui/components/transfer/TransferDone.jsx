@@ -11,18 +11,25 @@ import Link from "next/link";
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) => `${(Number(amount) || 0).toLocaleString()}원 보냈어요`,
+    SUBTITLE: (amount) =>
+      `${(Number(amount) || 0).toLocaleString()}원 보냈어요`,
   },
   CONFIRM: {
     TITLE: (name) => `${name}님에게`,
-    SUBTITLE: (amount) => `${(Number(amount) || 0).toLocaleString()}원 송금하시겠습니까?`,
+    SUBTITLE: (amount) =>
+      `${(Number(amount) || 0).toLocaleString()}원 송금하시겠습니까?`,
   },
   BUTTONS: {
     CONFIRM: "확인",
   },
 };
 
-const TransferDone = ({ type = "COMPLETE", childName, amount, accountNumber }) => {
+const TransferDone = ({
+  type = "COMPLETE",
+  childName,
+  amount,
+  accountNumber,
+}) => {
   // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
@@ -49,7 +56,12 @@ const TransferDone = ({ type = "COMPLETE", childName, amount, accountNumber }) =
           <div className="flex items-center justify-center text-R-14 text-black/70 pt-4">
             {"우리은행 "}
             {accountNumber}
-            <ChevronRightIcon width="16" height="16" stroke="text-neutral-300" strokeWidth={0.5} />
+            <ChevronRightIcon
+              width="16"
+              height="16"
+              stroke="text-neutral-300"
+              strokeWidth={0.5}
+            />
           </div>
 
           <p

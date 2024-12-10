@@ -2,7 +2,11 @@
 
 import { characterInfoMap, urlPath } from "@/src/constants/common";
 import { useTransactionStore } from "@/src/stores/transactionStore";
-import { useAccountStore, useSelectUserStore, useUserCardColorStore } from "@/src/stores/userStore";
+import {
+  useAccountStore,
+  useSelectUserStore,
+  useUserCardColorStore,
+} from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import Image from "next/image";
@@ -30,7 +34,8 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
     });
 
     if (selectedAccount) {
-      const accountCharacterInfo = characterInfoMap[selectedAccount.character] || {};
+      const accountCharacterInfo =
+        characterInfoMap[selectedAccount.character] || {};
 
       const bgClass = accountCharacterInfo.colorClass
         ? accountCharacterInfo.colorClass
@@ -82,7 +87,9 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
         </div>
       </div>
       <div className="absolute w-full bottom-20 text-right pr-7">
-        <Text className="text-R-25">{selectedAccount.balance.toLocaleString()} 원</Text>
+        <Text className="text-R-25">
+          {selectedAccount.balance.toLocaleString()} 원
+        </Text>
       </div>
       <div className="absolute right-0 bottom-[75px] w-[180px] h-[180px] overflow-hidden">
         <Image
@@ -108,9 +115,14 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
           </div>
           {/* 부모 세션이거나 부모가 자녀 계좌를 선택했을 때만 이체 버튼 표시 */}
           {(userSession === "parent" ||
-            (isParent && selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
+            (isParent &&
+              selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
             <Link
-              href={userSession === "parent" ? urlPath.ACCOUNT_LIST : urlPath.TRANSFER}
+              href={
+                userSession === "parent"
+                  ? urlPath.ACCOUNT_LIST
+                  : urlPath.TRANSFER
+              }
               onClick={clickHandler}
               className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >

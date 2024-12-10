@@ -60,7 +60,12 @@ const TransferResult = ({
           </p>
           <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
             {transferData.bankName} {transferData.accountNumber}
-            <ChevronRightIcon width="16" height="16" stroke="text-neutral-300" strokeWidth={0.5} />
+            <ChevronRightIcon
+              width="16"
+              height="16"
+              stroke="text-neutral-300"
+              strokeWidth={0.5}
+            />
           </div>
           {transferData.memo && (
             <p
