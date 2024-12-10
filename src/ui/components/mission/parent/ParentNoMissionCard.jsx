@@ -4,7 +4,7 @@ import { NoMissionCardLayout } from "../NoMissionCardLayout";
 import { NoMissionMessageBox } from "../NoMissionMessageBox";
 
 export const ParentNoMissionCard = () => {
-  const missionStates = ["ACCEPT", "NEW", "SUBMIT", "CANCEL", "OUTDATED"];
+  const missionStates = ["NEW", "SUBMIT", "ACCEPT", "CANCEL", "OUTDATED"];
 
   const categories = [
     { type: "HOUSE_WORK" },

@@ -116,7 +116,7 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
         {/* 자녀 필터 */}
         <div className="mt-8">
           <h3 className="text-B-16 text-sub01">자녀</h3>
-          <div className="border-t border-gray01/10 pt-4 mt-4">
+          <div className="border-t border-gray01/10 mt-4">
             <div className="flex gap-2">
               <button
                 onClick={() => setTempSelectedChild(null)}
@@ -149,15 +149,18 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
         {/* 미션 필터 */}
         <div className="mt-8">
           <h3 className="text-B-16 text-sub01">미션</h3>
-          <div className="border-t border-gray01/10 pt-4 mt-4">
-            <div className="flex flex-wrap gap-2">
+          <div className="border-t border-gray01/10 mt-4">
+            <div className="flex flex-wrap gap-2 justify-between">
               {categories.map((category) => (
                 <CategoryBadge
                   key={category.type}
                   missionType={category.type}
                   isButton={true}
+                  height="h-[40px]"
+                  textSize="text-R-14"
                   onClick={() => setTempSelectedCategory(category.type)}
                   selected={tempSelectedCategory === category.type}
+                  className="flex-grow text-center py-5"
                 />
               ))}
             </div>
