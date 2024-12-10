@@ -30,7 +30,7 @@ export default function Page() {
         setAllowed={setAllowed}
         index={4}
         title = "아이 계좌 비밀번호를"
-        type = "계좌 비밀번호"
+        type = "아이 계좌 비밀번호"
       />
       <Digit4PasswordButton
         pwd={pwd}

@@ -11,7 +11,10 @@ export const useTransactionList = ({
   end,
   type,
   size = 5,
+  
 }) => {
+  console.log(start);
+  console.log(end);
   return useInfiniteQuery({
     queryKey: ["transactions", accountId, start, end, type, size],
     queryFn: ({ pageParam = 0 }) => {

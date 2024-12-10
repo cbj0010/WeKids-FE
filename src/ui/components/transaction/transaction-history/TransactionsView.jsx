@@ -11,11 +11,11 @@ import { useSelectUserStore } from "@/src/stores/userStore";
 import Loader from "@/src/ui/components/atoms/Loader";
 import { formatShortDate } from "@/src/util/dateUtils";
 import { Flex } from "@radix-ui/themes";
+import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-
 export const TransactionsView = () => {
   const size = 5; // 페이지당 데이터 수
   const {
@@ -29,7 +29,7 @@ export const TransactionsView = () => {
     balance,
   } = useTransFilterStore();
   const { selectedaccountId } = useSelectUserStore();
-
+  const queryClient = useQueryClient();
   const now = new Date();
   const MonthsAgo = new Date();
   MonthsAgo.setMonth(now.getMonth() - 3);
@@ -61,6 +61,8 @@ export const TransactionsView = () => {
         1
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
+      console.log(firstDayLastMonth)
+      console.log(lastDayLastMonth)
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
       setEnd(formatToLocalDate(lastDayLastMonth)); // 포맷팅 후 설정
     } else if (range === RangeEnum.CUSTOM) {
@@ -87,11 +89,13 @@ export const TransactionsView = () => {
     end,
     type: typetoEng,
     size,
+   
   });
-
+  
   useEffect(() => {
     // 필터가 변경될 때마다 새로 데이터를 가져옵니다.
     if (start && end && typetoEng) {
+      queryClient.invalidateQueries("transactions");
       refetch();
       fetchNextPage({ pageParam: 0 });
 
@@ -102,6 +106,7 @@ export const TransactionsView = () => {
   useEffect(() => {
     if (data?.pages?.[0]?.balance !== undefined) {
       setBalance(data.pages[0].balance); // 첫 페이지의 balance를 설정
+      console.log(data);
     }
   }, [data, setBalance]);
 

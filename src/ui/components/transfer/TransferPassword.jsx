@@ -11,7 +11,6 @@ export default function TransferPassword({ selectedAccount, sendUser, transferAm
   const [allow, setAllowed] = useState(false);
   const router = useRouter();
   const { mutate, isLoading: isUpdating } = useTransaction();
-
   const handleSubmit = () => {
     setAllowed(false);
     mutate(
@@ -26,6 +25,7 @@ export default function TransferPassword({ selectedAccount, sendUser, transferAm
       {
         onSuccess: () => {
           alert("이체가 성공적으로 완료되었습니다!");
+          
           router.push(urlPath.DONE);
         },
         onError: (error) => {

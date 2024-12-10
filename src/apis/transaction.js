@@ -55,6 +55,8 @@ export const fetchTransactions = async ({
   const url = `${BASE_URL}/accounts/${accountId}/transactions`;
 
   try {
+    console.log(start);
+    console.log(end);
     const response = await fetch(
       `${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`,
       {
@@ -70,6 +72,7 @@ export const fetchTransactions = async ({
     }
 
     const data = await response.json();
+    console.log(data.transactions.pages + "데이터입니다.")
 
     // API 응답 구조에 맞게 반환
     return {
