@@ -28,19 +28,18 @@ export default function ButtonGroup({
       setSelectedTopButtons(allSelections);
       setTopButtonChecked(allSelections);
       setIsAllSelected(!isAllSelected);
-      console.log(allSelections)
-      setCount(allSelections.length)
+      console.log(allSelections);
+      setCount(allSelections.length);
     } else {
       const newSelection = selectedTopButtons.includes(id)
         ? selectedTopButtons.filter((button) => button !== id)
         : [...selectedTopButtons, id];
       setSelectedTopButtons(newSelection);
       setTopButtonChecked(newSelection);
-      console.log(newSelection)
+      console.log(newSelection);
       setIsAllSelected(false);
-      setCount(newSelection.length)
+      setCount(newSelection.length);
     }
-    
   };
 
   const handleBottomButtonClick = (id) => {
@@ -76,7 +75,7 @@ export default function ButtonGroup({
               button.id,
               button.id === "all"
                 ? isAllSelected
-                : selectedTopButtons.includes(button.id)
+                : selectedTopButtons.includes(button.id),
             )}
           >
             <span className="text-R-10 whitespace-nowrap overflow-hidden">

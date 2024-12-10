@@ -1,11 +1,17 @@
-'use client'
+"use client";
 import { useMutation } from "@tanstack/react-query";
 import { createMission, missionAccept } from "../apis/mission";
 
 export const useCreateMission = () => {
-  
   return useMutation({
-    mutationFn: ({ childrenId, title, content, deadline, amount, category }) => {
+    mutationFn: ({
+      childrenId,
+      title,
+      content,
+      deadline,
+      amount,
+      category,
+    }) => {
       return createMission({
         childrenId,
         title,

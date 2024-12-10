@@ -11,11 +11,11 @@ export default function Page() {
           <CardConfirmItem />
         </div>
         <div className="flex h-1/6 w-full items-end pb-1">
-        <Link href={urlPath.PARENT_CARD_PASSWORD}>
+          <Link href={urlPath.PARENT_CARD_PASSWORD}>
             <CustomButton size="mediumLarge" rounded={true}>
               확인
             </CustomButton>
-        </Link>
+          </Link>
         </div>
       </div>
     </div>

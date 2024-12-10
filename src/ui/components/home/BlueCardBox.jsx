@@ -19,13 +19,13 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
   const { accountInfo } = useAccountStore();
   const { setSelectedAccountId, setSelectedAccountInfo } = useSelectUserStore();
-  const {setSelectedAccount} = useTransactionStore();
+  const { setSelectedAccount } = useTransactionStore();
   useEffect(() => {
     setSelectedAccountId(selectedAccount.accountId);
     setSelectedAccount({
       id: selectedAccount.accountId,
       name: selectedAccount.name,
-      accountNumber: selectedAccount.accountNumber
+      accountNumber: selectedAccount.accountNumber,
     });
     setSelectedAccountInfo({
       name: selectedAccount.name,
@@ -63,11 +63,10 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
     if (selectedAccount == null) {
       e.preventDefault();
     }
-    if(!hasChild){
-      toast.error("아이가 없어요")
+    if (!hasChild) {
+      toast.error("아이가 없어요");
     }
   };
-  
 
   return (
     <div
@@ -98,6 +97,7 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
             objectPosition: "top right",
             clipPath: "polygon(0 0, 100% 0, 100% 75%, 0 75%)",
           }}
+          loading="eager"
         />
       </div>
       <div className="absolute bottom-0 w-full">
@@ -110,9 +110,15 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
             <button>조회</button>
           </Link>
           {/* 부모 세션이거나 부모가 자녀 계좌를 선택했을 때만 이체 버튼 표시 */}
-          {(userSession === 'parent' || (isParent && selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
+          {(userSession === "parent" ||
+            (isParent &&
+              selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
             <Link
-              href={userSession === 'parent' ? urlPath.ACCOUNT_LIST : urlPath.TRANSFER}
+              href={
+                userSession === "parent"
+                  ? urlPath.ACCOUNT_LIST
+                  : urlPath.TRANSFER
+              }
               onClick={clickHandler}
               className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >

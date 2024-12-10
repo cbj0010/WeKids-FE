@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { AccountCardLayout } from "../AccountCardLayout";
 import { MessageBox } from "../MessageBox";
 
-
 export const EmptyAccountCard = ({ name }) => {
   const setUserInfo = useUserStore((state) => state.setUserInfo);
   const router = useRouter();

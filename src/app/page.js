@@ -37,7 +37,7 @@ export default async function Home() {
         </div>
       </Link>
       <Link href={urlPath.FINANCIAL}>
-      <FinancialCard />
+        <FinancialCard />
       </Link>
     </div>
   );

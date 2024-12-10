@@ -30,7 +30,7 @@ const AlarmComponent = ({ data }) => {
         onError: (error) => {
           console.error("실패:", error.message);
         },
-      }
+      },
     );
   };
 

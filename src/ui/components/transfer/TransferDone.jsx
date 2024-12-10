@@ -79,11 +79,15 @@ const TransferDone = ({
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-          
-            <CustomButton rounded={true} size="medium" color="main" onClick={handleRouteChange}>
-              <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
-            </CustomButton>
-          
+
+          <CustomButton
+            rounded={true}
+            size="medium"
+            color="main"
+            onClick={handleRouteChange}
+          >
+            <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
+          </CustomButton>
         </div>
       </div>
     </main>

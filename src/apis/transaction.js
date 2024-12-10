@@ -72,7 +72,7 @@ export const fetchTransactions = async ({
     }
 
     const data = await response.json();
-    console.log(data.transactions.pages + "데이터입니다.")
+    console.log(data.transactions.pages + "데이터입니다.");
 
     // API 응답 구조에 맞게 반환
     return {
