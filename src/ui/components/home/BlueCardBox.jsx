@@ -74,7 +74,7 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
 
   return (
     <div
-      className={`${backgroundColorClass} w-[330px] h-[252px] text-black rounded-[10px] relative overflow-hidden`}
+      className={`${backgroundColorClass} shadow-md w-[330px] h-[252px] text-black rounded-[10px] relative overflow-hidden`}
     >
       <Toaster position="bottom-center" reverseOrder={false} />
       <div className="p-5">

@@ -12,16 +12,16 @@ export default function ContentList() {
 
   const articles = {
     top: {
-      title: "절충교역3: 100만원짜리가 300만원 가치가 된다구요?",
+      title: "주택청약통장 월 납입한도 25만원으로 상향",
       mainPoints: [
-        "절충교역은 일반 상품 가격과 달리, '가치'라는 표현으로 가격을 산정합니다.",
-        "상품의 '소비자가'가 100만원이라면, 대기업의 경우 1.5배인 150만원으로 가격을 인정합니다.",
-        "중소기업이라면 최대 3배인 300만원까지 가격을 인정합니다.",
-        "방위사업청은 가격을 얼마의 가치로 인정해줄지 결정합니다.",
+        "주택청약통장 월 납입한도가 40년 만에 10만원에서 25만원으로 상향조정됐습니다.",
+        "주택도시기금법 시행규칙 개정안이 입법예고되어 내년 상반기 중 시행될 예정입니다.",
+        "개정안에는 청약저축 납입 인정액 상향과 함께 청약 제도 전반의 개선안이 포함되어 있습니다.",
+        "기존 가입자도 월 납입한도를 25만원까지 상향할 수 있습니다.",
       ],
       examples: [
-        "벨 헬리콥터와 한국치공구공업의 MOU 체결 사례",
-        "워키토키 제조업체의 민수 분야 절충교역 사례",
+        "1983년부터 40년간 유지되어온 10만원 한도가 상향조정",
+        "KB국민·신한·하나·우리은행 등 주요 시중은행에서 안내 예정",
       ],
     },
     financial: {
@@ -101,7 +101,6 @@ export default function ContentList() {
 
   return (
     <div className="max-w-screen-md mx-auto px-6">
-      {/* 탭 메뉴 */}
       <div className="flex gap-3 mb-8 overflow-x-auto py-2">
         {tabs.map((tab) => (
           <button
@@ -118,14 +117,12 @@ export default function ContentList() {
         ))}
       </div>
 
-      {/* 추천 지식 섹션 */}
       <section className="mb-8">
         <h2 className="text-xl font-bold mb-2">오늘의 추천 지식 TOP 3</h2>
         <p className="text-gray-500 text-sm mb-6">
           가장 인기 있던 아티클을 모아봤어요
         </p>
 
-        {/* 추천 지식 카드 */}
         <div className="space-y-4">
           <article
             className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 cursor-pointer"
@@ -134,15 +131,15 @@ export default function ContentList() {
             <div className="flex justify-between items-start">
               <div className="flex-1">
                 <span className="text-blue-500 text-sm font-medium">
-                  금융 미션
+                  주택청약 정보
                 </span>
                 <h3 className="text-xl font-bold mt-2 leading-tight">
-                  내 자녀 주택청약,
+                  주택청약통장 월 납입한도,
                   <br />
-                  언제부터 얼마씩 넣어야할까?
+                  25만원으로 상향
                 </h3>
                 <p className="text-gray-600 text-sm mt-2">
-                  똑같리는 주택청약 정보, 이것만 꼭 봐!
+                  40년 만에 바뀐 청약통장 납입한도, 자세히 알아보기
                 </p>
               </div>
               <div className="flex flex-col items-end gap-3">
@@ -167,7 +164,6 @@ export default function ContentList() {
         </div>
       </section>
 
-      {/* 금융 아티클 섹션 */}
       <section>
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold">오늘의 금융 아티클</h2>
@@ -176,7 +172,6 @@ export default function ContentList() {
           흥미로운 워울거리를 모아봤어요
         </p>
 
-        {/* 금융 아티클 카드 */}
         <div className="mb-16">
           <article
             className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 cursor-pointer"

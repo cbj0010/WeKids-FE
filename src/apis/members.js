@@ -9,26 +9,21 @@ export const fetchUserData = async () => {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${authorization}`,
+    Cookie: `Authorization=${authorization}`,
   };
 
-  const response = await fetch(`${BASE_URL}/api/v1/members`, {
+  const response = await fetch(`${BASE_URL}/members`, {
     method: "GET",
     headers: headers,
   });
 
   if (!response.ok) {
+    console.log(response.status);
+
+    console.log(response.data);
+
     throw new Error("사용자 정보를 읽어올 수 없습니다.");
   }
-
   const data = await response.json();
-  return {
-    name: data.name,
-    phone: data.phone,
-    birthday: data.birthday,
-    profile: data.profile,
-    email: data.email,
-    type: data.type,
-    createdAt: data.createdAt,
-  };
+  return data;
 };

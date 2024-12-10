@@ -5,10 +5,11 @@ import { useAccountStore, useSelectUserStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
+import Image from "next/image";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function TopBar({}) {
+export default function TopBar() {
   const { balance } = useTransFilterStore();
   const { selectedaccountInfo } = useSelectUserStore();
   const { accountInfo } = useAccountStore();
@@ -19,10 +20,11 @@ export default function TopBar({}) {
       .then(() => alert("클립보드에 복사되었습니다!"))
       .catch((err) => console.error("복사 실패:", err));
   };
+  
   const notify = () => {
-    toast.dismiss(); // 기존 토스트 모두 제거
+    toast.dismiss();
     toast.error("추후에 구현될 기능입니다.", {
-      id: "unique-toast", // 고유 ID 부여
+      id: "unique-toast",
       duration: 2000,
       position: "bottom-center",
     });
@@ -65,8 +67,8 @@ export default function TopBar({}) {
           {Number(balance).toLocaleString()}원
         </h2>
       </Flex>
-      <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
-        {selectedaccountInfo.accountNumber == accountInfo.accountNumber && (
+      <Flex justify="between" direction="row" className="gap-3 m-8 mt-3">
+        {selectedaccountInfo.accountNumber == accountInfo.accountNumber ? (
           <>
             <Link href={urlPath.ACCOUNT_LIST}>
               <CustomButton
@@ -89,6 +91,14 @@ export default function TopBar({}) {
             </CustomButton>
             <Toaster position="bottom-center" />
           </>
+        ) : (
+          <Image
+            src="/images/tinypingGroupImg.svg"
+            alt="티니핑 그룹"
+            width={282}
+            height={50}
+            className="mx-auto mb-2"
+          />
         )}
       </Flex>
     </Flex>

@@ -18,27 +18,29 @@ export default async function Home() {
   const memberType = session.user.role;
 
   return (
-    <div className="flex flex-col w-full space-y-6 pb-10 ">
-      <Header />
-      <div className="flex justify-center">
-        {memberType === "ROLE_PARENT" ? (
-          <ParentHome authorization={authorization} />
-        ) : (
-          <ChildHome authorization={authorization} />
-        )}
-      </div>
-      <Link href={urlPath.MISSION}>
-        <div className="flex justify-center cursor-pointer">
+    <div className="wrapper scrollbar-hide">
+      <div className="flex flex-col w-full space-y-6 pb-10">
+        <Header />
+        <div className="flex justify-center">
           {memberType === "ROLE_PARENT" ? (
-            <ParentMissionCard />
+            <ParentHome authorization={authorization} />
           ) : (
-            <ChildMissionCard />
+            <ChildHome authorization={authorization} />
           )}
         </div>
-      </Link>
-      <Link href={urlPath.FINANCIAL}>
-        <FinancialCard />
-      </Link>
+        <Link href={urlPath.MISSION}>
+          <div className="flex justify-center cursor-pointer">
+            {memberType === "ROLE_PARENT" ? (
+              <ParentMissionCard />
+            ) : (
+              <ChildMissionCard />
+            )}
+          </div>
+        </Link>
+        <Link href={urlPath.FINANCIAL}>
+          <FinancialCard />
+        </Link>
+      </div>
     </div>
   );
 }
