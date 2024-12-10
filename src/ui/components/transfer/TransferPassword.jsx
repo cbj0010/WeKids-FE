@@ -5,6 +5,7 @@ import { useTransaction } from "@/src/query/transactionQuery";
 import { useRouter } from "next/navigation";
 import PasswordSecondTop from "../signup/PasswordSecondTop";
 import PasswordSecondBottom from "../signup/PasswordSecondBottom";
+import toast, { Toaster } from "react-hot-toast";
 export default function TransferPassword({
   selectedAccount,
   sendUser,
@@ -31,13 +32,19 @@ export default function TransferPassword({
           router.push(urlPath.DONE);
         },
         onError: (error) => {
-          alert("이체 실패: " + error.message);
+          
+          toast.error('비밀번호가 일치하지 않아요!')
+          setIsInput((prev) => prev.map(() => false));
+          setPwd("");
+          
+        
         },
       },
     );
   };
   return (
     <>
+      <Toaster position="top-center"/>
       <PasswordSecondTop
         isInput={isInput}
         pwd={pwd}

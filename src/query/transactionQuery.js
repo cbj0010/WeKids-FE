@@ -77,7 +77,7 @@ export const useTransaction = () => {
       console.log("성공");
     },
     onError: (error) => {
-      console.error("실패:", error.message);
+      console.log("실패:", error.message);
     },
   });
 };

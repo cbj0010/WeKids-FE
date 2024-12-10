@@ -16,6 +16,7 @@ export const submitTransfer = async ({
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
+    
   const response = await fetch(`${BASE_URL}/transactions`, {
     method: "POST",
     headers,

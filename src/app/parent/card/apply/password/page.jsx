@@ -56,8 +56,8 @@ export default function Page() {
         setPwd={setPwd}
         setAllowed={setAllowed}
         index={4}
-        title="카드 비밀번호를"
-        type="카드 비밀번호를"
+        title="아이 카드 비밀번호를"
+        type="아이 카드 비밀번호를"
       />
       <Digit4PasswordButton
         pwd={pwd}

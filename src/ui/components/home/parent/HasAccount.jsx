@@ -44,7 +44,7 @@ export default function AccountView({ accountData }) {
         >
           <Profile
             accountInfo={accountData.parent}
-            profile={characterInfoMap[accountData.parent.profile].imagePath}
+            profile={characterInfoMap[accountData.parent.profile]?.imagePath}
             className="w-10 h-10 relative z-10 ring-1 ring-black/60"
           />
           {selectedProfile !== "parent" && (
