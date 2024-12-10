@@ -2,7 +2,7 @@
 import StateBadge from "../list/StateBadge";
 
 const ChildMissionHeader = ({ onStateChange, selectedStates }) => {
-  const missionStates = ["ACCEPT", "NEW", "SUBMIT", "CANCEL", "OUTDATED"];
+  const missionStates = ["NEW", "SUBMIT", "ACCEPT", "CANCEL", "OUTDATED"];
 
   const handleStateClick = (state) => {
     onStateChange(state); // 상태 추가/제거 토글
