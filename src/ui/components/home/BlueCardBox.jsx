@@ -67,6 +67,10 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
       toast.error("아이가 없어요")
     }
   };
+
+  const handleRouteChange = () => {
+    window.location.href = urlPath.TRANSACTION_HISTORY;
+  };
   
 
   return (
@@ -103,12 +107,12 @@ const BlueCardBox = ({ selectedAccount, isParent, hasChild, userSession }) => {
       <div className="absolute bottom-0 w-full">
         <div className="w-full h-[1px] bg-black"></div>
         <div className="flex text-black">
-          <Link
-            href={`${urlPath.TRANSACTION_HISTORY}`}
+          <div
+            onClick={handleRouteChange}
             className="flex-1 py-4 text-center text-R-20 border-black hover:bg-white/10 transition-colors"
           >
             <button>조회</button>
-          </Link>
+          </div>
           {/* 부모 세션이거나 부모가 자녀 계좌를 선택했을 때만 이체 버튼 표시 */}
           {(userSession === 'parent' || (isParent && selectedAccount.accountNumber !== accountInfo.accountNumber)) && (
             <Link

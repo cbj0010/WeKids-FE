@@ -44,6 +44,7 @@ const TransferResult = ({
   const handleRouteChange = () => {
     // 라우터를 통해 강제 새로고침
     window.location.href = urlPath.HOME;
+    //router.push(urlPath.HOME);
   };
   return (
     <main className="min-h-screen bg-white flex flex-col">

@@ -110,6 +110,7 @@ export const TransactionsView = () => {
     }
   }, [data, setBalance]);
 
+
   // Intersection Observer가 뷰에 들어올 때 다음 페이지 가져오기
 
   if (isLoading && !data) {
