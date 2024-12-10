@@ -8,7 +8,7 @@ export default function Page() {
     <div className="flex flex-col bg-white overflow-hidden h-screen max-w-[393px]">
       <div className="flex flex-col p-10 h-full">
         <div className="flex flex-col gap-6 h-5/6 justify-center items-center">
-          <CardConfirmItem />
+          <CardConfirmItem description={"계좌 비밀번호가 등록되었어요."} />
         </div>
         <div className="flex h-1/6 w-full items-end pb-1">
         <Link href={urlPath.PARENT_CARD_PASSWORD}>

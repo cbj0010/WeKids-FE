@@ -1,11 +1,10 @@
 "use client";
-import PasswordTop from "@/src/ui/components/signup/PasswordTop";
-import Digit4PasswordButton from "@/src/ui/components/signup/Digit4PasswordButton";
-import { useState } from "react";
-import { useSensitiveDataStore } from "@/src/stores/cardStore";
-import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
-import { useRegisterPassword } from "@/src/query/cardQuery";
+import { useSensitiveDataStore } from "@/src/stores/cardStore";
+import Digit4PasswordButton from "@/src/ui/components/signup/Digit4PasswordButton";
+import PasswordTop from "@/src/ui/components/signup/PasswordTop";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Page() {
   const [isInput, setIsInput] = useState(Array(4).fill(false));
@@ -15,7 +14,7 @@ export default function Page() {
   const { setAccountPassword } = useSensitiveDataStore();
   const handleSubmit = () => {
     if (allow) {
-        setAccountPassword(pwd);
+      setAccountPassword(pwd);
       router.push(urlPath.PARENT_CARD_ACCOUNT);
     }
   };
@@ -29,8 +28,8 @@ export default function Page() {
         setPwd={setPwd}
         setAllowed={setAllowed}
         index={4}
-        title = "아이 계좌 비밀번호를"
-        type = "아이 계좌 비밀번호"
+        title="아이 계좌 비밀번호를"
+        type="아이 계좌 비밀번호"
       />
       <Digit4PasswordButton
         pwd={pwd}
