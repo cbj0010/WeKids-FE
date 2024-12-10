@@ -42,7 +42,7 @@ const TransferResult = ({
   const showToast = () => {
     toast("추후에 추가될 기능입니다.");
   };
-  
+
   return (
     <main className="min-h-screen bg-white flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />

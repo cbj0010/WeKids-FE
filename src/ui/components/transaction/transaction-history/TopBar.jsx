@@ -1,20 +1,17 @@
 "use client";
 import { colorTypeMap, urlPath } from "@/src/constants/common";
 import { useTransFilterStore } from "@/src/stores/transactionStore";
-import {
-  useAccountStore,
-  useSelectUserStore,
-} from "@/src/stores/userStore";
+import { useAccountStore, useSelectUserStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function TopBar({ }) {
+export default function TopBar({}) {
   const { balance } = useTransFilterStore();
   const { selectedaccountInfo } = useSelectUserStore();
-  const {accountInfo} = useAccountStore();
+  const { accountInfo } = useAccountStore();
 
   const copyToClipboard = (text) => {
     navigator.clipboard

@@ -58,11 +58,11 @@ export const TransactionsView = () => {
       const firstDayLastMonth = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
-        1
+        1,
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
-      console.log(firstDayLastMonth)
-      console.log(lastDayLastMonth)
+      console.log(firstDayLastMonth);
+      console.log(lastDayLastMonth);
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
       setEnd(formatToLocalDate(lastDayLastMonth)); // 포맷팅 후 설정
     } else if (range === RangeEnum.CUSTOM) {
@@ -89,9 +89,8 @@ export const TransactionsView = () => {
     end,
     type: typetoEng,
     size,
-   
   });
-  
+
   useEffect(() => {
     // 필터가 변경될 때마다 새로 데이터를 가져옵니다.
     if (start && end && typetoEng) {
@@ -109,7 +108,6 @@ export const TransactionsView = () => {
       console.log(data);
     }
   }, [data, setBalance]);
-
 
   // Intersection Observer가 뷰에 들어올 때 다음 페이지 가져오기
 

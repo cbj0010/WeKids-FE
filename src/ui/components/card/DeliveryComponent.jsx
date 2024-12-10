@@ -5,7 +5,6 @@ import { useColorStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardDisplay from "@/src/ui/components/card/CardDisplay";
 import Link from "next/link";
-
 const DesignChracterColor = {
   color: "PINK1",
   character: "HEARTSPRING",

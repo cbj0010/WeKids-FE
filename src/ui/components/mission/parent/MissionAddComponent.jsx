@@ -89,7 +89,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
       toast("빈칸을 모두 채워주세요!");
       return;
     }
-  
+
     try {
       const data = await mutateAsync({
         childrenId: child,
@@ -99,7 +99,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
         amount: amount,
         category: category,
       });
-  
+
       console.log(`성공! Child ID: ${child}`);
       queryClient.invalidateQueries(["missionList"]); // 캐시 무효화
     } catch (error) {
@@ -108,10 +108,6 @@ export default function MissionAddComponent({ setIsModalOpen }) {
       window.location.reload(); // 페이지 새로고침
     }
   };
-  
-  
-  
-  
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">

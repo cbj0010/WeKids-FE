@@ -32,7 +32,7 @@ export const designCreate = async (data) => {
   return {};
 };
 
-export const designFetch = async ({designId}) => {
+export const designFetch = async ({ designId }) => {
   const storedDesign = useColorStore.getState().design;
   if (storedDesign) {
     return storedDesign;

@@ -26,7 +26,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [text, setText] = useState("");
   const [denied, setDenied] = useState(false);
   const [iconSrc, setIconSrc] = useState("/images/trashImg.svg");
-  const [childProfile, setChildProfile] = useState('');
+  const [childProfile, setChildProfile] = useState("");
   const router = useRouter();
   const { setMissionId } = useMissionIDStore();
   const deadlineDate = deadline ? new Date(deadline) : null;
@@ -52,7 +52,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         setChildProfile(missionDetail.childProfile);
         missionDetail.memo ? setMemo(missionDetail.memo) : "";
         const categoryData = missionCategories.find(
-          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK")
+          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK"),
         );
         setIconSrc(categoryData ? categoryData.icon : "/images/trashImg.svg");
       } catch (error) {

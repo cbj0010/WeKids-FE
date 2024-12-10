@@ -131,5 +131,5 @@ export const urlPath = {
 
   //금융아티클
   FINANCIAL: "/financial",
-  MYPAGE: "/mypage"
+  MYPAGE: "/mypage",
 };

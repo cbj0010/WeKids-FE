@@ -18,7 +18,7 @@ export default async function Home() {
   const memberType = session.user.role;
 
   return (
-    <div className="flex flex-col w-full h-full space-y-6">
+    <div className="flex flex-col w-full space-y-6 pb-10 ">
       <Header />
       <div className="flex justify-center">
         {memberType === "ROLE_PARENT" ? (
@@ -37,7 +37,7 @@ export default async function Home() {
         </div>
       </Link>
       <Link href={urlPath.FINANCIAL}>
-      <FinancialCard />
+        <FinancialCard />
       </Link>
     </div>
   );

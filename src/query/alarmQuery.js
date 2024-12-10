@@ -4,7 +4,6 @@ import { CheckAlarmData } from "../apis/alarm";
 export const useUpdateAlarmChecked = () => {
   return useMutation({
     mutationFn: ({ alarmId }) => {
-
       return CheckAlarmData({ alarmId });
     },
     onSuccess: (data) => {

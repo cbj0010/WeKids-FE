@@ -9,7 +9,7 @@ import ChildNoCard from "./ChildNoCard";
 
 export default function AccountView({ accountData }) {
   const [selectedAccount, setSelectedAccount] = useState(
-    accountData?.parent || null
+    accountData?.parent || null,
   );
   const [selectedProfile, setSelectedProfile] = useState("parent");
   const { setAccountId, setAccountInfo } = useAccountStore();

@@ -8,7 +8,7 @@ const ParentCardCharacter = ({ selectedCharacter, selectedColor }) => {
   const imagePath =
     characterInfoMap[selectedCharacter]?.imagePath ||
     "/images/hachupingImg.svg";
-  const {childName} = useSensitiveDataStore();
+  const { childName } = useSensitiveDataStore();
 
   return (
     <div

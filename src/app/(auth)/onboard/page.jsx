@@ -28,10 +28,14 @@ const OnBoardPage = async () => {
       </div>
 
       <div className="flex flex-col space-y-6">
-        <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}oauth2/authorization/naver`}>
+        <Link
+          href={`${process.env.NEXT_PUBLIC_BASE_URL}oauth2/authorization/naver`}
+        >
           <Image src={NaverLoginImg} alt="회원가입" width={342} height={55} />
         </Link>
-        <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}oauth2/authorization/naver`}>
+        <Link
+          href={`${process.env.NEXT_PUBLIC_BASE_URL}oauth2/authorization/naver`}
+        >
           <Image src={KakaoLoginImg} alt="회원가입" width={342} height={55} />
         </Link>
       </div>
