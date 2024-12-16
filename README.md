@@ -82,9 +82,12 @@
 ## 🗃️ 인프라 구조도
 
 ### 개발인프라
-![image](https://github.com/user-attachments/assets/44c5729f-2792-43e7-ba73-0be4def83c64)
+![위키지-개발 drawio (1) drawio](https://github.com/user-attachments/assets/b353c304-ebca-4c06-8ed4-6a1fc090177e)
+
 ### 운영인프라
-![위키지-운영 drawio (3)](https://github.com/user-attachments/assets/315d9958-7042-4132-8644-50277e041e95)
+![위키지-운영 drawio (4) drawio (1)](https://github.com/user-attachments/assets/facce0bc-3475-4553-b2ca-64dd0531b77c)
+
+
 
 
 
