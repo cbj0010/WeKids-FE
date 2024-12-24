@@ -32,36 +32,51 @@
 - 금융 피드
     - 미션을 수행하며 나에게 필요한 금융 상식을 학습 할 수 있다.
     - 경제 개념을 확립할 수 있음
- 
-  
-## 👻 팀원구성
-
-## 💟 Contributors
-
-## 👻 팀원구성
-
-| <img src="https://avatars.githubusercontent.com/u/23547185?v=4" width="200" /> | <img src="https://avatars.githubusercontent.com/u/117137078?v=4" width="200" /> | <img src="https://avatars.githubusercontent.com/u/104750924?v=4" width="200" /> |
-| :------------------------------------------------------------: | :-----------------------------------------------------: | :-------------------------------------------------------: |
-|           [강현우](https://github.com/khwoowoo)           |           [구자빈](https://github.com/jabin1221)           |           [안찬웅](https://github.com/AnChanUng)           |
-|                           풀스택                           |                       풀스택                        |                        풀스택                         |
-|        거래내역 조회 뷰, 무한스크롤     |        거래내역 상세보기, 알림리스트, <br> 회원가입, 용돈지급         |        카드 디자인, 배송지 등록        |
-
-| <img src="https://avatars.githubusercontent.com/u/60471550?v=4" width="200" /> | <img src="https://avatars.githubusercontent.com/u/66460447?v=4" width="200" /> | 
-| :-------------------------------------------------------: | :--------------------------------------------------------: | 
-|        [조예은](https://github.com/dpdms529)        |           [최윤정](https://github.com/cbj0010)           |      
-|                          풀스택                           |                           풀스택                           |     
-|        소셜로그인, 인증인가         |         부모/자식 메인 홈, 금융 아티클          |  
-
-<br/>
 
 
 <br/>
 
 ## ⭐ 프로젝트 주요 기능
 
-## ![Group 35603](https://github.com/user-attachments/assets/6a3472b6-6f83-4d9a-aedd-995505f85090)
+### ![Group 35603](https://github.com/user-attachments/assets/6a3472b6-6f83-4d9a-aedd-995505f85090)
+
+### 1. 카드 커스텀
+자녀가 원하는 카드를 커스텀하여 카드 개설을 할 수 있습니다
+<img width="908" alt="image" src="https://github.com/user-attachments/assets/3fb4b246-e781-4855-b945-24958a51ec10" />
 
 
+<br>
+
+### 2. 자녀의 소비내역 공유
+부모가 자녀의 거래내역을 공유함으로써, 자녀의 소비습관을 확인하고 개선할 수 있습니다.
+<img width="1023" alt="image" src="https://github.com/user-attachments/assets/0d6d1718-2f11-457b-87c7-7cbd332b2cd8" />
+
+<br>
+
+### 3. 미션 기능
+미션 기능을 통해 자녀에게 용돈을 지급할 수 있습니다.
+![image](https://github.com/user-attachments/assets/c659b2c3-3223-46e6-b26c-1ce489a9595e)
+
+
+
+<br>
+
+## ✨ 프로젝트 핵심 기능
+WeKids는 우리 아이 경제 습관 형성 플랫폼으로 'BaaS(Banking as a Service) 기반 임베디드 금융 서비스'입니다. <br>
+직접 제작한 BaaS를 통해 계좌 및 카드를 개설하고 이체, 거래 내역을 조회하고 있습니다.
+
+[BaaS 레파지토리 링크](https://github.com/woorifisa-projects-3rd/WeKids-BaaS)
+
+![스크린샷 2024-12-24 오후 9 28 44](https://github.com/user-attachments/assets/aed215f0-1eaa-4d40-9d85-9e091b6f40a4)
+![스크린샷 2024-12-24 오후 9 28 50](https://github.com/user-attachments/assets/005a7400-b91c-4efe-9ff5-5fd70d0c93f2)
+
+<br>
+
+또한, 개발 및 테스트 환경에서는 사용자 정보를 마스킹 처리하였습니다.
+
+![스크린샷 2024-12-24 오후 9 28 59](https://github.com/user-attachments/assets/53e95c06-4a39-447d-927f-4969d7aed52e)
+
+<br>
 
 <br/>
 
@@ -74,7 +89,7 @@
 
 ## 📚 기술 스택
 
-## <img width="1920" alt="Problem 31@2x" src="https://github.com/user-attachments/assets/ed12aede-7394-4004-8bde-7741c2f15eeb" />
+### <img width="1920" alt="Problem 31@2x" src="https://github.com/user-attachments/assets/ed12aede-7394-4004-8bde-7741c2f15eeb" />
 
 
 <br />
@@ -89,7 +104,23 @@
 
 
 
+## 💟 Contributors
 
+### 👻 팀원구성
+
+| <img src="https://avatars.githubusercontent.com/u/23547185?v=4" width="200" /> | <img src="https://avatars.githubusercontent.com/u/117137078?v=4" width="200" /> | <img src="https://avatars.githubusercontent.com/u/104750924?v=4" width="200" /> |
+| :------------------------------------------------------------: | :-----------------------------------------------------: | :-------------------------------------------------------: |
+|           [강현우](https://github.com/khwoowoo)           |           [구자빈](https://github.com/jabin1221)           |           [안찬웅](https://github.com/AnChanUng)           |
+|                           풀스택                           |                       풀스택                        |                        풀스택                         |
+|        거래내역 조회 뷰, 무한스크롤     |        거래내역 상세보기, 알림리스트, <br> 회원가입, 용돈지급         |        카드 디자인, 배송지 등록        |
+
+| <img src="https://avatars.githubusercontent.com/u/60471550?v=4" width="200" /> | <img src="https://avatars.githubusercontent.com/u/66460447?v=4" width="200" /> | 
+| :-------------------------------------------------------: | :--------------------------------------------------------: | 
+|        [조예은](https://github.com/dpdms529)        |           [최윤정](https://github.com/cbj0010)           |      
+|                          풀스택                           |                           풀스택                           |     
+|        소셜로그인, 인증인가         |         부모/자식 메인 홈, 금융 아티클          |  
+
+<br/>
 
 
 <br/>
